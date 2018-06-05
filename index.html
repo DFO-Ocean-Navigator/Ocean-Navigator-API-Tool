@@ -1171,11 +1171,11 @@
 							</table>
 						</div>
 						<div class="memdoc">
-							<pre class="fragment">API Format: /api/variables/?dataset='...'&amp;3d_only='...'&amp;vectors_only='...'&amp;vectors='...'
+							<pre class="fragment">API Format: /api/variables/?dataset=&lt;dataset_id&gt;&amp;3d_only=&lt;string:old_dataset&gt;&amp;vectors_only=&lt;string:old_dataset&gt;&amp;vectors=&lt;string:old_dataset&gt;
 
                         **Only use variables required for your specific request**
 
-                        dataset      : Dataset to extract data - Can be found using /api/datasets
+                        dataset_id      : Dataset to extract data - Can be found using /api/datasets
                         3d_only      : Boolean Value; When True, only variables with depth will be shown
                         vectors_only : Boolean Value; When True, ONLY variables with magnitude will be shown 
                         vectors      : Boolean Value; When True, magnitude components will be included
