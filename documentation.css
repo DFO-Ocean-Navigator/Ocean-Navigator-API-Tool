@@ -1,0 +1,28 @@
+
+#Documentation button{
+  background-color: rgb(255, 255, 255);
+  border: 0px;
+}
+
+#Documentation button:focus{
+  outline: none;
+  box-shadow: none;
+}
+
+
+#Documentation button:hover, button:active{
+  background-color: rgb(204, 204, 204)!important
+}
+
+.all_content {
+  border: 2px solid white;
+}
+
+h4{
+  font-size: 19px;
+}
+
+.expand-contents {
+  display: none;
+  padding: 10px;
+}
