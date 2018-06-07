@@ -9,6 +9,15 @@
   box-shadow: none;
 }
 
+.icon_custom {
+  height: 20px;
+  width: 20px;
+}
+
+.comments {
+  color: rgb(23, 141, 161);
+  display: inline;
+}
 
 #Documentation button:hover, button:active{
   background-color: rgb(204, 204, 204)!important
