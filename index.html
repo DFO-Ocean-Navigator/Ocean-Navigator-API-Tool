@@ -69,13 +69,18 @@
 			</ul>
 		</div><!-- /#sidebar-wrapper -->
 		<!-- Page Content -->
-		<div id="page-content-wrapper">
+		
 
-            
+    <div id="page-content-wrapper">
 			<div class="container-fluid">
 				<div class="tabcontent" id="Home">
-					<h3>Home</h3>
-				</div>
+					<!--<h3>Welcome to the Ocean Navigator API Guide</h3>-->
+					<img class='mainImage' src="main_page.jpg">
+				 </div>
+			<!--</div> 
+		</div>-->
+		<!--<div class="page-content-wrapper">
+			<div class="container_fluid">-->
 				<div class="tabcontent" id="Documentation">
 					<h3>API Documentation</h3>
 				
@@ -84,24 +89,21 @@
 					</div>
 				
 					<h2 class="groupheader">
-						<a id="func-members" name="func-members"></a> How To</h2>
+						<a id="func-members" name="func-members"></a> How To:</h2>
 					<div class="how_to">
 						<div class='all_content' id="query_construct_all">
 							<div class='expand-button'>
 								<button id="query_construct_button" onclick="openContents(event, 'query_construct', 'query_construct_all', 'query_construct_button')">
-									<h4>Constructing a Query</h4>
+									<h4>Format a Query</h4>
 								</button>
 							</div>
 							<div class='expand-contents' id="query_construct" border="1">
-								<tr class='intro'>
-									<td>
-										The Ocean Navigator uses 2 different methods to receive API queries. The first method uses Query Parameters, and the second
-										uses Template Parameters
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5>1. Query Parameters</h5>
+										The Ocean Navigator uses 2 different methods to receive API queries. </br>
+										Both methods require the query to be prepended with "http://navigator.oceansdata.ca/" </br>
+										The first method uses Query Parameters, and the second
+										uses Template Parameters </br>
+										</br>
+										<b>(1) Query Parameters</b></br>
 The query method uses a base query followed by the input parameters </br>
 To indicate the start of variable input, a ? is used. <br/>
 Similarly, to include more than one variable in the query, seperate each variable with a & <br/>
@@ -116,19 +118,23 @@ Example: <br/>
 ?          : beginning of parameter input
 dataset    : parameter with assigned value
 =giops_day : assigning value to dataset
-3d_only    : standalone parameter (no value) 
 &          : indicates next parameter
+3d_only    : standalone parameter (no value) 
 </pre>
 
-When scripting, queries should be written in JSON and converted to encodedURI format
+When scripting, longer queries should be written in JSON and converted to encodedURI format
 </br></br>
-									</td>
-								</tr>
-								<tr>
-									<td>
-									<h5>2. Template Parameters</h5>
-																			
-																				
+
+
+									<b>(2) Template Parameters</b></br>
+Template based parameters differ from query based parameters in various ways:	</br>																		
+<b>-</b> Parameter Order Matters </br>
+<b>-</b> Parameter values are separated by '/' </br>
+<b>-</b>Input paramater types must match expected parameter types </br>
+This means you cannot provide an iteger if the query is expecting a string. </br>
+
+The expectations for each query are outlined in the documentation below. </br>
+									</br>
 Example:
 <pre class='whitespace'>
 <a target="_blank" href="http://navigator.oceansdata.ca/api/class4/forecasts/class4_20180531_GIOPS_CONCEPTS_2.3_profile">http://navigator.oceansdata.ca/api/class4/forecasts/class4_20180531_GIOPS_CONCEPTS_2.3_profile</a>
@@ -136,33 +142,101 @@ Example:
 format: /api/class4/&lt;string:q&gt;/&lt;string:class4_id&gt;/
 </br>
 /api/class4/       : Base
-&lt;string:q&gt;         : 1st Parameter
-&lt;string:class4_id&gt; : 2nd Parameter 
+&lt;string:q&gt;         : 1st Parameter Value
+&lt;string:class4_id&gt; : 2nd Parameter Value 
 
 </pre>
-						       </td>
-																		</tr>
+API Queries can be tested by copying and pasting the query into a browser, or can be automated by constructing them in a script
 																		</div>
 																		</div>
 																		<div class='all_content' id="query_construct_json_all">
 																			<div class='expand-button'>
 																				<button id="query_construct_json_button" onclick="openContents(event, 'query_construct_json', 'query_construct_json_all', 'query_construct_json_button')">
-																					<h4>Constructing a Query in JSON</h4>
+																					<h4>Construct a JSON API - Script</h4>
 																				</button>
 																			</div>
 																			<div class='expand-contents' id="query_construct_json">
-																				Coming Soon
+<pre class='whitespace'>
+
+import urllib
+
+query = {
+	"scale": "-1.6,5",
+	"depth_limit": False,
+	"colormap": "default",
+	"dataset": "glorys3",
+	"showmap": True,
+	"variable": "votemper",
+	"surfacevariable": "none",
+	"time": 207,
+	"quantum": "month",
+	"path": [[47.649768922115356, -52.60316173355579], [45.227624722564485, -48.53822032730579]],
+	"type": "transect",
+	"linearthresh": 200,
+}
+
+for t in range(0,10)  <div style="color: rgb(23, 141, 161); display: inline">#In practice, the range would be a valid time format</div>
+	query['time'] = t  <div style="color: rgb(23, 141, 161); display: inline">#Sets the time portion of the query</div>
+
+	url = "http://navigator.oceansdata.ca/plot/?" + urlliv.urlencode({
+		"query": json.dumps(query),
+		"dpi" : "72",
+		"size" : "10x7",
+	})
+
+</pre>
 																			</div>
 																		</div>
 																		<div class='all_content' id="query_usage_all">
 																			<div class='expand-button'>
 																				<button id="query_usage_button" onclick="openContents(event, 'query_usage', 'query_usage_all', 'query_usage_button')">
-																					<h4>Using the Constructed Query</h4>
+																					<h4>Construct a Formatted API - Script</h4>
 																				</button>
 																			</div>
 																		
 																			<div class='expand-contents' id="query_usage">
-																				Coming Soon
+
+There are multiple ways to construct an API request in a script. 2 examples are given below.</br>
+**Both examples will print 4 lists displaying the depths available for each of the variables specified** </br>
+</br>
+<b>(1) String Replacement</b></br>
+In this example, the 3 curly brace sets "{}" will be replaced by the 3 values given in .format() </br>
+These values can be assigned, incremented, or modified to make multiple automated API requests. </br>
+<pre class='whitespace'>
+
+import urllib
+
+base_url = "http://navigator.oceansdata.ca/api/depth/"
+dataset = giops_day
+variables = [votemper, vosaline, vozocrtx, vomecrty]
+
+for variable in variables:
+	url = ('{}?dataset={}&variable={}'.format(base_url, dataset, variable))
+	f = urllib.urlopen(link)
+	output = f.read()
+	print(output)
+
+</pre>
+
+</br>
+<b>(2) String Concatenation</b></br>
+In this example, the variables are incorporated directly in place, and are concatenated together in the order they appear </br>
+The text given in quotations "..." are hardcoded strings which will become part of the query
+<pre class='whitespace'>
+
+import urllib
+
+dataset = giops_day
+variables = [votemper, vosaline, vozocrtx, vomecrty]
+
+for variable in variables:
+	url = "http://navigator.oceansdata.ca/api/depth/?dataset=" + dataset + "&variables=" + variable
+	f = urllib.urlopen(link)
+	output = f.read()
+	print(output)
+
+</pre>
+
 																			</div>
 																		</div>
 																		</div>
@@ -950,7 +1024,7 @@ format: /api/class4/&lt;string:q&gt;/&lt;string:class4_id&gt;/
 						<div class="memproto">
 							<table class="memname">
 								<tr>
-									<td class="memname">def oceannavigator.views.vars_query</td>
+									<td class="memname">def -->eannavigator.views.vars_query</td>
 									<td>(</td>
 									<td class="paramname"></td>
 									<td>)</td>
@@ -995,16 +1069,21 @@ format: /api/class4/&lt;string:q&gt;/&lt;string:class4_id&gt;/
 						</div>
 						<div class="memdoc"></div>
 					</div>
-				</div><!-- contents -->
+				</div>
+				<!-- contents -->
+				<div class="tabcontent" id="API_Generator">
+					<h3>API Generator</h3>
+					Under Construction - Check Back Soon
+				</div>
+				<div class="tabcontent" id="Contact">
+					<h3>Contact</h3>
+					Under Construction - Check Back Soon
+				</div>
+
 			</div><!-- doc-content -->
 			<!-- start footer part -->
 		</div>
-		<div class="tabcontent" id="API_Generator">
-			<h3>API Generator</h3>
-		</div>
-		<div class="tabcontent" id="Contact">
-			<h3>Contact</h3>
-		</div>
+		
 	</div><!-- /#page-content-wrapper -->
 	<!-- /#wrapper -->
 	<!-- jQuery -->

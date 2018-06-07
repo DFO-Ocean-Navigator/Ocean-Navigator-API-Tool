@@ -31,7 +31,7 @@ function openContents(event, name, all, button) {
     document.getElementById(name).style.display = "none"
     document.getElementById(all).style.backgroundColor = "white";
     document.getElementById(button).style.backgroundColor = "initial";
-    document.getElementById(button).style.hover.backgroundColor = "rgb(204, 204, 204)"
+    //document.getElementById(button).style.hover.backgroundColor = "rgb(204, 204, 204)"
   } else {
     document.getElementById(name).style.display = "block"
     document.getElementById(all).style.backgroundColor = "rgb(204, 204, 204)";

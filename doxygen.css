@@ -1,5 +1,9 @@
 /* The standard CSS for doxygen 1.8.11 */
 
+html {
+	height: 100%;
+}
+
 body, table, div, p, dl {
 	font: 400 14px/22px Roboto,sans-serif;
 }
@@ -270,11 +274,7 @@ div.groupText {
 	font-style: italic;
 }
 
-body {
-	background-color: white;
-	color: black;
-        margin: 0;
-}
+
 
 div.contents {
 	margin-top: 10px;

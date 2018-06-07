@@ -6,13 +6,16 @@
 
  body {
     overflow-x: hidden;
-    background: rgb(214, 209, 209);
+    height: 100%;
+	color: black;
+    margin: 0;
  }
 
 /* Toggle Styles */
 
 #wrapper {
     padding-left: 0;
+    height: 100%;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -46,13 +49,25 @@
 #page-content-wrapper {
     width: 100%;
     position: absolute;
-    padding: 15px;
+    padding: 0px;
 }
+
 #page-content-wrapper > .container-fluid #Home {
+    position: fixed;
+    width: 100%;
+    position: bottom;
     display: block;
+    padding: 0!important;
 }
-#page-content-wrapper > .container-fluid > .tabcontent {
+
+.tabcontent-home {
+    display: block;
+    padding: 0;
+}
+
+.tabcontent {
     display: none;
+    padding-left: 10px;
 }
 
 
@@ -129,8 +144,10 @@
     }
 
     #page-content-wrapper {
-        padding: 20px;
+        height: 100%;
+        padding: 0px;
         position: relative;
+        background-color: white;
     }
 
     #wrapper.toggled #page-content-wrapper {
