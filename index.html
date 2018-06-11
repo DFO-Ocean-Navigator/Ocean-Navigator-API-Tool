@@ -58,7 +58,7 @@
 					<a href="#home" onclick="openTab(event, 'Home')">Home</a>
         </li>
         <li>
-          <a href="#documentation" onclick="openTab(event, 'Documentation')">Documentation</a>
+          <a href="#documentation" onclick="openTab(event, 'Documentation'); getDatasets()">Documentation</a>
         </li>
 				<li>
 					<a href="#about" onclick="openTab(event, 'API_Generator')">API Generator</a>
@@ -206,7 +206,7 @@ This will save an image for each time stamp in the specified range </br>
 																		<div class='all_content' id="query_usage_all">
 																			<div class='expand-button'>
 																				<button id="query_usage_button" onclick="openContents(event, 'query_usage', 'query_usage_all', 'query_usage_button')">
-																					<h4>Construct a Formatted API - Script</h4>
+																					<h4>Construct a Formatted API Script</h4>
 																				</button>
 																			</div>
 																		
@@ -255,317 +255,189 @@ for variable in variables:
 																		</div>
 																		</div>
 																		
+					<h2 class="groupheader">
+						<a id="func-members" name="func-members"></a>Available Datasets</h2>
+						<div class='datasets' id="datasets"></div>
 																		
-																		<table class="memberdecls">
+					<table class="memberdecls">
 						<tr class="heading">
 							<td colspan="2">
 								<h2 class="groupheader"><a id="func-members" name="func-members"></a> Functions</h2>
 							</td>
 						</tr>
-						<tr class="memitem:a7cbb3c6c08c5a7f7c7bf27a7064f1177">
-							<td class='links memItemLeft'>def&#160</td>
+
+						<tr class="memitem:a17c5e2d6a62b8e8a2ae72df64ec1404a">
 							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a7cbb3c6c08c5a7f7c7bf27a7064f1177">handle_error</a> (error)
+								<a class="el" href="index.html#a17c5e2d6a62b8e8a2ae72df64ec1404a">/api/class4/&lt;string:q&gt;/&lt;string:class4_id&gt;/</a>
 							</td>
 						</tr>
-						<tr class="separator:a7cbb3c6c08c5a7f7c7bf27a7064f1177">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:a7128beee0f69496d9b1a6443d5fc2e87">
-							<td class="links memItemLeft">def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a7128beee0f69496d9b1a6443d5fc2e87">range_query_v0_1</a> (interp, radius, neighbours, dataset, projection, extent, variable, <a class="el" href="index.html#a70c17d22d9aa676fd322a30af4ec4b8e">depth</a>, time)
-							</td>
-						</tr>
-						<tr class="separator:a7128beee0f69496d9b1a6443d5fc2e87">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:a1c23da155b343264e58e301e4fdb11bc">
-							<td class="links memItemLeft">def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a1c23da155b343264e58e301e4fdb11bc">info</a> ()
-							</td>
-						</tr>
-						<tr class="separator:a1c23da155b343264e58e301e4fdb11bc">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:aa7dc666c286b9bee527dc0a54c3dfb2c">
-							<td class="links memItemLeft">def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#aa7dc666c286b9bee527dc0a54c3dfb2c">query</a> (q)
-							</td>
-						</tr>
-						<tr class="separator:aa7dc666c286b9bee527dc0a54c3dfb2c">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:aba7d3e274471275dede916bdb40838e4">
-							<td align="right" class="memItemLeft" valign="top">def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#aba7d3e274471275dede916bdb40838e4">query_id</a> (q, q_id)
-							</td>
-						</tr>
-						<tr class="separator:aba7d3e274471275dede916bdb40838e4">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:a254c0ac4723777fd14cf00f4542d4477">
-							<td class="links memItemLeft">def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a254c0ac4723777fd14cf00f4542d4477">get_data</a> (dataset, variable, time, <a class="el" href="index.html#a70c17d22d9aa676fd322a30af4ec4b8e">depth</a>, location)
-							</td>
-						</tr>
-						<tr class="separator:a254c0ac4723777fd14cf00f4542d4477">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:a1556b1b7886947e93c0bf92b5199e0ed">
-							<td class="links memItemLeft">def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a1556b1b7886947e93c0bf92b5199e0ed">query_file</a> (q, projection, resolution, extent, file_id)
-							</td>
-						</tr>
-						<tr class="separator:a1556b1b7886947e93c0bf92b5199e0ed">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:a6b7af3ea2b5f59593ba63ecdd4e4fd36">
-							<td class="links memItemLeft">def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a6b7af3ea2b5f59593ba63ecdd4e4fd36">query_datasets</a> ()
-							</td>
-						</tr>
-						<tr class="separator:a6b7af3ea2b5f59593ba63ecdd4e4fd36">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:a513d541a6aaed3ae07153904b6ec9a3d">
-							<td class="links memItemLeft">def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a513d541a6aaed3ae07153904b6ec9a3d">colors</a> ()
-							</td>
-						</tr>
-						<tr class="separator:a513d541a6aaed3ae07153904b6ec9a3d">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:ab34bb282a1abcb01d9e9d5e7b31380d7">
-							<td class="links memItemLeft" >def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#ab34bb282a1abcb01d9e9d5e7b31380d7">colormaps</a> ()
-							</td>
-						</tr>
-						<tr class="separator:ab34bb282a1abcb01d9e9d5e7b31380d7">
+						<tr class="separator:a17c5e2d6a62b8e8a2ae72df64ec1404a">
 							<td class="memSeparator" colspan="2">&#160;</td>
 						</tr>
 						<tr class="memitem:a35890f4dc315220b2aa1b14ccce075ce">
-							<td class="links memItemLeft">def&#160;</td>
 							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a35890f4dc315220b2aa1b14ccce075ce">colormap_image</a> ()
+								<a class="el" href="index.html#a35890f4dc315220b2aa1b14ccce075ce">/colormaps.png</a>
 							</td>
 						</tr>
 						<tr class="separator:a35890f4dc315220b2aa1b14ccce075ce">
 							<td class="memSeparator" colspan="2">&#160;</td>
 						</tr>
-						<tr class="memitem:a70c17d22d9aa676fd322a30af4ec4b8e">
-							<td class="links memItemLeft">def&#160;</td>
+						<tr class="memitem:ab34bb282a1abcb01d9e9d5e7b31380d7">
 							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a70c17d22d9aa676fd322a30af4ec4b8e">depth</a> ()
+								<a class="el" href="index.html#ab34bb282a1abcb01d9e9d5e7b31380d7">/api/colormaps/</a>
+							</td>
+						</tr>
+						<tr class="separator:ab34bb282a1abcb01d9e9d5e7b31380d7">
+							<td class="memSeparator" colspan="2">&#160;</td>
+						</tr>
+						<tr class="memitem:a70c17d22d9aa676fd322a30af4ec4b8e">
+
+							<td class="memItemRight" valign="bottom">
+								<a class="el" href="index.html#a70c17d22d9aa676fd322a30af4ec4b8e">/api/depth/?dataset=&lt;string:dataset_id&gt;&amp;variable=&lt;string:variable&gt;</a>
 							</td>
 						</tr>
 						<tr class="separator:a70c17d22d9aa676fd322a30af4ec4b8e">
 							<td class="memSeparator" colspan="2">&#160;</td>
 						</tr>
-						<tr class="memitem:a445ef519612dc58e99ae0f7a1c07364b">
-							<td class="links memItemLeft">def&#160;</td>
+						<tr class="memitem:a023f654fdfa3666ac0693da538632c68">
 							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a445ef519612dc58e99ae0f7a1c07364b">obs_vars_query</a> ()
+								<a class="el" href="index.html#a023f654fdfa3666ac0693da538632c68">/api/drifters/&lt;string:q&gt;/&lt;string:drifter_id&gt;</a>
 							</td>
 						</tr>
-						<tr class="separator:a445ef519612dc58e99ae0f7a1c07364b">
+						<tr class="separator:a023f654fdfa3666ac0693da538632c68">
 							<td class="memSeparator" colspan="2">&#160;</td>
 						</tr>
-						<tr class="memitem:a12dd9b2592425f080a5ddd023c0fdf98">
-							<td class="links memItemLeft" >def&#160;</td>
+						<tr class="memitem:a254c0ac4723777fd14cf00f4542d4477">
 							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a12dd9b2592425f080a5ddd023c0fdf98">vars_query</a> ()
+								<a class="el" href="index.html#a254c0ac4723777fd14cf00f4542d4477">/api/data/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;int:time&gt;/&lt;string:Depth&gt;/
+										&lt;string:location&gt;.json</a>
 							</td>
 						</tr>
-						<tr class="separator:a12dd9b2592425f080a5ddd023c0fdf98">
+						<tr class="separator:a254c0ac4723777fd14cf00f4542d4477">
+							<td class="memSeparator" colspan="2">&#160;</td>
+						</tr>
+						<tr class="memitem:a7cbb3c6c08c5a7f7c7bf27a7064f1177">
+							<td class="memItemRight" valign="bottom">
+								<a class="el" href="index.html#a7cbb3c6c08c5a7f7c7bf27a7064f1177">/api/observationvariables/</a>
+							</td>
+						</tr>
+						<tr class="separator:a7cbb3c6c08c5a7f7c7bf27a7064f1177">
+							<td class="memSeparator" colspan="2">&#160;</td>
+						</tr>
+						<tr class="memitem:a1c0a02e7d374dffa2092d5d5f8dc418f">
+							<td class="memItemRight" valign="bottom">
+								<a class="el" href="index.html#a1c0a02e7d374dffa2092d5d5f8dc418f">/plot/?query='...'</a>
+							</td>
+						</tr>
+						<tr class="separator:a1c0a02e7d374dffa2092d5d5f8dc418f">
+							<td class="memSeparator" colspan="2">&#160;</td>
+						</tr>
+						<tr class="memitem:aa7dc666c286b9bee527dc0a54c3dfb2c">
+							<td class="memItemRight" valign="bottom">
+								<a class="el" href="index.html#aa7dc666c286b9bee527dc0a54c3dfb2c">/api/&lt;string:q&gt;/</a>
+							</td>
+						</tr>
+						<tr class="separator:aa7dc666c286b9bee527dc0a54c3dfb2c">
+							<td class="memSeparator" colspan="2">&#160;</td>
+						</tr>
+						<tr class="memitem:a6b7af3ea2b5f59593ba63ecdd4e4fd36">
+							<td class="memItemRight" valign="bottom">
+								<a class="el" href="index.html#a6b7af3ea2b5f59593ba63ecdd4e4fd36">/api/datasets/</a>
+							</td>
+						</tr>
+						<tr class="separator:a6b7af3ea2b5f59593ba63ecdd4e4fd36">
+							<td class="memSeparator" colspan="2">&#160;</td>
+						</tr>
+						<tr class="memitem:a1556b1b7886947e93c0bf92b5199e0ed">
+							<td class="memItemRight" valign="bottom">
+								<a class="el" href="index.html#a1556b1b7886947e93c0bf92b5199e0ed">/api/&lt;string:q&gt;/&lt;string:projection&gt;/&lt;int:resolution&gt;/&lt;string:extent&gt;/&lt;string:file_id&gt;.json</a>
+							</td>
+						</tr>
+						<tr class="separator:a1556b1b7886947e93c0bf92b5199e0ed">
+							<td class="memSeparator" colspan="2">&#160;</td>
+						</tr>
+						<tr class="memitem:aba7d3e274471275dede916bdb40838e4">
+							<td class="memItemRight" valign="bottom">
+								<a class="el" href="index.html#aba7d3e274471275dede916bdb40838e4">/api/&lt;string:q&gt;/&lt;string:q_id&gt;.json</a>
+							</td>
+						</tr>
+						<tr class="separator:aba7d3e274471275dede916bdb40838e4">
+							<td class="memSeparator" colspan="2">&#160;</td>
+						</tr>
+						<tr class="memitem:a7128beee0f69496d9b1a6443d5fc2e87">
+							<td class="memItemRight" valign="bottom">
+								<a class="el" href="index.html#a7128beee0f69496d9b1a6443d5fc2e87">/scale/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:scale&gt;.png</a>
+							</td>
+						</tr>
+						<tr class="separator:a7128beee0f69496d9b1a6443d5fc2e87">
 							<td class="memSeparator" colspan="2">&#160;</td>
 						</tr>
 						<tr class="memitem:a5b8e236fb43e7fa2e47c36e2bd497daa">
-							<td class="links memItemLeft" >def&#160;</td>
 							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a5b8e236fb43e7fa2e47c36e2bd497daa">time_query</a> ()
+								<a class="el" href="index.html#a5b8e236fb43e7fa2e47c36e2bd497daa">/stats/?query='...'</a>
 							</td>
 						</tr>
 						<tr class="separator:a5b8e236fb43e7fa2e47c36e2bd497daa">
 							<td class="memSeparator" colspan="2">&#160;</td>
 						</tr>
 						<tr class="memitem:a78b8dba2d814042466ba2ce6f75271ea">
-							<td class="links memItemLeft" >def&#160;</td>
 							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a78b8dba2d814042466ba2ce6f75271ea">timestamp_for_date</a> (old_dataset, date, new_dataset)
+								<a class="el" href="index.html#a78b8dba2d814042466ba2ce6f75271ea">/subset/?query='...'</a>
 							</td>
 						</tr>
 						<tr class="separator:a78b8dba2d814042466ba2ce6f75271ea">
 							<td class="memSeparator" colspan="2">&#160;</td>
 						</tr>
 						<tr class="memitem:a599954fd41ab8c8dafb570cb4a730f6d">
-							<td class="links memItemLeft" >def&#160;</td>
 							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a599954fd41ab8c8dafb570cb4a730f6d">scale</a> (dataset, variable, scale)
+								<a class="el" href="index.html#a599954fd41ab8c8dafb570cb4a730f6d">/api/timestamps/?dataset=' '</a>
 							</td>
 						</tr>
 						<tr class="separator:a599954fd41ab8c8dafb570cb4a730f6d">
 							<td class="memSeparator" colspan="2">&#160;</td>
 						</tr>
 						<tr class="memitem:a697700a77582656ea36bf98dfc589696">
-							<td class="links memItemLeft" >def&#160;</td>
 							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a697700a77582656ea36bf98dfc589696">tile_v0_1</a> (projection, interp, radius, neighbours, dataset, variable, time, <a class="el" href="index.html#a70c17d22d9aa676fd322a30af4ec4b8e">depth</a>, <a class="el" href="index.html#a599954fd41ab8c8dafb570cb4a730f6d">scale</a>, zoom, x, y)
+								<a class="el" href="index.html#a697700a77582656ea36bf98dfc589696">/api/timestamp/&lt;string:old_dataset&gt;/&lt;int:date&gt;/&lt;string:new_dataset&gt;</a>
 							</td>
 						</tr>
 						<tr class="separator:a697700a77582656ea36bf98dfc589696">
 							<td class="memSeparator" colspan="2">&#160;</td>
 						</tr>
 						<tr class="memitem:af58e86b933ff131fed3d16254dfcb8b0">
-							<td class="links memItemLeft" >def&#160;</td>
 							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#af58e86b933ff131fed3d16254dfcb8b0">topo</a> (projection, zoom, x, y)
+								<a class="el" href="index.html#af58e86b933ff131fed3d16254dfcb8b0">/api/variables/?</a>
 							</td>
 						</tr>
 						<tr class="separator:af58e86b933ff131fed3d16254dfcb8b0">
 							<td class="memSeparator" colspan="2">&#160;</td>
 						</tr>
 						<tr class="memitem:a17c5e2d6a62b8e8a2ae72df64ec1404a">
-							<td class="links memItemLeft" >def&#160;</td>
 							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a17c5e2d6a62b8e8a2ae72df64ec1404a">bathymetry</a> (projection, zoom, x, y)
+								<a class="el" href="index.html#a17c5e2d6a62b8e8a2ae72df64ec1404a">/dataset=&lt;dataset_id&gt;&amp;3d_only=&lt;string:old_dataset&gt;&amp;vectors_only=&lt;string:old_dataset&gt;&amp;vectors=&lt;string:old_dataset&gt;
+										api_variables
+										</a>
 							</td>
 						</tr>
 						<tr class="separator:a17c5e2d6a62b8e8a2ae72df64ec1404a">
 							<td class="memSeparator" colspan="2">&#160;</td>
 						</tr>
-						<tr class="memitem:a023f654fdfa3666ac0693da538632c68">
-							<td class="links memItemLeft" >def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a023f654fdfa3666ac0693da538632c68">drifter_query</a> (q, drifter_id)
-							</td>
-						</tr>
-						<tr class="separator:a023f654fdfa3666ac0693da538632c68">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:ac7a372deb8d7f43619ad6a6ef52b7d23">
-							<td class="links memItemLeft" >def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#ac7a372deb8d7f43619ad6a6ef52b7d23">class4_query</a> (q, class4_id, index)
-							</td>
-						</tr>
-						<tr class="separator:ac7a372deb8d7f43619ad6a6ef52b7d23">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:a10a5558aa3abd748d8864fb277bde6a7">
-							<td class="links memItemLeft" >def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a10a5558aa3abd748d8864fb277bde6a7">subset_query</a> ()
-							</td>
-						</tr>
-						<tr class="separator:a10a5558aa3abd748d8864fb277bde6a7">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:a1c0a02e7d374dffa2092d5d5f8dc418f">
-							<td class="links memItemLeft" >def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a1c0a02e7d374dffa2092d5d5f8dc418f">plot</a> ()
-							</td>
-						</tr>
-						<tr class="separator:a1c0a02e7d374dffa2092d5d5f8dc418f">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:aca12602094d1a7ea2bc920d70a89868a">
-							<td class="links memItemLeft" >def&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#aca12602094d1a7ea2bc920d70a89868a">stats</a> ()
-							</td>
-						</tr>
-						<tr class="separator:aca12602094d1a7ea2bc920d70a89868a">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
 					</table>
-					<table class="memberdecls">
-						<tr class="heading">
-							<td colspan="2">
-								<h2 class="groupheader"><a id="var-members" name="var-members"></a> Variables</h2>
-							</td>
-						</tr>
-						<tr class="memitem:a179cabe17ea481ef082108f18bb74f66">
-							<td class="links memItemLeft" >int&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a179cabe17ea481ef082108f18bb74f66">MAX_CACHE</a> = 315360000
-							</td>
-						</tr>
-						<tr class="separator:a179cabe17ea481ef082108f18bb74f66">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:a4d065d48add84d4cc82879207512fcfd">
-							<td class="links memItemLeft" >&#160;</td>
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a4d065d48add84d4cc82879207512fcfd">FAILURE</a> = <a class="el" href="classoceannavigator_1_1errors_1_1_client_error.html">ClientError</a>(&quot;Bad API usage&quot;)
-							</td>
-						</tr>
-						<tr class="separator:a4d065d48add84d4cc82879207512fcfd">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-					</table>
+					
 					<h2 class="groupheader">Function Documentation</h2><a class="anchor" id="a17c5e2d6a62b8e8a2ae72df64ec1404a"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">def oceannavigator.views.bathymetry</td>
-									<td>(</td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>projection</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>zoom</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>x</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>y</em>&#160;</td>
-								</tr>
-								<tr>
-									<td></td>
-									<td>)</td>
-									<td></td>
-									<td></td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">Generates Bathymetry Tiles for the Main Map
-                        </pre>
-						</div>
-					</div><a class="anchor" id="ac7a372deb8d7f43619ad6a6ef52b7d23"></a>
+
 					<div class="memitem">
 						<div class="memproto">
 									<div class="memname">/api/class4/&lt;string:q&gt;/&lt;string:class4_id&gt;/</div>
 						</div>
 						<div class="memdoc">
-							<pre class="fragment">
+<pre class="fragment">
 
-                        &lt;string:q&gt;         : forecasts / models (Data Request)
-                        &lt;string:class4_id&gt; : ID of the desired class4 - Can be found using /api/class4/
+&lt;string:q&gt;         : forecasts (dates) models (?) 
+&lt;string:class4_id&gt; : ID of the desired class4 - Can be found using /api/class4/
 
-                        Returns a list of class4 datapoints for a given day 
-                        </pre>
+Returns in-situ observations with global prediction system estimates
+</pre>
 						</div>
 					</div><a class="anchor" id="a35890f4dc315220b2aa1b14ccce075ce"></a>
 					<div class="memitem">
@@ -573,10 +445,10 @@ for variable in variables:
 									<div class="memname">/colormaps.png</div>
 						</div>
 						<div class="memdoc">
-							<pre class="fragment">
+<pre class="fragment">
 
-                        Returns image of colourmap example configurations
-                        </pre>
+Returns image of colourmap example configurations
+</pre>
 						</div>
 					</div><a class="anchor" id="ab34bb282a1abcb01d9e9d5e7b31380d7"></a>
 					<div class="memitem">
@@ -584,10 +456,10 @@ for variable in variables:
 									<div class="memname">/api/colormaps/</div>
 						</div>
 						<div class="memdoc">
-							<pre class="fragment">
+<pre class="fragment">
 
-                        Returns a list of colourmaps
-                        </pre>
+Returns a list of colourmaps
+</pre>
 						</div>
 					</div><a class="anchor" id="a513d541a6aaed3ae07153904b6ec9a3d"></a>
 					<div class="memitem">
@@ -595,10 +467,10 @@ for variable in variables:
 									<div class="memname">/api/colors/</div>
 						</div>
 						<div class="memdoc">
-							<pre class="fragment">
+<pre class="fragment">
 
-                        Returns a list of colours for use in colour maps
-                        </pre>
+Returns a list of colours for use in colour maps
+</pre>
 						</div>
 					</div><a class="anchor" id="a70c17d22d9aa676fd322a30af4ec4b8e"></a>
 					<div class="memitem">
@@ -606,13 +478,14 @@ for variable in variables:
 									<div class="memname">/api/depth/?dataset=&lt;string:dataset_id&gt;&amp;variable=&lt;string:variable&gt;</div>
 						</div>
 						<div class="memdoc">
-							<pre class="fragment">
+<pre class="fragment">
+<a target="_blank" href="http://navigator.oceansdata.ca/api/depth/?dataset=giops_day&variable=votemper">/api/depth/?dataset=giops_day&variable=votemper</a>
 
-    &lt;dataset_id&gt;  : id of the desired dataset - Can be found using /api/datasets and looking for "id"
-    &lt;variable&gt; : Type of data to retrieve - found using /api/variables/?dataset='...'
+&lt;dataset_id&gt;  : id of the desired dataset - Can be found using /api/datasets/id
+&lt;variable&gt; : Type of data to retrieve - found using /api/variables/?dataset='...'
 
-		Returns all depths available for that variable in the dataset
-                        </pre>
+Returns all depths available for that variable in the dataset
+</pre>
 						</div>
 					</div><a class="anchor" id="a023f654fdfa3666ac0693da538632c68"></a>
 					<div class="memitem">
@@ -620,15 +493,15 @@ for variable in variables:
 									<div class="memname">/api/drifters/&lt;string:q&gt;/&lt;string:drifter_id&gt;</div>
 						</div>
 						<div class="memdoc">
-							<pre class="fragment">
+<pre class="fragment">
 
-                        &lt;string:q&gt;          : vars / time (Data Request)
-                        &lt;string:drifter_id&gt; : ID of Drifter of Interest - Options can be found using /api/
+&lt;string:q&gt;          : vars / time (Data Request)
+&lt;string:drifter_id&gt; : ID of Drifter of Interest - Options can be found using /api/
 
-                        Vars - Returns a list of Variables applicable to the specified drifter
-                        Time - Returns the max and min time of the specified drifter
+Vars - Returns a list of Variables applicable to the specified drifter
+Time - Returns the max and min time of the specified drifter
                         
-                        </pre>
+</pre>
 						</div>
 					</div><a class="anchor" id="a254c0ac4723777fd14cf00f4542d4477"></a>
 					<div class="memitem">
@@ -636,453 +509,269 @@ for variable in variables:
 									<div class="memname">/api/data/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;int:time&gt;/&lt;string:Depth&gt;/&lt;string:location&gt;.json'</div>
 						</div>
 						<div class="memdoc">
-							<pre class="fragment">
+<pre class="fragment">
 
-                        &lt;string:dataset&gt;  : Dataset to extract data - Can be found using /api/datasets
-                        &lt;string:variable&gt; : Type of data to retrieve - found using /api/variables/?dataset='...'
-                        &lt;int:time&gt;        : Time retrieved data was gathered/modeled
-                        &lt;string:Depth&gt;    : Water Depth - found using /api/depth/?dataset='...'
-                        &lt;string:location&gt; : Location of the data you want to retrieve (Lat, Long)
-                        **All Components Must be Included**
-                        </pre>
-						</div>
-					</div><a class="anchor" id="a7cbb3c6c08c5a7f7c7bf27a7064f1177"></a>
+&lt;string:dataset&gt;  : Dataset id - Can be found using /api/datasets/id
+&lt;string:variable&gt; : Type of data to retrieve - found using /api/variables/?dataset='...'
+&lt;int:time&gt;        : Time of data collection
+&lt;string:Depth&gt;    : Water Depth - found using /api/depth/?dataset='...'
+&lt;string:Lat,Lon&gt; : Location of the data you want to retrieve
+
+**All Components Must be Included**
+
+Returns JSON object containing the location, name, units, and value based on the input values
+</pre>
+</div>
+</div>
+<a class="anchor" id="a7cbb3c6c08c5a7f7c7bf27a7064f1177"></a>
+
+<div class="memitem">
+	<div class="memproto">
+		<table class="memname">
+			<tr>
+				<td class="memname">/api/observationvariables/</td>
+			</tr>
+		</table>
+	</div>
+	<div class="memdoc">
+<pre class="fragment">
+
+Returns a list of the possible observation variables
+</pre>
+	</div>
+</div>
+<a class="anchor" id="a1c0a02e7d374dffa2092d5d5f8dc418f"></a>
+<div class="memitem">
+	<div class="memproto">
+		<table class="memname">
+			<tr>
+				<td class="memname">/plot/?query='...'</td>
+			</tr>
+		</table>
+	</div>
+	<div class="memdoc">
+<pre class="fragment">
+
+query = {
+	dataset   : Dataset id - found using /api/datasets/id
+	names     :
+	plottitle : Title of Plot (Default if blank)
+	quantum   : (year, month, day, hour)
+	showmap   : Include a map of the plots location on the map
+	station   : Coordinates of the point/line/area/etc
+	time      : Time retrieved data was gathered/modeled
+	type      : Plot Type (Check Navigator for Possible options)
+  variable  : Type of data to plot - Options found using /api/variables/?dataset='...'
+}
+
+**Query must be written in JSON and converted to encodedURI**
+**Not all components of query are required
+</pre>
+	</div>
+</div>
+<a class="anchor" id="aa7dc666c286b9bee527dc0a54c3dfb2c"></a>
+<div class="memitem">
+	<div class="memproto">
+		<table class="memname">
+			<tr>
+				<td class="memname">/api/&lt;string:q&gt;/</td>
+			</tr>
+		</table>
+	</div>
+	<div class="memdoc">
+<pre class="fragment">
+
+&lt;string:q&gt; : Zone Type Can be (points,lines, areas, or class4)
+
+Returns predefined  points / lines / areas / class4's
+</pre>
+	</div>
+</div>
+<a class="anchor" id="a6b7af3ea2b5f59593ba63ecdd4e4fd36"></a>
+<div class="memitem">
+	<div class="memproto">
+		<table class="memname">
+			<tr>
+				<td class="memname">/api/datasets/</td>
+			</tr>
+		</table>
+	</div>
+	<div class="memdoc">
+<pre class="fragment">
+
+Will return a list of possible datasets and their corresponding data
+</pre>
+	</div>
+</div>
+<a class="anchor" id="a1556b1b7886947e93c0bf92b5199e0ed"></a>
+<div class="memitem">
+	<div class="memproto">
+		<table class="memname">
+			<tr>
+				<td class="memname">/api/&lt;string:q&gt;/&lt;string:projection&gt;/&lt;int:resolution&gt;/&lt;string:extent&gt;/&lt;string:file_id&gt;.json</td>
+			</tr>
+		</table>
+	</div>
+	<div class="memdoc">
+		<pre class="fragment">
+
+&lt;string:q&gt;          : Type of data (points, lines, areas, class4, drifters, observations)
+&lt;string:projection&gt; : Current projection of the map (EPSG:3857, EPSG:32661, EPSG:3031)
+&lt;int:resolution&gt;    : Current zoom level of the map
+&lt;string:extent&gt;     : The current bounds of the map view
+&lt;string:file_id&gt;    : 
+
+**All Components Must be Included**
+**Used Primarily by WebPage**
+</pre>
+	</div>
+</div>
+<a class="anchor" id="aba7d3e274471275dede916bdb40838e4"></a>
+<div class="memitem">
+	<div class="memproto">
+		<table class="memname">
+			<tr>
+				<td class="memname">/api/&lt;string:q&gt;/&lt;string:q_id&gt;.json'</td>
+			</tr>
+		</table>
+	</div>
+	<div class="memdoc">
+<pre class="fragment">
+
+&lt;string:q&gt;    : Type of Data (areas, class4, drifters, observation)
+&lt;string:q_id&gt; : metafile name drifters: meta, observation: meta
+
+Returns a list of all the objects of the selected type
+</pre>
+
+	</div>
+</div>
+<a class="anchor" id="a7128beee0f69496d9b1a6443d5fc2e87"></a>
+
+<div class="memitem">
+	<div class="memproto">
+		<table class="memname">
+			<tr>
+				<td class="memname">/scale/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:scale&gt;.png</td>
+			</tr>
+		</table>
+	</div>
+	<div class="memdoc">
+<pre class="fragment">
+
+&lt;string:dataset&gt;  : Dataset id - found using /api/datasets/id
+&lt;string:variable&gt; : Type of data to retrieve - found using /api/variables/?dataset='...'
+&lt;string:scale&gt;    : Desired Scale
+
+Returns a coloured scale bar using the provided scale
+</pre>
+	</div>
+</div>
+<a class="anchor" id="aca12602094d1a7ea2bc920d70a89868a"></a>
+<div class="memitem">
+	<div class="memproto">
+		<table class="memname">
+			<tr>
+				<td class="memname">/stats/?query=&lt;string:query&gt;</td>
+			</tr>
+		</table>
+	</div>
+	<div class="memdoc">
+<pre class="fragment">
+
+&lt;string:query&gt; = {
+  dataset  : Dataset to extract data
+  variable : Type of data to plot - Options found using /api/variables/?dataset='...'
+  time     : Time retrieved data was gathered/modeled
+	depth    : Water Depth - found using /api/depth/?dataset='...'
+  area     : Selected Area
+}
+
+**Query must be written in JSON and converted to encodedURI**
+**Not all components of query are required
+</pre>
+	</div>
+</div>
+<a class="anchor" id="a10a5558aa3abd748d8864fb277bde6a7"></a>
+<div class="memitem">
+	<div class="memproto">
+		<table class="memname">
+			<tr>
+				<td class="memname">/subset/?query='...'</td>
+			</tr>
+		</table>
+	</div>
+	<div class="memdoc">
+<pre class="fragment">
+
+**Query must be written in JSON and converted to encodedURI**
+**Not all components of query are required
+</pre>
+	</div>
+</div>
+<a class="anchor" id="a697700a77582656ea36bf98dfc589696"></a>
+
+<div class="memitem">
+	<div class="memproto">
+		<table class="memname">
+			<tr>
+				<td class="memname">/api/timestamps/?dataset=' '</td>
+			</tr>
+		</table>
+	</div>
+	<div class="memdoc">
+<pre class="fragment">
+
+dataset : Dataset to extract data - Can be found using /api/datasets
+
+Finds all data timestamps available for a specific dataset
+</pre>
+	</div>
+</div>
+<a class="anchor" id="a78b8dba2d814042466ba2ce6f75271ea"></a>
+<div class="memitem">
+	<div class="memproto">
+		<table class="memname">
+			<tr>
+				<td class="memname">/api/timestamp/&lt;string:old_dataset&gt;/&lt;int:date&gt;/&lt;string:new_dataset&gt;</td>
+			</tr>
+		</table>
+	</div>
+	<div class="memdoc">
+		<pre class="fragment">
+
+&lt;string:old_dataset&gt; : Previous dataset used
+&lt;int:date&gt;           : Date of desired data - Can be found using /api/timestamps/?datasets='...'
+&lt;string:new_dataset&gt; : Dataset to extract data - Can be found using /api/datasets
+
+**Used when Changing datasets**
+</pre>
+	</div>
+</div>
+<a class="anchor" id="af58e86b933ff131fed3d16254dfcb8b0"></a>
+				
 					<div class="memitem">
 						<div class="memproto">
 							<table class="memname">
 								<tr>
-									<td class="memname">def oceannavigator.views.handle_error</td>
-									<td>(</td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>error</em></td>
-									<td>)</td>
-									<td></td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc"></div>
-					</div><a class="anchor" id="a1c23da155b343264e58e301e4fdb11bc"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">def oceannavigator.views.info</td>
-									<td>(</td>
-									<td class="paramname"></td>
-									<td>)</td>
-									<td></td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc"></div>
-					</div><a class="anchor" id="a445ef519612dc58e99ae0f7a1c07364b"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">/api/observationvariables/</td>
-									<td>(</td>
-									<td class="paramname"></td>
-									<td>)</td>
-									<td></td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">
-
-                        Returns a list of the possible observation variables
-                        </pre>
-						</div>
-					</div><a class="anchor" id="a1c0a02e7d374dffa2092d5d5f8dc418f"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">/plot/?query='...'</td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">
-
-                        query = {
-                            dataset   : Dataset to extract data
-                            names     :
-                            plottitle : Title of Plot (Default if blank)
-                            quantum   : (year, month, day, hour)
-                            showmap   : Include a map of the plots location on the map
-                            station   : Coordinates of the point/line/area/etc
-                            time      : Time retrieved data was gathered/modeled
-                            type      : Plot Type (Check Navigator for Possible options)
-                            variable  : Type of data to plot - Options found using /api/variables/?dataset='...'
-                        }
-                        **Query must be written in JSON and converted to encodedURI**
-                        **Not all components of query are required
-                        </pre>
-						</div>
-					</div><a class="anchor" id="aa7dc666c286b9bee527dc0a54c3dfb2c"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">/api/&lt;string:q&gt;/</td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">
-
-                        &lt;string:q&gt; : Zone Type Can be (points,lines, areas, or class4)
-
-                        Returns predefined  points / lines / areas / class4's
-                        </pre>
-						</div>
-					</div><a class="anchor" id="a6b7af3ea2b5f59593ba63ecdd4e4fd36"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">/api/datasets/</td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">
-
-                        Will return a list of possible datasets and their corresponding data
-                        </pre>
-						</div>
-					</div><a class="anchor" id="a1556b1b7886947e93c0bf92b5199e0ed"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">/api/&lt;string:q&gt;/&lt;string:projection&gt;/&lt;int:resolution&gt;/&lt;string:extent&gt;/&lt;string:file_id&gt;.json</td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">
-
-                        &lt;string:q&gt;          : Type of data (points, lines, areas, class4, drifters, observations)
-                        &lt;string:projection&gt; : Current projection of the map (EPSG:3857, EPSG:32661, EPSG:3031)
-                        &lt;int:resolution&gt;    : Current zoom level of the map
-                        &lt;string:extent&gt;     : The current bounds of the map view
-                        &lt;string:file_id&gt;    : 
-
-                        **All Components Must be Included**
-                        **Used Primarily by WebPage**
-                        </pre>
-						</div>
-					</div><a class="anchor" id="aba7d3e274471275dede916bdb40838e4"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">/api/&lt;string:q&gt;/&lt;string:q_id&gt;.json'</td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">
-
-                        &lt;string:q&gt;    : Type of Data (areas, class4, drifters, observation)
-                        &lt;string:q_id&gt; : </pre>
-						</div>
-					</div><a class="anchor" id="a7128beee0f69496d9b1a6443d5fc2e87"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">def oceannavigator.views.range_query_v0_1</td>
-									<td>(</td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>interp</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>radius</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>neighbours</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>dataset</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>projection</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>extent</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>variable</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>depth</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>time</em>&#160;</td>
-								</tr>
-								<tr>
-									<td></td>
-									<td>)</td>
-									<td></td>
-									<td></td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc"></div>
-					</div><a class="anchor" id="a599954fd41ab8c8dafb570cb4a730f6d"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">/scale/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:scale&gt;.png</td>
-                                </tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">
-
-                        &lt;string:dataset&gt;  : Dataset to extract data
-                        &lt;string:variable&gt; : Type of data to retrieve - found using /api/variables/?dataset='...'
-                        &lt;string:scale&gt;    : Desired Scale
-
-                        Returns a scale bar
-                        </pre>
-						</div>
-					</div><a class="anchor" id="aca12602094d1a7ea2bc920d70a89868a"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">/stats/?query='...'</td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">
-
-                        query = {
-                            dataset  : Dataset to extract data
-                            variable : Type of data to plot - Options found using /api/variables/?dataset='...'
-                            time     : Time retrieved data was gathered/modeled
-                            depth    : Water Depth - found using /api/depth/?dataset='...'
-                            area     : Selected Area
-                        }
-                        **Query must be written in JSON and converted to encodedURI**
-                        **Not all components of query are required
-                        </pre>
-						</div>
-					</div><a class="anchor" id="a10a5558aa3abd748d8864fb277bde6a7"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">/subset/?query='...'</td>
+									<td class="memname">/api/variables/?dataset=&lt;dataset_id&gt;&amp;3d_only&amp;vectors_only&amp;vectors</td>
 								</tr>
 							</table>
 						</div>
 						<div class="memdoc">
-							<pre class="fragment">
+<pre class="fragment">
 
-                        **Query must be written in JSON and converted to encodedURI**
-                        **Not all components of query are required
-                        </pre>
-						</div>
-					</div><a class="anchor" id="a697700a77582656ea36bf98dfc589696"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">def oceannavigator.views.tile_v0_1()</td>
-									<td>(</td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>projection,  interp,  radius,  neighbours,  dataset,  variable,  time,  depth,  scale,  zoom, x, y</em>,</td>
-                                    <td>)</td>
-                                </tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">Produces the Main Map Tiles
-                        </pre>
-						</div>
-					</div><a class="anchor" id="a5b8e236fb43e7fa2e47c36e2bd497daa"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">def oceannavigator.views.time_query</td>
-									<td>(</td>
-									<td class="paramname"></td>
-									<td>)</td>
-									<td></td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">/api/timestamps/?dataset=' '
+**Only use variables required for your specific request**
 
-                        dataset : Dataset to extract data - Can be found using /api/datasets
+dataset_id   : Dataset to extract data - Can be found using /api/datasets/id
+3d_only      : When included, ONLY variables with depth will be shown
+vectors_only : When included, ONLY variables with magnitude will be shown 
+vectors      : When included, magnitude components will be included
 
-                        Finds all data timestamps available for a specific dataset
-                        </pre>
+**Boolean: True / False**
+</pre>
 						</div>
-					</div><a class="anchor" id="a78b8dba2d814042466ba2ce6f75271ea"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">def oceannavigator.views.timestamp_for_date</td>
-									<td>(</td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>old_dataset</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>date</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>new_dataset</em>&#160;</td>
-								</tr>
-								<tr>
-									<td></td>
-									<td>)</td>
-									<td></td>
-									<td></td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">/api/timestamp/&lt;string:old_dataset&gt;/&lt;int:date&gt;/&lt;string:new_dataset&gt;
-
-                        &lt;string:old_dataset&gt; : Previous dataset used
-                        &lt;int:date&gt;           : Date of desired data - Can be found using /api/timestamps/?datasets='...'
-                        &lt;string:new_dataset&gt; : Dataset to extract data - Can be found using /api/datasets
-
-                        **Used when Changing datasets**
-                        </pre>
-						</div>
-					</div><a class="anchor" id="af58e86b933ff131fed3d16254dfcb8b0"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">def oceannavigator.views.topo</td>
-									<td>(</td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>projection</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>zoom</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>x</em>,</td>
-								</tr>
-								<tr>
-									<td class="paramkey"></td>
-									<td></td>
-									<td class="paramtype">&#160;</td>
-									<td class="paramname"><em>y</em>&#160;</td>
-								</tr>
-								<tr>
-									<td></td>
-									<td>)</td>
-									<td></td>
-									<td></td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">Generates Topographical Tiles for the Main Map
-                        </pre>
-						</div>
-					</div><a class="anchor" id="a12dd9b2592425f080a5ddd023c0fdf98"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">def -->eannavigator.views.vars_query</td>
-									<td>(</td>
-									<td class="paramname"></td>
-									<td>)</td>
-									<td></td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-							<pre class="fragment">API Format: /api/variables/?dataset=&lt;dataset_id&gt;&amp;3d_only=&lt;string:old_dataset&gt;&amp;vectors_only=&lt;string:old_dataset&gt;&amp;vectors=&lt;string:old_dataset&gt;
-
-                        **Only use variables required for your specific request**
-
-                        dataset_i      : Dataset to extract data - Can be found using /api/datasets
-                        3d_only      : Boolean Value; When True, only variables with depth will be shown
-                        vectors_only : Boolean Value; When True, ONLY variables with magnitude will be shown 
-                        vectors      : Boolean Value; When True, magnitude components will be included
-
-                        **Boolean: True / False**
-                        </pre>
-						</div>
-					</div>
-					<h2 class="groupheader">Variable Documentation</h2><a class="anchor" id="a4d065d48add84d4cc82879207512fcfd"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">
-										oceannavigator.views.FAILURE = <a class="el" href="classoceannavigator_1_1errors_1_1_client_error.html">ClientError</a>(&quot;Bad API usage&quot;)
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc"></div>
-					</div><a class="anchor" id="a179cabe17ea481ef082108f18bb74f66"></a>
-					<div class="memitem">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">int oceannavigator.views.MAX_CACHE = 315360000</td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc"></div>
-					</div>
+					</div><a class="anchor" id="api_variables"></a>
 				</div>
 				<!-- contents -->
 				<div class="tabcontent" id="API_Generator">

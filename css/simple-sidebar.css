@@ -50,6 +50,7 @@
     width: 100%;
     position: absolute;
     padding: 0px;
+    padding-right: 10px;
 }
 
 #page-content-wrapper > .container-fluid #Home {
@@ -146,6 +147,7 @@
     #page-content-wrapper {
         height: 100%;
         padding: 0px;
+        padding-right: 10px;
         position: relative;
         background-color: white;
     }

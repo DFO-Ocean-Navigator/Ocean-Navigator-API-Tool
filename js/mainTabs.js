@@ -52,3 +52,41 @@ function openContents(event, name, all, button) {
   //evt.currentTarget.classname += "active";
 
 }
+
+function getDatasets() {
+  let dataset_info = '';
+  $.ajax({
+    url: "http://navigator.oceansdata.ca/api/datasets/?id", success: function(result){
+      dataset_info = result;
+      console.warn(dataset_info);
+      new_row = 0;
+      dataset_buttons = '<table style="width: 100%"><h4>Dataset  (id)<h4>';
+      size = dataset_info.length;
+      console.warn(size)
+      for (let i in result) {
+        current_dataset = dataset_info[i]
+
+        if (i == new_row) {
+          dataset_buttons += '<tr style="width: 100%; height: 40px">'
+          new_row += 5
+        }
+
+        dataset_buttons += '<td style="width: 20%; height: 40px; padding: 1px">'
+        button_content = current_dataset['value'] + " (" + current_dataset['id'] + ")";
+        dataset_buttons += '<button style="width: 100%; height: 100%; text-align: left; background-color: rgb(240, 240, 240)">' + button_content + '</button>'
+        dataset_buttons += '</td>'
+
+        if (i == new_row) {
+          dataset_buttons += '</tr>'
+        }
+        
+        
+        console.warn(current_dataset['value']);
+      }
+      dataset_buttons += '</table>'
+      console.warn(dataset_buttons)
+
+      document.getElementById('datasets').innerHTML = dataset_buttons;
+    }
+  });
+}

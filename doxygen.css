@@ -440,6 +440,7 @@ hr.footer {
 table.memberdecls {
 	border-spacing: 0px;
 	padding: 0px;
+	width: 100%;
 }
 
 .memberdecls td, .fieldtable tr {
