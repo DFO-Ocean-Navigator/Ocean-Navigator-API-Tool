@@ -60,9 +60,9 @@
         <li>
           <a href="#documentation" onclick="openTab(event, 'Documentation'); getDatasets()">Documentation</a>
         </li>
-				<li>
+				<!--<li>
 					<a href="#about" onclick="openTab(event, 'API_Generator')">API Generator</a>
-				</li>
+				</li>-->
 				<li>
 					<a href="#contact" onclick="openTab(event, 'Contact')">Contact</a>
 				</li>
@@ -432,6 +432,7 @@ for variable in variables:
 						</div>
 						<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/class4/models/class4_20180512_GIOPS_CONCEPTS_2.3_profile/100">/api/class4/models/class4_20180512_GIOPS_CONCEPTS_2.3_profile/100</a>
 
 &lt;string:q&gt;         : forecasts (dates) models (?) 
 &lt;string:class4_id&gt; : ID of the desired class4 - Can be found using /api/class4/
@@ -446,6 +447,7 @@ Returns in-situ observations with global prediction system estimates
 						</div>
 						<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/">/api/</a>
 
 Returns image of colourmap example configurations
 </pre>
@@ -479,7 +481,7 @@ Returns a list of colours for use in colour maps
 						</div>
 						<div class="memdoc">
 <pre class="fragment">
-<a target="_blank" href="http://navigator.oceansdata.ca/api/depth/?dataset=giops_day&variable=votemper">/api/depth/?dataset=giops_day&variable=votemper</a>
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/depth/?dataset=giops_day&variable=votemper">/api/depth/?dataset=giops_day&variable=votemper</a>
 
 &lt;dataset_id&gt;  : id of the desired dataset - Can be found using /api/datasets/id
 &lt;variable&gt; : Type of data to retrieve - found using /api/variables/?dataset='...'
@@ -494,13 +496,14 @@ Returns all depths available for that variable in the dataset
 						</div>
 						<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/drifters/vars/300234063261890">/api/drifters/vars/300234063261890/</a>
 
 &lt;string:q&gt;          : vars / time (Data Request)
 &lt;string:drifter_id&gt; : ID of Drifter of Interest - Options can be found using /api/
 
 Vars - Returns a list of Variables applicable to the specified drifter
 Time - Returns the max and min time of the specified drifter
-                        
+
 </pre>
 						</div>
 					</div><a class="anchor" id="a254c0ac4723777fd14cf00f4542d4477"></a>
@@ -510,6 +513,7 @@ Time - Returns the max and min time of the specified drifter
 						</div>
 						<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/data/giops_day/votemper/823/0/63.51801708389351,-56.13861083984375.json">/api/data/giops_day/votemper/823/0/63.51801708389351,-56.13861083984375.json</a>
 
 &lt;string:dataset&gt;  : Dataset id - Can be found using /api/datasets/id
 &lt;string:variable&gt; : Type of data to retrieve - found using /api/variables/?dataset='...'
@@ -535,6 +539,7 @@ Returns JSON object containing the location, name, units, and value based on the
 	</div>
 	<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/observationvariables">/api/observationvariables</a>
 
 Returns a list of the possible observation variables
 </pre>
@@ -551,6 +556,7 @@ Returns a list of the possible observation variables
 	</div>
 	<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/plot/?query=%7B%22area%22%3A%5B%7B%22innerrings%22%3A%5B%5D%2C%22name%22%3A%22%22%2C%22polygons%22%3A%5B%5B%5B62.27693797488524%2C-53.94134521484374%5D%2C%5B59.98669914224615%2C-36.80267333984375%5D%2C%5B56.180809047819764%2C-37.681579589843736%5D%2C%5B56.434830853922364%2C-55.96282958984374%5D%2C%5B62.27693797488524%2C-53.94134521484374%5D%5D%5D%7D%5D%2C%22bathymetry%22%3Atrue%2C%22colormap%22%3A%22default%22%2C%22contour%22%3A%7B%22colormap%22%3A%22default%22%2C%22hatch%22%3Afalse%2C%22legend%22%3Atrue%2C%22levels%22%3A%22auto%22%2C%22variable%22%3A%22%22%7D%2C%22dataset%22%3A%22giops_day%22%2C%22depth%22%3A0%2C%22interp%22%3A%22gaussian%22%2C%22neighbours%22%3A10%2C%22projection%22%3A%22EPSG%3A3857%22%2C%22quiver%22%3A%7B%22colormap%22%3A%22default%22%2C%22magnitude%22%3A%22length%22%2C%22variable%22%3A%22%22%7D%2C%22radius%22%3A25%2C%22scale%22%3A%22-5%2C30%2Cauto%22%2C%22showarea%22%3Atrue%2C%22time%22%3A823%2C%22type%22%3A%22map%22%2C%22variable%22%3A%22votemper%22%7D&format=png">Click for Example</a>
 
 query = {
 	dataset   : Dataset id - found using /api/datasets/id
@@ -563,6 +569,8 @@ query = {
 	type      : Plot Type (Check Navigator for Possible options)
   variable  : Type of data to plot - Options found using /api/variables/?dataset='...'
 }
+
+Plot Types - map, transect, timeseries, ts, sound, profile, hovmoller, observation, drifter, class4, stick
 
 **Query must be written in JSON and converted to encodedURI**
 **Not all components of query are required
@@ -580,6 +588,7 @@ query = {
 	</div>
 	<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/lines/">/api/lines/</a>
 
 &lt;string:q&gt; : Zone Type Can be (points,lines, areas, or class4)
 
@@ -598,12 +607,25 @@ Returns predefined  points / lines / areas / class4's
 	</div>
 	<div class="memdoc">
 <pre class="fragment">
-
 Will return a list of possible datasets and their corresponding data
 </pre>
+</div>
+</div>
+<div class="memitem">
+	<div class="memproto">
+		<table class="memname">
+			<tr>
+				<td class="memname">/api/datasets/id</td>
+			</tr>
+		</table>
+	</div>
+	<div class="memdoc">
+		<pre class="fragment">
+Will return a list of Dataset names and their corresponding id's
+	</pre>
 	</div>
 </div>
-<a class="anchor" id="a1556b1b7886947e93c0bf92b5199e0ed"></a>
+<a class="anchor" id="dataset_id"></a>
 <div class="memitem">
 	<div class="memproto">
 		<table class="memname">
@@ -614,12 +636,14 @@ Will return a list of possible datasets and their corresponding data
 	</div>
 	<div class="memdoc">
 		<pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/class4/EPSG:3857/9784/-15618972,1596939,4487023,12369057/class4_20180510_GIOPS_CONCEPTS_2.3_profile.json">/api/class4/EPSG:3857/9784/-15618972,1596939,4487023,12369057/class4_20180510_GIOPS_CONCEPTS_2.3_profile.json</a>
+--At this time, only the class4 option is available
 
 &lt;string:q&gt;          : Type of data (points, lines, areas, class4, drifters, observations)
 &lt;string:projection&gt; : Current projection of the map (EPSG:3857, EPSG:32661, EPSG:3031)
 &lt;int:resolution&gt;    : Current zoom level of the map
 &lt;string:extent&gt;     : The current bounds of the map view
-&lt;string:file_id&gt;    : 
+&lt;string:file_id&gt;    : Class 4 file ID
 
 **All Components Must be Included**
 **Used Primarily by WebPage**
@@ -637,6 +661,7 @@ Will return a list of possible datasets and their corresponding data
 	</div>
 	<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/drifters/meta.json">/api/drifters/meta.json</a>
 
 &lt;string:q&gt;    : Type of Data (areas, class4, drifters, observation)
 &lt;string:q_id&gt; : metafile name drifters: meta, observation: meta
@@ -652,16 +677,17 @@ Returns a list of all the objects of the selected type
 	<div class="memproto">
 		<table class="memname">
 			<tr>
-				<td class="memname">/scale/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:scale&gt;.png</td>
+				<td class="memname">/scale/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:scale_min, scale_max&gt;.png</td>
 			</tr>
 		</table>
 	</div>
 	<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/scale/giops_day/votemper/-5,30.png">/scale/giops_day/votemper/-5,30.png</a>
 
-&lt;string:dataset&gt;  : Dataset id - found using /api/datasets/id
-&lt;string:variable&gt; : Type of data to retrieve - found using /api/variables/?dataset='...'
-&lt;string:scale&gt;    : Desired Scale
+&lt;string:dataset&gt;  							: Dataset id - found using /api/datasets/id
+&lt;string:variable&gt; 							: Type of data to retrieve - found using /api/variables/?dataset='...'
+&lt;string:scale_min,scale_max&gt;    : Desired Scale
 
 Returns a coloured scale bar using the provided scale
 </pre>
@@ -680,15 +706,18 @@ Returns a coloured scale bar using the provided scale
 <pre class="fragment">
 
 &lt;string:query&gt; = {
-  dataset  : Dataset to extract data
+  dataset  : Dataset id - found using /api/datasets/id
   variable : Type of data to plot - Options found using /api/variables/?dataset='...'
-  time     : Time retrieved data was gathered/modeled
-	depth    : Water Depth - found using /api/depth/?dataset='...'
+  time     : Time retrieved data was observed / modeled
+  depth    : Water Depth - found using /api/depth/?dataset='...'
   area     : Selected Area
 }
 
 **Query must be written in JSON and converted to encodedURI**
 **Not all components of query are required
+
+Returns a list of statistical variables associated with the plot selected.
+This may include variable name, units, min, max, mean, median, and stddev
 </pre>
 	</div>
 </div>
@@ -703,6 +732,20 @@ Returns a coloured scale bar using the provided scale
 	</div>
 	<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/subset/?&output_format=NETCDF3_CLASSIC&dataset_name=riops&variables=sokaraml&min_range=51.09063483675129,-55.392697784916535&max_range=60.20578518215365,-39.836057159916535&time=4661,4661&should_zip=0">Click for Example</a>
+
+query = {
+	Output Format : File Format
+	Dataset id    : id of the desired dataset - found using /api/datasets/id
+	Variables     : data type ex. temperature - found using /api/variables/?dataset='...'
+	Min range     : Minimum of bounding box - displayed below
+	Max range     : Maximum of bounding box - displayed below
+	time          : Data Time Period
+	zip           : Takes a value of 1 or 0 [1: create a zip file, 0: do not zip file]
+}
+
+Bounding Box:
+<img src="bounding_box.webp">
 
 **Query must be written in JSON and converted to encodedURI**
 **Not all components of query are required
@@ -715,16 +758,17 @@ Returns a coloured scale bar using the provided scale
 	<div class="memproto">
 		<table class="memname">
 			<tr>
-				<td class="memname">/api/timestamps/?dataset=' '</td>
+				<td class="memname">/api/timestamps/?dataset=&lt;string:dataset&gt;</td>
 			</tr>
 		</table>
 	</div>
 	<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/timestamps/?dataset=giops_day">/api/timestamps/?dataset=giops_day</a>
 
-dataset : Dataset to extract data - Can be found using /api/datasets
+&lt;string:dataset&gt; : Dataset id - Can be found using /api/datasets
 
-Finds all data timestamps available for a specific dataset
+Finds all timestamps associated with a dataset
 </pre>
 	</div>
 </div>
@@ -739,6 +783,7 @@ Finds all data timestamps available for a specific dataset
 	</div>
 	<div class="memdoc">
 		<pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/timestamp/giops_day/822/riops">/api/timestamp/giops_day/822/riops</a>
 
 &lt;string:old_dataset&gt; : Previous dataset used
 &lt;int:date&gt;           : Date of desired data - Can be found using /api/timestamps/?datasets='...'
@@ -760,6 +805,7 @@ Finds all data timestamps available for a specific dataset
 						</div>
 						<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/variables/?dataset=giops_day">/api/variables/?dataset=giops_day</a>
 
 **Only use variables required for your specific request**
 
