@@ -447,8 +447,6 @@ Returns in-situ observations with global prediction system estimates
 						</div>
 						<div class="memdoc">
 <pre class="fragment">
-example: <a target="_blank" href="http://navigator.oceansdata.ca/api/">/api/</a>
-
 Returns image of colourmap example configurations
 </pre>
 						</div>
@@ -459,7 +457,6 @@ Returns image of colourmap example configurations
 						</div>
 						<div class="memdoc">
 <pre class="fragment">
-
 Returns a list of colourmaps
 </pre>
 						</div>
@@ -470,7 +467,6 @@ Returns a list of colourmaps
 						</div>
 						<div class="memdoc">
 <pre class="fragment">
-
 Returns a list of colours for use in colour maps
 </pre>
 						</div>
@@ -539,7 +535,7 @@ Returns JSON object containing the location, name, units, and value based on the
 	</div>
 	<div class="memdoc">
 <pre class="fragment">
-example: <a target="_blank" href="http://navigator.oceansdata.ca/api/observationvariables">/api/observationvariables</a>
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/observationvariables">/api/observationvariables/</a>
 
 Returns a list of the possible observation variables
 </pre>
@@ -550,7 +546,7 @@ Returns a list of the possible observation variables
 	<div class="memproto">
 		<table class="memname">
 			<tr>
-				<td class="memname">/plot/?query='...'</td>
+				<td class="memname">/plot/?query=&lt;json:query&gt;</td>
 			</tr>
 		</table>
 	</div>
@@ -558,7 +554,7 @@ Returns a list of the possible observation variables
 <pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/plot/?query=%7B%22area%22%3A%5B%7B%22innerrings%22%3A%5B%5D%2C%22name%22%3A%22%22%2C%22polygons%22%3A%5B%5B%5B62.27693797488524%2C-53.94134521484374%5D%2C%5B59.98669914224615%2C-36.80267333984375%5D%2C%5B56.180809047819764%2C-37.681579589843736%5D%2C%5B56.434830853922364%2C-55.96282958984374%5D%2C%5B62.27693797488524%2C-53.94134521484374%5D%5D%5D%7D%5D%2C%22bathymetry%22%3Atrue%2C%22colormap%22%3A%22default%22%2C%22contour%22%3A%7B%22colormap%22%3A%22default%22%2C%22hatch%22%3Afalse%2C%22legend%22%3Atrue%2C%22levels%22%3A%22auto%22%2C%22variable%22%3A%22%22%7D%2C%22dataset%22%3A%22giops_day%22%2C%22depth%22%3A0%2C%22interp%22%3A%22gaussian%22%2C%22neighbours%22%3A10%2C%22projection%22%3A%22EPSG%3A3857%22%2C%22quiver%22%3A%7B%22colormap%22%3A%22default%22%2C%22magnitude%22%3A%22length%22%2C%22variable%22%3A%22%22%7D%2C%22radius%22%3A25%2C%22scale%22%3A%22-5%2C30%2Cauto%22%2C%22showarea%22%3Atrue%2C%22time%22%3A823%2C%22type%22%3A%22map%22%2C%22variable%22%3A%22votemper%22%7D&format=png">Click for Example</a>
 
-query = {
+&lt;json:query&gt; = {
 	dataset   : Dataset id - found using /api/datasets/id
 	names     :
 	plottitle : Title of Plot (Default if blank)
@@ -574,6 +570,8 @@ Plot Types - map, transect, timeseries, ts, sound, profile, hovmoller, observati
 
 **Query must be written in JSON and converted to encodedURI**
 **Not all components of query are required
+
+This query is used to create plots of all types, as well as to create some file types including csv
 </pre>
 	</div>
 </div>
@@ -620,9 +618,9 @@ Will return a list of possible datasets and their corresponding data
 		</table>
 	</div>
 	<div class="memdoc">
-		<pre class="fragment">
+<pre class="fragment">
 Will return a list of Dataset names and their corresponding id's
-	</pre>
+</pre>
 	</div>
 </div>
 <a class="anchor" id="dataset_id"></a>
@@ -647,6 +645,7 @@ example: <a target="_blank" href="http://navigator.oceansdata.ca/api/class4/EPSG
 
 **All Components Must be Included**
 **Used Primarily by WebPage**
+At this time will return a list of class4's and their data
 </pre>
 	</div>
 </div>
@@ -704,6 +703,7 @@ Returns a coloured scale bar using the provided scale
 	</div>
 	<div class="memdoc">
 <pre class="fragment">
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/drifters/meta.json">/api/drifters/meta.json</a>
 
 &lt;string:query&gt; = {
   dataset  : Dataset id - found using /api/datasets/id
@@ -749,6 +749,7 @@ Bounding Box:
 
 **Query must be written in JSON and converted to encodedURI**
 **Not all components of query are required
+Returns a subset of data based on the criteria provided, this can be in multiple different file formats
 </pre>
 	</div>
 </div>
@@ -815,6 +816,7 @@ vectors_only : When included, ONLY variables with magnitude will be shown
 vectors      : When included, magnitude components will be included
 
 **Boolean: True / False**
+Will return a list of variables in the specified dataset, this output can be filtered by including keywords in the query
 </pre>
 						</div>
 					</div><a class="anchor" id="api_variables"></a>
