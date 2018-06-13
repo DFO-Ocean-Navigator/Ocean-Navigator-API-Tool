@@ -35,3 +35,42 @@ h4{
   display: none;
   padding: 10px;
 }
+
+.expand-button {
+  display: inline;
+  white-space: nowrap;
+}
+
+.expand-button Button{
+  display: inline;
+  white-space: nowrap;
+}
+
+.accordion-header {
+  display: inline;
+}
+
+#query_construct_button {
+  padding: 10px;
+}
+
+#query_construct_json_button {
+  padding: 10px;
+}
+
+i { position:absolute;
+  
+    -webkit-transition:all 300ms ease-in 0s;
+    -moz-transition: all 300ms ease-in 0s;
+    -o-transition: all 300ms ease-in 0s;
+  transition: all 300ms ease-in 0s;}
+
+
+.ui-state-active i {
+    color: rgb(0, 0, 0);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}

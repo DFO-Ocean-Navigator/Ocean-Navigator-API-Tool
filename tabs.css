@@ -78,3 +78,11 @@
     height: 100%;
     bottom: 0;
 }
+
+.tabArrowOne-right {
+    display: inline;
+}
+
+.tabArrowOne-down {
+    display: inline;
+}
