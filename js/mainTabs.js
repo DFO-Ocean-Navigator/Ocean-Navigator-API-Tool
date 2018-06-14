@@ -28,11 +28,14 @@ function openContents(event, name, all, button) {
   tabcontent = document.getElementsByClassName("expand-contents");
   
   if (document.getElementById(name).style.display == "block") {
+    document.getElementById(button).className = ' '
     document.getElementById(name).style.display = "none"
-    document.getElementById(all).style.backgroundColor = "white";
+    document.getElementById(all).style.backgroundColor = "rgb(240, 240, 240)";
     document.getElementById(button).style.backgroundColor = "initial";
     //document.getElementById(button).style.hover.backgroundColor = "rgb(204, 204, 204)"
   } else {
+
+    document.getElementById(button).className = 'ui-state-active'
     document.getElementById(name).style.display = "block"
     document.getElementById(all).style.backgroundColor = "rgb(204, 204, 204)";
     document.getElementById(button).style.backgroundColor = "rgb(204, 204, 204)";
