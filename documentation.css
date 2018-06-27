@@ -9,6 +9,34 @@
   box-shadow: none;
 }
 
+#Documentation button:hover, button:active{
+  background-color: rgb(204, 204, 204)!important
+}
+
+#Input_Options button{
+  background-color: rgb(245, 245, 245);
+  border: 0px;
+}
+
+#Input_Options button:focus{
+  outline: none;
+  box-shadow: none;
+}
+
+#Input_Options .datasetactive {
+  background-color: rgb(204, 204, 204)!important
+}
+
+#Input_Options button:hover, button:active{
+  background-color: rgb(204, 204, 204)!important
+}
+
+.inputvalues_tab {
+  padding: 20px;
+  background-color: rgb(204, 204, 204);
+  width: 100%;
+}
+
 .icon_custom {
   height: 20px;
   width: 20px;
@@ -19,12 +47,22 @@
   display: inline;
 }
 
-#Documentation button:hover, button:active{
+.all_content {
+  border: 2px solid white;
+  background-color: rgb(245, 245, 245)
+}
+
+.all_content:hover {
   background-color: rgb(204, 204, 204)!important
 }
 
-.all_content {
-  border: 2px solid white;
+.all_content:hover .howto_button{
+  background-color: rgb(204, 204, 204)!important;
+}
+
+.howto_button {
+  width: 100%!important;
+  text-align: left!important;
 }
 
 h4{
@@ -67,7 +105,8 @@ i { position:absolute;
     -webkit-transition:all 300ms ease-in 0s;
     -moz-transition: all 300ms ease-in 0s;
     -o-transition: all 300ms ease-in 0s;
-  transition: all 300ms ease-in 0s;}
+  transition: all 300ms ease-in 0s;
+}
 
 
 .ui-state-active i {
@@ -77,4 +116,9 @@ i { position:absolute;
     -o-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
+}
+
+.ui-state-active {
+  width: 100%;
+  text-align: left;
 }
