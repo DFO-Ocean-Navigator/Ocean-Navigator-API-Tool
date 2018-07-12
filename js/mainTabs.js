@@ -99,7 +99,7 @@ function updateSelection(datasetid) {
 function getDatasets() {
 
   $.ajax({
-    url: "http://navigator.oceansdata.ca/navigator/api/datasets/?id", success: function(datasets){
+    url: "http://navigator.oceansdata.ca/api/v1.0/datasets/?id", success: function(datasets){
 
       size = datasets.length;
       rows = 5 - (size % 5);    //Puts 5 datasets per row
