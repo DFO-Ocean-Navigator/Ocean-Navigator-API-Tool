@@ -133,7 +133,6 @@ i { position:absolute;
 
 .ui-state-active {
   background-color: rgb(204, 204, 204)!important;
-  width: 100%;
   text-align: left;
 }
 

@@ -22,6 +22,7 @@
 		<link href="functions.css" rel="stylesheet" type="text/css">
 	<script src="jquery.js" type="text/javascript">
 	</script>
+	
 	<script src="dynsections.js" type="text/javascript">
 	</script>
 	<link href="navtree.css" rel="stylesheet" type="text/css">
@@ -57,14 +58,11 @@
                 </li>
                 <li class="sidebar-brand">Ocean Navigator API</li>
                 
-				<li>
-					<a href="#home" onclick="openTab(event, 'Home')">Home</a>
-        </li>
         <li>
           <a href="#documentation" onclick="openTab(event, 'Documentation')">Documentation</a>
         </li>
 		<li>
-			<a href="#about" onclick="openTab(event, 'Input_Options'); getDatasets()">API Generator</a>
+			<a href="#about" onclick="openTab(event, 'Input_Options'); getDatasets()">API Dataset Information</a>
 		</li>
 		<li>
 			<a href="#contact" onclick="openTab(event, 'Contact')">Contact</a>
@@ -75,11 +73,14 @@
 		
 
     <div id="page-content-wrapper">
-			<div class="container-fluid">
-				<div class="tabcontent" id="Home">
-					<!--<h3>Welcome to the Ocean Navigator API Guide</h3>-->
-					<img class='mainImage' src="main_page.jpg">
-				 </div>
+			<div class="container-fluid" style="width: 100%">
+				<!--
+				<div onload="load_home()" class="tabcontent" id="Home">
+					
+					<h3>Welcome to the Ocean Navigator API Guide</h3>-->
+					<!--<img class='mainImage' src="main_page.jpg">
+				 </div>-->
+				 
 			<!--</div> 
 		</div>-->
 		<!--<div class="page-content-wrapper">
@@ -962,7 +963,6 @@ At this time will return a list of class4's and their data
 	</script> 
 	<script src="js/mainTabs.js">
 	</script> <!-- Bootstrap Core JavaScript -->
-	 
 	<script src="js/bootstrap.min.js">
 	</script> <!-- Menu Toggle Script -->
 	 

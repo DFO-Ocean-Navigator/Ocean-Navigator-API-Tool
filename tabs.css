@@ -63,13 +63,13 @@
     display: none;
 }
 
-#Home {
+#Documentation {
     display: block;
     height: 100%;
     bottom: 0;
 }
 
-#Home {
+#Documentation {
     padding: 0;
 }
 
@@ -85,4 +85,31 @@
 
 .tabArrowOne-down {
     display: inline;
+}
+
+.pane_cell {
+    padding: 40px;
+    text-align: right;
+    width: 33.3333333333333333%;
+}
+
+.depth_cells {
+    text-align: right;
+}
+
+.depth_cells_output {
+    background-color: rgb(245, 245, 245);
+    text-align: right;
+}
+
+.depth_cells_left {
+    text-align: left;
+}
+
+.depth_search {
+    text-align: right;
+}
+
+.variable_table_row {
+    border-top: 2px solid white;
 }

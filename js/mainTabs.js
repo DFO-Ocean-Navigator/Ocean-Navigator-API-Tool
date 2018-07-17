@@ -1,5 +1,6 @@
 var active_dataset
 var panesPopulated = false;
+var currentDepths
 
 function openTab(evt, name) {
 
@@ -59,10 +60,7 @@ function openContents(event, name, all, button) {
 
 function updateSelection(datasetid) {
   nextDiv = datasetid + "_pane_div"
-  console.warn("DATASET ID:")
-  console.warn(datasetid)
-  console.warn("ACTIVE DATASET:")
-  console.warn(active_dataset)
+
   if (active_dataset === undefined) { //No other dataset is being displaying
     active_dataset = datasetid
     document.getElementById(nextDiv).style.display = 'inline-flex';
@@ -89,8 +87,6 @@ function updateSelection(datasetid) {
     active_dataset = datasetid; //Update current dataset being displayed
   
   }
-
-  console.warn(active_dataset)
 }
 
 
@@ -99,11 +95,11 @@ function updateSelection(datasetid) {
 function getDatasets() {
 
   $.ajax({
-    url: "http://navigator.oceansdata.ca/api/v1.0/datasets/?id", success: function(datasets){
+    url: "http://trinity:50/navigator/api/v1.0/datasets/?id", success: function(datasets){
 
       size = datasets.length;
-      rows = 5 - (size % 5);    //Puts 5 datasets per row
-      rows = (size + rows) / 5  //Determines number of rows required for datasets
+      rows = 3 - (size % 3);    //Puts 5 datasets per row
+      rows = (size + rows) / 3  //Determines number of rows required for datasets
       
       let createButtons = "";
 
@@ -115,11 +111,11 @@ function getDatasets() {
       while (row < rows) {
 
         //Create row
-        createButtons += "<tr class='dataset_buttons_table_row' id='row" + row + "_dataset_buttons_table_row' style='width=20%'>"
+        createButtons += "<tr class='dataset_buttons_table_row' id='row" + row + "_dataset_buttons_table_row' style='width=33.333333%'>"
         col = 1 // Initialize(reset) col #
 
         //Controls the CELLS
-        while (col <=5 && datasets[cell] !== undefined) { //Runs to the end of the row, or until there are no more datasets
+        while (col <=3 && datasets[cell] !== undefined) { //Runs to the end of the row, or until there are no more datasets
           
           createButtons += "<td class='dataset_buttons_table_col' id='" + datasets[cell]['id'] + "_dataset_buttons_table_col' style='width: 20%; height:100%'>"
 
@@ -136,8 +132,21 @@ function getDatasets() {
         createButtons += "<tr class='information_pane_row' id='row" + row + "_pane_row'>"
         createButtons += "<td class='information_pane_col' id='row" + row + "_pane_col' colspan='5'>"
         col = 1
-        while (col <= 5 && datasets[paneCell] !== undefined) {
+        while (col <= 3 && datasets[paneCell] !== undefined) {
           createButtons += "<div class='row" + row + "_pane_div' id='" + datasets[paneCell]['id'] + "_pane_div' style='display:none; padding: 20px; width: 100%'>"
+          createButtons += 
+          `
+          <table id="` + datasets[paneCell]['id'] + `_table_pane_div" style="width:100%;">
+            <tr id="` + datasets[paneCell]['id'] + `row_table_pane_div" style="width: 100%;">
+              <td class="pane_cell" id="` + datasets[paneCell]['id'] + `_variables_pane_div" style="border-right: 4px solid white;">
+              </td>
+              <td class="pane_cell" id="` + datasets[paneCell]['id'] + `_timestamps_pane_div" style="vertical-align: text-top;">
+              </td>
+              <td class="pane_cell" id="` + datasets[paneCell]['id'] + `_depths_pane_div" style="border-left: 4px solid white; vertical-align: text-top;">
+              </td>
+            </tr>
+          </table>
+          `
           createButtons += "</div>"  //This is where the data will be populated
 
           col += 1
@@ -146,11 +155,12 @@ function getDatasets() {
         createButtons += "</td></tr>"
         row += 1
       }
-      console.warn(createButtons)
+
       document.getElementById('dataset_buttons_table').innerHTML = createButtons
 
       populateVariables(datasets);
       populateTimestamps(datasets)
+      constructDepthField(datasets);
       //populateDepths(datasets);
     }
   })
@@ -169,9 +179,9 @@ function populateVariables(datasets) {
   $(num_datasets).each(function() {
     var number = this;
     $.ajax({
-      url: "http://navigator.oceansdata.ca/api/v1.0/variables/?dataset=" + datasets[number]['id'], success: function(variables) {
+      url: "http://trinity:50/navigator/api/v1.0/variables/?dataset=" + datasets[number]['id'], success: function(variables) {
         
-        variableTable = "<table style='border: 1px solid black; padding: 5px'>"
+        variableTable = "<table style='width: 100%; padding: 5px'>"
         variableTable += "<tr class=variable_table_row'>";
         variableTable += "<td class='variable_value_table_col' style='font-size: 19px'>Variable</td>";
         variableTable += "<td class='variable_id_table_col' style='font-size: 19px'>ID</td>";
@@ -184,7 +194,7 @@ function populateVariables(datasets) {
         }
         variableTable += "</table>"
 
-        requiredDiv = datasets[number]['id'] + "_pane_div"
+        requiredDiv = datasets[number]['id'] + "_variables_pane_div"
         document.getElementById(requiredDiv).innerHTML = variableTable
       }
     })
@@ -201,9 +211,9 @@ function populateTimestamps(datasets) {
   $(num_datasets).each(function() {
     var number = this;
     $.ajax({
-      url: "http://navigator.oceansdata.ca/api/v1.0/timestamps/?dataset=" + datasets[number]['id'], success: function(timestamps) {
+      url: "http://trinity:50/navigator/api/v1.0/timestamps/?dataset=" + datasets[number]['id'], success: function(timestamps) {
         
-      variableTable = "<table style='border: 1px solid black; padding: 5px;'>"
+      variableTable = "<table style='height: 100%; width: 100%; padding: 5px;'>"
         variableTable += "<tr class=variable_table_row'>";
         variableTable += "<td class='timestamp_value_table_col'></td>"
         variableTable += "<td class='variable_value_table_col' style='font-size: 19px'>Time</td>";
@@ -224,7 +234,7 @@ function populateTimestamps(datasets) {
 
         variableTable += "</table>"
 
-        requiredDiv = datasets[number]['id'] + "_pane_div"
+        requiredDiv = datasets[number]['id'] + "_timestamps_pane_div"
         document.getElementById(requiredDiv).innerHTML += variableTable
       
       }
@@ -234,21 +244,160 @@ function populateTimestamps(datasets) {
 
 }
 
-//ADDS DATA TO EMPTY TABLE OF AVAILABLE DEPTHS
-function populateDepths(datasets) {
-  /*
-  num_datasets = datasets.length
-  num_datasets = Array.apply(null, Array(num_datasets));
-  num_datasets = num_datasets.map(function (x, i) {return i})
-  
+
+//Constructs the depth table and fills it with the required values
+function constructDepthField(datasets) {
+
   $(num_datasets).each(function() {
     var number = this;
+    
     $.ajax({
-      url: "http://trinity:50/navigator/api//?dataset=" + datasets[number]['id'], success: function(variables) {
-        console.warn("VARIABLES: ")
-        console.warn(variables)
+      url: "http://trinity:50/navigator/api/v1.0/depth/?dataset=" + datasets[number]['id'] + "&variable=votemper", success: function(depths) {
+    
+
+        minDepth = depths[1]['value'];
+        maxDepth = depths[depths.length - 1]['value'];
+
+        contents = 
+        `
+        <div style="font-size: 19px; text-align: left;">Depth</h3>
+        <div style="padding-bottom: 20px; text-align: justify; ">In each dataset, data can be found at various depth layers. This tool allows you to provide your desired depth and will return the depth of the nearest available layer, and the associated index to be used in the navigators API </div>
+          <table style="width:100%;">
+            <tr>
+              <td class="depth_cells_left">Min Depth</td>
+              <td class="depth_cells">` + minDepth + `</td>
+            </tr>
+            <tr style="border-bottom: 2px solid white">
+              <td class="depth_cells_left">Max Depth</td>
+              <td class="depth_cells">` + maxDepth + `</td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding-top: 20px; padding-bottom: 10px;">
+                <table style="width:100%;">
+                  <tr>
+                  <td class="depth_cells_left">Desired Depth (m)</td>
+                  <td style="text-align: right;"><input type="text" name="desiredDepth" id="` + datasets[number]['id'] + `_desiredDepthValue" style="width: 132px;"></br></td>
+                  </tr> 
+                  <tr>
+                  <td class="depth_search" colspan="2"><button onclick="search('` + datasets[number]['id'] + `')" style="background-color: rgb(175,175,175)">Search</button></td>
+                  </tr> 
+                </table>
+              </td>
+            </tr>
+            <tr style="padding-top: 10px;">
+              <td class="depth_cells_left">Nearest Index</td>
+              <td class="depth_cells_output" id="` + datasets[number]['id'] + `_index_depths_pane_div"></td>
+            </tr>
+            <tr>
+              <td class="depth_cells_left">Nearest Depth</td>
+              <td class="depth_cells_output" id="` + datasets[number]['id'] + `_result_depths_pane_div"></td>
+            </tr>
+          </table>
+        `
+
+        requiredDiv = datasets[number]['id'] + "_depths_pane_div"
+        document.getElementById(requiredDiv).innerHTML += contents;
       }
     })
   })
-  */
+
+}
+
+function search(dataset) {
+  valueDiv = dataset + "_desiredDepthValue"
+  value = document.getElementById(valueDiv).value
+
+  $.ajax({
+    url: "http://trinity:50/navigator/api/v1.0/depth/?dataset=" + dataset + "&variable=votemper", success: function(a) {
+      
+      var values = [];
+      for (num in a) {
+        
+        let i = a[num]['value']
+        i = Number(i.replace(" m", ""))
+        values.push(i)
+      }
+
+      if(value < a[1]['value']) {
+        result = a[1]['value'];
+        index = 1;
+        if ((value - values[index + 1] == (values[index + 2] - value))) {
+          result += ", " + values[index + 2];
+          index += ", " + 1;
+        } else if((value - values[index + 1]) > (values[index + 2] - value)) {
+          result = values[index + 2];
+          index = index + 1;
+        }
+        requiredDiv = dataset + "_index_depths_pane_div"
+        document.getElementById(requiredDiv).innerHTML = 1;
+        requiredDiv = dataset + "_result_depths_pane_div"
+        document.getElementById(requiredDiv).innerHTML = result;
+        return;
+      }
+      if(value > a[a.length-1]) {
+        result = a[a.length - 1];
+        index = a.length - 1;
+        if ((value - values[index + 1] == (values[index + 2] - value))) {
+          result += ", " + values[index + 2];
+          index += ", " + (index + 1);
+        }
+
+        requiredDiv = dataset + "_index_depths_pane_div"
+        document.getElementById(requiredDiv).innerHTML = length-1;
+        requiredDiv = dataset + "_result_depths_pane_div"
+        document.getElementById(requiredDiv).innerHTML = result;
+        return;
+      }
+      
+      lo = 1;
+      hi = a.length - 2;
+
+      while (lo <= hi) {
+        mid = Math.floor((hi + lo) / 2);
+
+       if (value < values[mid]) {
+            hi = mid - 1;
+        } else if (value > values[mid]) {
+            lo = mid + 1;
+        } else {
+
+          result = values[mid];
+          index = mid - 1;
+          if ((value - values[index + 1] == (values[index + 2] - value))) {
+            result += ", " + values[index + 2];
+            index += ", " + (index + 1);
+          } else if((value - values[index + 1]) > (values[index + 2] - value)) {
+            result = values[index + 2];
+            index = index + 1;
+          }
+          requiredDiv = dataset + "_index_depths_pane_div"
+          document.getElementById(requiredDiv).innerHTML = index;
+          requiredDiv = dataset + "_result_depths_pane_div"
+          document.getElementById(requiredDiv).innerHTML = result;
+          return;
+        }
+      }
+    
+      result = (a[lo] - value) < (value - values[hi]) ? values[lo] : values[hi];
+      index = (a[lo] - value) < (value - values[hi]) ? lo : hi;
+      index = index - 1
+
+      if ((value - values[index + 1] == (values[index + 2] - value))) {
+        result += "m, " + values[index + 2] + "m";
+        index += ", " + (index + 1);
+      } else if((value - values[index + 1]) > (values[index + 2] - value)) {
+        result = values[index + 2];
+        index = index + 1;
+      }
+      
+      //Sets Index Number
+      requiredDiv = dataset + "_index_depths_pane_div"
+      document.getElementById(requiredDiv).innerHTML = index;
+      
+      //Sets Value
+      requiredDiv = dataset + "_result_depths_pane_div"
+      document.getElementById(requiredDiv).innerHTML = result;
+    }
+    
+  })
 }
