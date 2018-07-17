@@ -138,7 +138,7 @@ function getDatasets() {
           `
           <table id="` + datasets[paneCell]['id'] + `_table_pane_div" style="width:100%;">
             <tr id="` + datasets[paneCell]['id'] + `row_table_pane_div" style="width: 100%;">
-              <td class="pane_cell" id="` + datasets[paneCell]['id'] + `_variables_pane_div" style="border-right: 4px solid white;">
+              <td class="pane_cell" id="` + datasets[paneCell]['id'] + `_variables_pane_div" style="vertical-align: text-top; border-right: 4px solid white;">
               </td>
               <td class="pane_cell" id="` + datasets[paneCell]['id'] + `_timestamps_pane_div" style="vertical-align: text-top;">
               </td>
