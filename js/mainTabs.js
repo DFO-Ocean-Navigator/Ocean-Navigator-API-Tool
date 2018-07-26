@@ -95,7 +95,7 @@ function updateSelection(datasetid) {
 function getDatasets() {
 
   $.ajax({
-    url: "http://trinity:50/navigator/api/v1.0/datasets/?id", success: function(datasets){
+    url: "http://navigator.oceansdata.ca/api/v1.0/datasets/?id", success: function(datasets){
 
       size = datasets.length;
       rows = 3 - (size % 3);    //Puts 5 datasets per row
@@ -179,7 +179,7 @@ function populateVariables(datasets) {
   $(num_datasets).each(function() {
     var number = this;
     $.ajax({
-      url: "http://trinity:50/navigator/api/v1.0/variables/?dataset=" + datasets[number]['id'], success: function(variables) {
+      url: "http://navigator.oceansdata.ca/api/v1.0/variables/?dataset=" + datasets[number]['id'], success: function(variables) {
         
         variableTable = "<table style='width: 100%; padding: 5px'>"
         variableTable += "<tr class=variable_table_row'>";
@@ -211,7 +211,7 @@ function populateTimestamps(datasets) {
   $(num_datasets).each(function() {
     var number = this;
     $.ajax({
-      url: "http://trinity:50/navigator/api/v1.0/timestamps/?dataset=" + datasets[number]['id'], success: function(timestamps) {
+      url: "http://navigator.oceansdata.ca/api/v1.0/timestamps/?dataset=" + datasets[number]['id'], success: function(timestamps) {
         
       variableTable = "<table style='height: 100%; width: 100%; padding: 5px;'>"
         variableTable += "<tr class=variable_table_row'>";
@@ -252,7 +252,7 @@ function constructDepthField(datasets) {
     var number = this;
     
     $.ajax({
-      url: "http://trinity:50/navigator/api/v1.0/depth/?dataset=" + datasets[number]['id'] + "&variable=votemper", success: function(depths) {
+      url: "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + datasets[number]['id'] + "&variable=votemper", success: function(depths) {
     
 
         minDepth = depths[1]['value'];
@@ -308,7 +308,7 @@ function search(dataset) {
   value = document.getElementById(valueDiv).value
 
   $.ajax({
-    url: "http://trinity:50/navigator/api/v1.0/depth/?dataset=" + dataset + "&variable=votemper", success: function(a) {
+    url: "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + dataset + "&variable=votemper", success: function(a) {
       
       var values = [];
       for (num in a) {
