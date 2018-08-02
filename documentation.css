@@ -159,3 +159,28 @@ i { position:absolute;
   text-align: right;
   padding: 2px;
 }
+
+.error {
+  text-align: left;
+}
+
+.memberdecls {
+  width:100%;
+  display:inline-block;
+}
+
+.memberdecls tbody {
+  width:100%;
+  display: inline-grid;
+}
+
+.memberdecls tr, td {
+  width: 100%;
+  word-break: break-all;
+  display: inline-grid;
+}
+
+.request_links {
+  width: 100%;
+  display: inline-block
+}

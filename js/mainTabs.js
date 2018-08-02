@@ -2,6 +2,23 @@ var active_dataset
 var panesPopulated = false;
 var currentDepths
 
+function toggleSidebar() {
+
+  state = document.getElementById("sidebar-wrapper")
+  console.warn(state)
+  console.warn(document.getElementById("sidebar-wrapper").style.width)
+  console.warn(state.style.offsetWidth)
+  if (document.getElementById("sidebar-wrapper").style.width == '0px') {
+    document.getElementById("sidebar-wrapper").style.width = '250px'
+    document.getElementById("wrapper").style.paddingLeft = '250px'
+  } else {
+    document.getElementById("sidebar-wrapper").style.width = '0px'
+    document.getElementById("wrapper").style.paddingLeft = '10px'
+  }
+  
+
+}
+
 function openTab(evt, name) {
 
   var i, tabcontent, tablinks;
@@ -95,7 +112,7 @@ function updateSelection(datasetid) {
 function getDatasets() {
 
   $.ajax({
-    url: "http://navigator.oceansdata.ca/api/v1.0/datasets/?id", success: function(datasets){
+    url: "http://trinity:50/navigator/api/v1.0/datasets/?id", success: function(datasets){
 
       size = datasets.length;
       rows = 3 - (size % 3);    //Puts 5 datasets per row
@@ -111,13 +128,13 @@ function getDatasets() {
       while (row < rows) {
 
         //Create row
-        createButtons += "<tr class='dataset_buttons_table_row' id='row" + row + "_dataset_buttons_table_row' style='width=33.333333%'>"
+        createButtons += "<tr class='dataset_buttons_table_row' id='row" + row + "_dataset_buttons_table_row' style='width=100%'>"
         col = 1 // Initialize(reset) col #
 
         //Controls the CELLS
         while (col <=3 && datasets[cell] !== undefined) { //Runs to the end of the row, or until there are no more datasets
           
-          createButtons += "<td class='dataset_buttons_table_col' id='" + datasets[cell]['id'] + "_dataset_buttons_table_col' style='width: 20%; height:100%'>"
+          createButtons += "<td class='dataset_buttons_table_col' id='" + datasets[cell]['id'] + "_dataset_buttons_table_col' style='width: 33.33333%; height:100%'>"
 
           createButtons += "<button id='" + datasets[cell]['id'] + "_dataset_button' " + "onclick=" +"'updateSelection(" + '"' + datasets[cell]['id'] + '")' + "'" + ' style="text-align: left; width: 100%; height: 60px"' + ">"
           createButtons += "<i class='fa fa-angle-down ' style='font-size: 20px;'></i>"
@@ -135,18 +152,18 @@ function getDatasets() {
         while (col <= 3 && datasets[paneCell] !== undefined) {
           createButtons += "<div class='row" + row + "_pane_div' id='" + datasets[paneCell]['id'] + "_pane_div' style='display:none; padding: 20px; width: 100%'>"
           createButtons += 
-          `
-          <table id="` + datasets[paneCell]['id'] + `_table_pane_div" style="width:100%;">
-            <tr id="` + datasets[paneCell]['id'] + `row_table_pane_div" style="width: 100%;">
-              <td class="pane_cell" id="` + datasets[paneCell]['id'] + `_variables_pane_div" style="vertical-align: text-top; border-right: 4px solid white;">
-              </td>
-              <td class="pane_cell" id="` + datasets[paneCell]['id'] + `_timestamps_pane_div" style="vertical-align: text-top;">
-              </td>
-              <td class="pane_cell" id="` + datasets[paneCell]['id'] + `_depths_pane_div" style="border-left: 4px solid white; vertical-align: text-top;">
-              </td>
-            </tr>
-          </table>
-          `
+          
+          createButtons += "<table id=" + '"` + datasets[paneCell][' + "'id'] +" + ' `_table_pane_div" style="width:100%;">'
+          createButtons += '<tr id="` + datasets[paneCell]' + "['id']" + ' + `row_table_pane_div" style="width: 100%;">'
+          createButtons += '<td class="pane_cell" id="` + datasets[paneCell]' + "['id'] + `_variables_pane_div" + '" style="vertical-align: text-top; border-right: 4px solid white;">'
+          createButtons += '</td>'
+          createButtons += '<td class="pane_cell" id="`' + " + datasets[paneCell]['id']" + ' + `_timestamps_pane_div" style="vertical-align: text-top;">'
+          createButtons += '</td>'
+          createButtons += '<td class="pane_cell" id="`' + " + datasets[paneCell]['id']" + ' + `_depths_pane_div" style="border-left: 4px solid white; vertical-align: text-top;">'
+          createButtons += '</td>'
+          createButtons += '</tr>'
+          createButtons += '</table>'
+          
           createButtons += "</div>"  //This is where the data will be populated
 
           col += 1
@@ -179,7 +196,7 @@ function populateVariables(datasets) {
   $(num_datasets).each(function() {
     var number = this;
     $.ajax({
-      url: "http://navigator.oceansdata.ca/api/v1.0/variables/?dataset=" + datasets[number]['id'], success: function(variables) {
+      url: "http://trinity:50/navigator/api/v1.0/variables/?dataset=" + datasets[number]['id'], success: function(variables) {
         
         variableTable = "<table style='width: 100%; padding: 5px'>"
         variableTable += "<tr class=variable_table_row'>";
@@ -196,7 +213,14 @@ function populateVariables(datasets) {
 
         requiredDiv = datasets[number]['id'] + "_variables_pane_div"
         document.getElementById(requiredDiv).innerHTML = variableTable
+      },
+      error: function() {
+        variableTable = "<h4 class='error'>Variables Failed to Load</h4>"
+        requiredDiv = datasets[number]['id'] + "_variables_pane_div"
+        document.getElementById(requiredDiv).innerHTML = variableTable
+
       }
+      
     })
   })
 }
@@ -211,7 +235,7 @@ function populateTimestamps(datasets) {
   $(num_datasets).each(function() {
     var number = this;
     $.ajax({
-      url: "http://navigator.oceansdata.ca/api/v1.0/timestamps/?dataset=" + datasets[number]['id'], success: function(timestamps) {
+      url: "http://trinity:50/navigator/api/v1.0/timestamps/?dataset=" + datasets[number]['id'], success: function(timestamps) {
         
       variableTable = "<table style='height: 100%; width: 100%; padding: 5px;'>"
         variableTable += "<tr class=variable_table_row'>";
@@ -237,6 +261,12 @@ function populateTimestamps(datasets) {
         requiredDiv = datasets[number]['id'] + "_timestamps_pane_div"
         document.getElementById(requiredDiv).innerHTML += variableTable
       
+      },
+      error: function() {
+        variableTable = "<h4 class='error'>TimeStamps Failed to Load</h4>"
+        requiredDiv = datasets[number]['id'] + "_timestamps_pane_div"
+        document.getElementById(requiredDiv).innerHTML = variableTable
+
       }
     })
   })
@@ -252,51 +282,60 @@ function constructDepthField(datasets) {
     var number = this;
     
     $.ajax({
-      url: "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + datasets[number]['id'] + "&variable=votemper", success: function(depths) {
+      url: "http://trinity:50/navigator/api/v1.0/depth/?dataset=" + datasets[number]['id'] + "&variable=votemper", success: function(depths) {
     
 
         minDepth = depths[1]['value'];
         maxDepth = depths[depths.length - 1]['value'];
 
         contents = 
-        `
-        <div style="font-size: 19px; text-align: left;">Depth</h3>
-        <div style="padding-bottom: 20px; text-align: justify; ">In each dataset, data can be found at various depth layers. This tool allows you to provide your desired depth and will return the depth of the nearest available layer, and the associated index to be used in the navigators API </div>
-          <table style="width:100%;">
-            <tr>
-              <td class="depth_cells_left">Min Depth</td>
-              <td class="depth_cells">` + minDepth + `</td>
-            </tr>
-            <tr style="border-bottom: 2px solid white">
-              <td class="depth_cells_left">Max Depth</td>
-              <td class="depth_cells">` + maxDepth + `</td>
-            </tr>
-            <tr>
-              <td colspan="2" style="padding-top: 20px; padding-bottom: 10px;">
-                <table style="width:100%;">
-                  <tr>
-                  <td class="depth_cells_left">Desired Depth (m)</td>
-                  <td style="text-align: right;"><input type="text" name="desiredDepth" id="` + datasets[number]['id'] + `_desiredDepthValue" style="width: 132px;"></br></td>
-                  </tr> 
-                  <tr>
-                  <td class="depth_search" colspan="2"><button onclick="search('` + datasets[number]['id'] + `')" style="background-color: rgb(175,175,175)">Search</button></td>
-                  </tr> 
-                </table>
-              </td>
-            </tr>
-            <tr style="padding-top: 10px;">
-              <td class="depth_cells_left">Nearest Index</td>
-              <td class="depth_cells_output" id="` + datasets[number]['id'] + `_index_depths_pane_div"></td>
-            </tr>
-            <tr>
-              <td class="depth_cells_left">Nearest Depth</td>
-              <td class="depth_cells_output" id="` + datasets[number]['id'] + `_result_depths_pane_div"></td>
-            </tr>
-          </table>
-        `
+        '\
+        <div style="font-size: 19px; text-align: left;">Depth</h3>\
+        <div style="padding-bottom: 20px; text-align: justify; ">In each dataset, data can be found at various depth layers. This tool allows you to provide your desired depth and will return the depth of the nearest available layer, and the associated index to be used in the navigators API </div>\
+          <table style="width:100%;">\
+            <tr>\
+        <td class="depth_cells_left">Min Depth</td>\
+        '
+        contents += '<td class="depth_cells">` + minDepth + `</td>'
+        contents += '</tr>\
+            <tr style="border-bottom: 2px solid white">\
+            <td class="depth_cells_left">Max Depth</td>\
+        '  
+        contents += '<td class="depth_cells">' + maxDepth + '</td>\
+            </tr>\
+            <tr>\
+              <td colspan="2" style="padding-top: 20px; padding-bottom: 10px;">\
+                <table style="width:100%;">\
+                  <tr>\
+                  <td class="depth_cells_left">Desired Depth (m)</td>\
+            '
+            contents += '<td style="text-align: right;"><input type="text" name="desiredDepth" id="' + datasets[number]['id'] + '_desiredDepthValue" style="width: 132px;"></br></td>\
+                  </tr>\
+                  <tr>' 
+            contents += '<td class="depth_search" colspan="2"><button onclick="' + "search('" + datasets[number]['id'] + "'" + ')" style="background-color: rgb(175,175,175)">Search</button></td>\
+                  </tr>\
+                </table>\
+              </td>\
+            </tr>\
+            <tr style="padding-top: 10px;">\
+              <td class="depth_cells_left">Nearest Index</td>'
+            contents += '<td class="depth_cells_output" id="' + datasets[number]['id'] + '_index_depths_pane_div"></td>\
+            </tr>\
+            <tr>\
+              <td class="depth_cells_left">Nearest Depth</td>'
+            contents += '<td class="depth_cells_output" id="' + datasets[number]['id'] + '_result_depths_pane_div"></td>\
+            </tr>\
+          </table>\
+        '
 
         requiredDiv = datasets[number]['id'] + "_depths_pane_div"
         document.getElementById(requiredDiv).innerHTML += contents;
+      },
+      error: function() {
+        content = "<h4 class='error'>Depth Failed to Load</h4>"
+        requiredDiv = datasets[number]['id'] + "_depths_pane_div"
+        document.getElementById(requiredDiv).innerHTML = content
+
       }
     })
   })
@@ -308,7 +347,7 @@ function search(dataset) {
   value = document.getElementById(valueDiv).value
 
   $.ajax({
-    url: "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + dataset + "&variable=votemper", success: function(a) {
+    url: "http://trinity:50/navigator/api/v1.0/depth/?dataset=" + dataset + "&variable=votemper", success: function(a) {
       
       var values = [];
       for (num in a) {

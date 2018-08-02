@@ -476,7 +476,7 @@ table.memberdecls {
 }
 
 .memSeparator {
-        border-bottom: 1px solid #DEE4F0;
+        border-bottom: 1px solid rgba(47, 92, 105, 0.23921568627450981);
         line-height: 1px;
         margin: 0px;
         padding: 0px;
@@ -532,7 +532,8 @@ table.memberdecls {
         -o-transition: box-shadow 0.5s linear;
         transition: box-shadow 0.5s linear;
         display: table !important;
-        width: 100%;
+	width: 100%;
+	word-break: break-all;
 }
 
 .memitem.glow {
