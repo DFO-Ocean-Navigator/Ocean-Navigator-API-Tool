@@ -137,7 +137,7 @@ i { position:absolute;
 }
 
 .variable_id_table_col {
-  text-align: left;
+  text-align: right;
   padding-right: 5px;
   padding: 2px;
 }
@@ -183,4 +183,20 @@ i { position:absolute;
 .request_links {
   width: 100%;
   display: inline-block
+}
+
+.variable_table_row {
+  display: flex;
+}
+
+.dataset_buttons_table {
+  width: 100%
+}
+
+.depth_table_row {
+  display: flex;
+}
+
+.depth_search {
+  text-align: right;
 }
