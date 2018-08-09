@@ -19,6 +19,11 @@ function toggleSidebar() {
 
 }
 
+
+/*
+    evt:
+    name:
+*/
 function openTab(evt, name) {
 
   var i, tabcontent, tablinks;
@@ -41,37 +46,36 @@ function openTab(evt, name) {
 
 }
 
+
+/*
+    event : the event
+    name  : id of the tab contents
+    all   : id of the button and tab container
+    button: id of the button clicked
+
+    This function will open and close the  tab contents based on their current state
+*/
 function openContents(event, name, all, button) {
   var i, tabcontent, tablinks;
 
   tabcontent = document.getElementsByClassName("expand-contents");
   
+  //If the tab selected is currently being shown
   if (document.getElementById(name).style.display == "block") {
     document.getElementById(button).className = 'howto_button'
-    document.getElementById(name).style.display = "none"
+    document.getElementById(name).style.display = "none"  //Hides the tab contents
     document.getElementById(all).style.backgroundColor = "rgb(245, 245, 245)";
-    document.getElementById(button).style.backgroundColor = "block";
+    document.getElementById(button).style.backgroundColor = "rgb(245,245,245)"; //Changes the color of the button back to normal
     //document.getElementById(button).style.hover.backgroundColor = "rgb(204, 204, 204)"
+  
+  //If the tab selected currently hidden
   } else {
 
-    document.getElementById(button).className = 'ui-state-active'
-    document.getElementById(name).style.display = "block"
-    document.getElementById(all).style.backgroundColor = "rgb(204, 204, 204)";
-    document.getElementById(button).style.backgroundColor = "rgb(204, 204, 204)";
+    document.getElementById(button).className = 'ui-state-active' //Adds the class to indicate that the button has been clicked and the tab is open
+    document.getElementById(name).style.display = "block" //Display the tab contents
+    document.getElementById(all).style.backgroundColor = "rgb(204, 204, 204)"; 
+    document.getElementById(button).style.backgroundColor = "rgb(204, 204, 204)";  //Changes the color of the button to a darker grey while the tab is open
   }
-    /*
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  */
-/*
-  tablinks = document.getElementsByClassName("expand-button");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].classnme.replace("active", "");
-  }
-*/
-  //document.getElementById(name).style.display = "block";
-  //evt.currentTarget.classname += "active";
 
 }
 
@@ -106,10 +110,14 @@ function updateSelection(datasetid) {
   }
 }
 
+function waitForVars(callback) {
+  console.warn("here")
+  callback();
+}
 
 //CREATES TABLE OF AVAILABLE DATASETS
 //ALSO CREATES THE GENERAL STRUCTURE OF THE PANES
-function getDatasets() {
+async function getDatasets() {
 
   $.ajax({
     url: "http://navigator.oceansdata.ca/api/v1.0/datasets/?id", success: function(datasets){
@@ -133,7 +141,6 @@ function getDatasets() {
 
         //Controls the CELLS
         while (col <=3 && datasets[cell] !== undefined) { //Runs to the end of the row, or until there are no more datasets
-          console.warn(datasets[cell]['id'])
           createButtons += "<td class='dataset_buttons_table_col' id='" + datasets[cell]['id'] + "_dataset_buttons_table_col' style='width: 33.33333%; height:100%'>"
 
           createButtons += "<button id='" + datasets[cell]['id'] + "_dataset_button' " + "onclick=" +"'updateSelection(" + '"' + datasets[cell]['id'] + '")' + "'" + ' style="text-align: left; width: 100%; height: 60px"' + ">"
@@ -183,9 +190,9 @@ function getDatasets() {
       document.getElementById('dataset_buttons_table').innerHTML = createButtons
 
       populateVariables(datasets);
-      populateTimestamps(datasets)
-      constructDepthField(datasets);
-      //populateDepths(datasets);
+      populateTimestamps(datasets);
+      classify3d_variables(datasets);
+      
     }
   })
   createTable = "<table class='dataset_buttons_table' id='dataset_buttons_table'></table>"
@@ -193,18 +200,58 @@ function getDatasets() {
 
 }
 
+async function classify3d_variables(datasets) {
+
+  num_datasets = datasets.length;
+  num_datasets = Array.apply(null, Array(num_datasets));
+  num_datasets = num_datasets.map(function (x,i) {return i})
+
+  num = 0;
+  updated_datasets = datasets;
+
+  function addElement(number, element) {
+
+    if (element != false) {
+      updated_datasets[number]['3d_var'] = element;
+    }
+    num += 1
+    
+    //if (num == datasets.length) {
+    console.warn(updated_datasets[number])
+    constructDepthField(updated_datasets[number])
+    //}
+  }
+
+  $(num_datasets).each(function() {
+    var number = this;
+
+    $.ajax({
+      url: "http://navigator.oceansdata.ca/api/v1.0/variables/?dataset=" + datasets[number]['id'] + "&3d_only", success: function(variables) {
+   
+        if (variables.length != 0) {
+          addElement(number, variables[0]['id'])
+        } else {
+          addElement(number, false)
+        }
+        },
+    })
+  })
+
+  return updated_datasets
+}
+
 //ADDS DATA TO EMPTY TABLE OF AVAILABLE VARIABLES
-function populateVariables(datasets) {
+async function populateVariables(datasets) {
 
   num_datasets = datasets.length
   num_datasets = Array.apply(null, Array(num_datasets));
   num_datasets = num_datasets.map(function (x, i) {return i})
-  
+
   $(num_datasets).each(function() {
     var number = this;
     $.ajax({
       url: "http://navigator.oceansdata.ca/api/v1.0/variables/?dataset=" + datasets[number]['id'], success: function(variables) {
-        
+
         // Initializes Variable Table
         variableTable = "<table style='width: 100%; padding: 5px'>"
         
@@ -234,14 +281,13 @@ function populateVariables(datasets) {
         requiredDiv = datasets[number]['id'] + "_variables_pane_div"
         document.getElementById(requiredDiv).innerHTML = variableTable
 
-      }
-      
+      },
     })
   })
 }
 
 //ADDS DATA TO EMPTY TABLE OF AVAILABLE TIMESTAMPS
-function populateTimestamps(datasets) {
+async function populateTimestamps(datasets) {
 
   num_datasets = datasets.length
   num_datasets = Array.apply(null, Array(num_datasets));
@@ -290,14 +336,17 @@ function populateTimestamps(datasets) {
 
 
 //Constructs the depth table and fills it with the required values
-function constructDepthField(datasets) {
+function constructDepthField(dataset) {
 
+  /*
   $(num_datasets).each(function() {
     var number = this;
-    
+  */
+    console.warn(dataset)
+    console.warn(dataset['id'])
+    console.warn(dataset['3d_var'])
     $.ajax({
-      url: "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + datasets[number]['id'] + "&variable=votemper", success: function(depths) {
-    
+      url: "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + dataset['id'] + "&variable=" + dataset['3d_var'], success: function(depths) {
 
         minDepth = depths[1]['value'];
         maxDepth = depths[depths.length - 1]['value'];
@@ -324,12 +373,12 @@ function constructDepthField(datasets) {
         // User Input depth field
         contents += '<tr class="depth_table_row">'
         contents += '<td class="depth_cells_left">Desired Depth (m)</td>'
-        contents += '<td style="text-align: right;"><input type="text" name="desiredDepth" id="' + datasets[number]['id'] + '_desiredDepthValue"></td>'
+        contents += '<td style="text-align: right;"><input type="text" name="desiredDepth" id="' + dataset['id'] + '_desiredDepthValue"></td>'
         contents += '</tr>'
 
         // Search Button
         contents += '<tr class="depth_table_row" style="text-align: right;">' 
-        contents += '<td><button onclick="' + "search('" + datasets[number]['id'] + "'" + ')" style="background-color: rgb(175,175,175); width: 50%;">Search</button></td>'
+        contents += '<td><button onclick="' + "search('" + dataset['id'] + "'" + ')" style="background-color: rgb(175,175,175); width: 50%;">Search</button></td>'
         contents += '</tr>'
         contents += '</table>'
         contents += '</td>'
@@ -338,35 +387,41 @@ function constructDepthField(datasets) {
         // Nearest depth(s) to user input
         contents += '<tr class="depth_table_row" style="padding-top: 10px;">'
         contents += '<td class="depth_cells_left">Nearest Index</td>'
-        contents += '<td class="depth_cells_output" id="' + datasets[number]['id'] + '_index_depths_pane_div"></td>'
+        contents += '<td class="depth_cells_output" id="' + dataset['id'] + '_index_depths_pane_div"></td>'
         contents += '</tr>'
         contents += '<tr class="depth_table_row">'
         contents += '<td class="depth_cells_left">Nearest Depth</td>'
-        contents += '<td class="depth_cells_output" id="' + datasets[number]['id'] + '_result_depths_pane_div"></td>'
+        contents += '<td class="depth_cells_output" id="' + dataset['id'] + '_result_depths_pane_div"></td>'
         contents += '</tr>'
         contents += '</table>'
         
 
-        requiredDiv = datasets[number]['id'] + "_depths_pane_div"
+        requiredDiv = dataset['id'] + "_depths_pane_div"
         document.getElementById(requiredDiv).innerHTML += contents;
       },
       error: function() {
         content = "<h4 class='error'>Depth Failed to Load</h4>"
-        requiredDiv = datasets[number]['id'] + "_depths_pane_div"
+        requiredDiv = dataset['id'] + "_depths_pane_div"
         document.getElementById(requiredDiv).innerHTML = content
 
       }
     })
-  })
+  //})
 
 }
 
 function search(dataset) {
   valueDiv = dataset + "_desiredDepthValue"
   value = document.getElementById(valueDiv).value
+  var variable = undefined
+  for (data in updated_datasets) {
+    if (updated_datasets[data]['id'] == dataset) {
+      variable = updated_datasets[data]['3d_var']
+    }
+  }
 
   $.ajax({
-    url: "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + dataset + "&variable=votemper", success: function(a) {
+    url: "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + dataset + "&variable=" + variable, success: function(a) {
       
       var values = [];
       for (num in a) {
