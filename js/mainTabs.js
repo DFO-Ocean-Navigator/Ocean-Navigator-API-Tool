@@ -120,7 +120,7 @@ function waitForVars(callback) {
 async function getDatasets() {
 
   $.ajax({
-    url: "http://navigator.oceansdata.ca/api/v1.0/datasets/?id", success: function(datasets){
+    url: "http://trinity:50/navigator/api/v1.0/datasets/?id", success: function(datasets){
 
       size = datasets.length;
       rows = 3 - (size % 3);    //Puts 5 datasets per row
@@ -226,7 +226,7 @@ async function classify3d_variables(datasets) {
     var number = this;
 
     $.ajax({
-      url: "http://navigator.oceansdata.ca/api/v1.0/variables/?dataset=" + datasets[number]['id'] + "&3d_only", success: function(variables) {
+      url: "http://trinity:50/navigator/api/v1.0/variables/?dataset=" + datasets[number]['id'] + "&3d_only", success: function(variables) {
    
         if (variables.length != 0) {
           addElement(number, variables[0]['id'])
@@ -250,7 +250,7 @@ async function populateVariables(datasets) {
   $(num_datasets).each(function() {
     var number = this;
     $.ajax({
-      url: "http://navigator.oceansdata.ca/api/v1.0/variables/?dataset=" + datasets[number]['id'], success: function(variables) {
+      url: "http://trinity:50/navigator/api/v1.0/variables/?dataset=" + datasets[number]['id'], success: function(variables) {
 
         // Initializes Variable Table
         variableTable = "<table style='width: 100%; padding: 5px'>"
@@ -293,24 +293,31 @@ async function populateTimestamps(datasets) {
   num_datasets = Array.apply(null, Array(num_datasets));
   num_datasets = num_datasets.map(function (x, i) {return i})
   
+  //Runs the ajax request for each dataset
   $(num_datasets).each(function() {
-    var number = this;
+    var number = this;  //Number of the dataset currently selected
+
     $.ajax({
-      url: "http://navigator.oceansdata.ca/api/v1.0/timestamps/?dataset=" + datasets[number]['id'], success: function(timestamps) {
+      url: "http://trinity:50/navigator/api/v1.0/timestamps/?dataset=" + datasets[number]['id'], success: function(timestamps) {
         
-      variableTable = "<table style='height: 100%; width: 100%; padding: 5px;'>"
-        variableTable += "<tr class=variable_table_row' style='display: flex;'>";
+        //Creates the table
+        variableTable = "<table style='height: 100%; width: 100%; padding: 5px;'>"
+        
+        
+        variableTable += "<tr class=timestamp_table_row' style='display: flex;'>";
         variableTable += "<td class='timestamp_value_table_col' style='font-size: 19px; text-align: left; '>Time</td>";
         variableTable += "<td class='timestamp_id_table_col' style='font-size: 19px'>Index</td>";
         variableTable += "</tr>"
         
-        variableTable += "<tr class='variable_table_row' id='" + timestamps[0]['id'] + "_" + datasets[number]['id'] + "_variable_table_row'>"
+        //Row containing the first timestamp available
+        variableTable += "<tr class='timestamp_table_row' id='" + timestamps[0]['id'] + "_" + datasets[number]['id'] + "_variable_table_row'>"
         variableTable += "<td class='timestamp_table_col' id='first_timestamp_value_table_col'>" + 'First' + "</td>"
         variableTable += "<td class='timestamp_table_col' id='" + timestamps[0]['id'] + "_" + datasets[number]['id'] + "_variable_id_table_col'>" + timestamps[0]['value'] + "</td>"
         variableTable += "<td class='timestamp_index_table_col'>" + timestamps[0]['id'] + "</td>"
         variableTable += "</tr>"
         
-        variableTable += "<tr class='variable_table_row' id='" + timestamps[0]['id'] + "_" + datasets[number]['id'] + "_variable_table_row'>"
+        //Row containing the last timestamp available
+        variableTable += "<tr class='timestamp_table_row' id='" + timestamps[0]['id'] + "_" + datasets[number]['id'] + "_variable_table_row'>"
         variableTable += "<td class='timestamp_table_col' id='first_timestamp_value_table_col'>" + 'Last' + "</td>"
         variableTable += "<td class='timestamp_table_col' id='" + timestamps[0]['id'] + "_" + datasets[number]['id'] + "_variable_id_table_col'>" + timestamps[timestamps.length - 1]['value'] + "</td>"
         variableTable += "<td class='timestamp_index_table_col'>" + timestamps[timestamps.length - 1]['id'] + "</td>"
@@ -318,11 +325,14 @@ async function populateTimestamps(datasets) {
 
         variableTable += "</table>"
 
+        //Places the table in the correct div based on the dataset
         requiredDiv = datasets[number]['id'] + "_timestamps_pane_div"
         document.getElementById(requiredDiv).innerHTML += variableTable
       
       },
       error: function() {
+
+        //If the timestamp request fails it will display an error message
         variableTable = "<h4 class='error'>TimeStamps Failed to Load</h4>"
         requiredDiv = datasets[number]['id'] + "_timestamps_pane_div"
         document.getElementById(requiredDiv).innerHTML = variableTable
@@ -346,7 +356,7 @@ function constructDepthField(dataset) {
     console.warn(dataset['id'])
     console.warn(dataset['3d_var'])
     $.ajax({
-      url: "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + dataset['id'] + "&variable=" + dataset['3d_var'], success: function(depths) {
+      url: "http://trinity:50/navigator/api/v1.0/depth/?dataset=" + dataset['id'] + "&variable=" + dataset['3d_var'], success: function(depths) {
 
         minDepth = depths[1]['value'];
         maxDepth = depths[depths.length - 1]['value'];
@@ -420,8 +430,9 @@ function search(dataset) {
     }
   }
 
+  //Finds all the depth layers for that dataset
   $.ajax({
-    url: "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + dataset + "&variable=" + variable, success: function(a) {
+    url: "http://trinity:50/navigator/api/v1.0/depth/?dataset=" + dataset + "&variable=" + variable, success: function(a) {
       
       var values = [];
       for (num in a) {
@@ -431,6 +442,7 @@ function search(dataset) {
         values.push(i)
       }
 
+      //If the requested depth is negative
       if(value < a[1]['value']) {
         result = a[1]['value'];
         index = 1;
@@ -447,6 +459,8 @@ function search(dataset) {
         document.getElementById(requiredDiv).innerHTML = result;
         return;
       }
+
+      //If the request is below the ocean floor
       if(value > a[a.length-1]) {
         result = a[a.length - 1];
         index = a.length - 1;
@@ -461,7 +475,8 @@ function search(dataset) {
         document.getElementById(requiredDiv).innerHTML = result;
         return;
       }
-      
+
+      //Search Algorithm to find the selected depth
       lo = 1;
       hi = a.length - 2;
 

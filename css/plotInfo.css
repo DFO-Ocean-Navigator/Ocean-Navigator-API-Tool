@@ -1,0 +1,40 @@
+.plotInformation {
+    background-color: rgb(245,245,245);
+    width: 100%;
+    height: min-content;
+}
+
+.PlotPane {
+    padding: 15px;
+    background-color: rgb(205, 205, 205);
+    width: 100%;
+    height: min-content;
+    display: none;
+}
+
+.PlotPaneTable {
+    border: 1px solid rgb(205, 205, 205);
+    padding: 10px;
+    background-color: rgb(245,245,245);
+    width: 100%;
+}
+
+.PlotPaneRow {
+    width:100%;
+    border: 1px solid rgb(205, 205, 205);
+}
+
+.PlotVariable {
+    width: 15%;
+    padding: 5px;
+}
+
+.PlotVarType {
+    width:15%;
+    padding:5px;
+}
+
+.PlotDescription {
+    width: 70%;
+    padding: 5px;
+}

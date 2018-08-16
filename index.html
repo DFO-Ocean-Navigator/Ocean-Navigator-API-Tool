@@ -25,7 +25,8 @@
 	<meta content="Doxygen 1.8.11" name="generator">
 	<link rel="icon" href="apple-icon.png">
 	<title>Ocean Navigator API</title>
-    <link href="tabs.css" rel="stylesheet" type="text/css">
+	<link href="tabs.css" rel="stylesheet" type="text/css">
+	<link href="css/plotInfo.css" rel = "stylesheet" type ="text/css">
 		<link href="documentation.css" rel="stylesheet" type="text/css">
 		<link href="functions.css" rel="stylesheet" type="text/css">
 	<script src="jquery.js" type="text/javascript">
@@ -70,10 +71,10 @@
           <a href="#documentation" onclick="openTab(event, 'Documentation')">Documentation</a>
         </li>
 		<li>
-			<a href="#about" onclick="openTab(event, 'Input_Options'); getDatasets()">API Dataset Information</a>
+			<a href="#DataInfo" onclick="openTab(event, 'Input_Options'); getDatasets()">API Dataset Information</a>
 		</li>
 		<li>
-			<a href="#contact" onclick="openTab(event, 'Contact')">Contact</a>
+			<a href="#PlotInfo" onclick="openTab(event, 'Contact')">Plotting Information</a>
 		</li>
 		</ul>
 		</div><!-- /#sidebar-wrapper -->
@@ -795,6 +796,8 @@ Returns a subset of data based on the criteria provided, this can be in multiple
 		<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/plot/?query=%7B%22area%22%3A%5B%7B%22innerrings%22%3A%5B%5D%2C%22name%22%3A%22%22%2C%22polygons%22%3A%5B%5B%5B62.27693797488524%2C-53.94134521484374%5D%2C%5B59.98669914224615%2C-36.80267333984375%5D%2C%5B56.180809047819764%2C-37.681579589843736%5D%2C%5B56.434830853922364%2C-55.96282958984374%5D%2C%5B62.27693797488524%2C-53.94134521484374%5D%5D%5D%7D%5D%2C%22bathymetry%22%3Atrue%2C%22colormap%22%3A%22default%22%2C%22contour%22%3A%7B%22colormap%22%3A%22default%22%2C%22hatch%22%3Afalse%2C%22legend%22%3Atrue%2C%22levels%22%3A%22auto%22%2C%22variable%22%3A%22%22%7D%2C%22dataset%22%3A%22giops_day%22%2C%22depth%22%3A0%2C%22interp%22%3A%22gaussian%22%2C%22neighbours%22%3A10%2C%22projection%22%3A%22EPSG%3A3857%22%2C%22quiver%22%3A%7B%22colormap%22%3A%22default%22%2C%22magnitude%22%3A%22length%22%2C%22variable%22%3A%22%22%7D%2C%22radius%22%3A25%2C%22scale%22%3A%22-5%2C30%2Cauto%22%2C%22showarea%22%3Atrue%2C%22time%22%3A823%2C%22type%22%3A%22map%22%2C%22variable%22%3A%22votemper%22%7D&format=png">Click for Example</a>
 
+**MORE DETAILS ABOUT PLOTS CAN BE FOUND <a href="#PlotInfo" onclick="openTab(event, 'Contact')">HERE</a>
+
 &lt;json:query&gt; = {
 	scale	  : 
 	quiver	  : 
@@ -947,19 +950,804 @@ At this time will return a list of class4's and their data
 
 </div>
 				<!-- contents -->
-				<div class="tabcontent" id="Input_Options">
-					<h3>Input Options</h3></br>
 
-<h2 class="groupheader">
-	<a id="func-members" name="func-members"></a>Available Datasets</h2>
-	<div class='datasets' id="load_datasets"></div>
+	<div class="tabcontent" id="Input_Options">
+		<button onclick="toggleSidebar()" style="float: left; font-size: 22px;"><i class="fa fa-bars"></i></button>
+		<h3 style="padding-left: 40px;">Input Options</h3>	
+		<h2 class="groupheader"></h2>
+		<h2>Available Datasets</h2>
+		<div class='datasets' id="load_datasets"></div>
+	</div>
 
-					
-				</div>
+				<!-- Plot Information Page Wrapper -->
 				<div class="tabcontent" id="Contact">
-					<h3>Contact</h3></br>
-					Under Construction - Check Back Soon </br>
-					<img src="dribbble_bimtrack_gif_0002.gif">
+					<!-- Page Header -->
+					<button onclick="toggleSidebar()" style="float: left; font-size: 22px;"><i class="fa fa-bars"></i></button>
+					<h3 style="padding-left: 40px;">Plot API Information</h3>
+					<p>
+						This page provides different variables that can be included in your plot queries.
+						Some of them are required while others are optional and are used to achieve the 
+						described task outlined next to them. </br>
+						**Class4's do not use this api request to create plots
+					</p>
+
+					<!-- Main container for the plot information-->
+					<!--
+						This container contains 4 panes, 1 for each of the types of the plots
+						Each pane consists of a table, as well as a <pre> element.
+						The table is made up of rows, and 3 cols
+							- Each column has different sizing (This is the reason for using 3 different classes)
+						The <pre> element displays the JSON example and is needed to maintain whitespace
+					-->
+					<div class='plotInformation'>
+						<!-- Point Plot Info -->
+						<button class='howto_button' id="pointPlotButton" onclick="openContents(event, 'pointPlotPane', 'query_usage_all', 'pointPlotButton')">
+								<span>
+									<i class='fa fa-angle-down' style='font-size: 20px'></i>
+									<h4 style='display: inline; padding-left: 20px'>Point Plot</h4>
+								</span>
+						</button>
+						<div class='PlotPane' id='pointPlotPane'>
+							<table class='PlotPaneTable'>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										<b>VARIABLE</b>
+									</td>
+									<td class='PlotVarType'>
+										<b>TYPE</b>
+									</td>
+									<td class='PlotDescription'>
+										<b>DESCRIPTION</b>
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										dataset
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Dataset ID
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										names
+									</td>
+									<td class='PlotVarType'>
+										List
+									</td>
+									<td class='PlotDescription'>
+										Sometimes [lat,lon]
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										plotTitle
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Blank unless a custom plot title is wanted
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										quantum
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										"day", "month"...
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										showmap
+									</td>
+									<td class='PlotVarType'>
+										Bool
+									</td>
+									<td class='PlotDescription'>
+										true if map of selected point is wanted
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										station
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										lat,lon,null
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										time
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Time given in ISO8601 Extended
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										endtime
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										The end time for a time ranged plot - Given in ISO8601 extended format
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										type
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										point
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										variable
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										variable id (Additional variables can be added by seperating with a comma)
+									</td>
+								</tr>
+							</table>
+							<!--Point Example Query-->
+							<br>
+							<b>EXAMPLE:</b>
+							<pre>
+
+query = {
+	"dataset": "giops_day",
+	"names":["50,-48"],
+	"plotTitle":"",
+	"quantum":"day",
+	"showmap":true,
+	"station":[[50,-48]],
+	"time":'2018-08-09T00:00+00:00',
+	"type":"profile",
+	"variable":"votemper"
+}
+							</pre>
+						</div>
+						<!-- Transect Plot Info -->
+						<button class='howto_button' id="transectPlotButton" onclick="openContents(event, 'transectPlotPane', 'query_usage_all', 'transectPlotButton')">
+								<span>
+									<i class='fa fa-angle-down' style='font-size: 20px'></i>
+									<h4 style='display: inline; padding-left: 20px'>Transect Plot</h4>
+								</span>
+						</button>
+						<div class='PlotPane' id='transectPlotPane'>
+							<table class='PlotPaneTable'>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										<b>VARIABLE</b>
+									</td>
+									<td class='PlotVarType'>
+										<b>TYPE</b>
+									</td>
+									<td class='PlotDescription'>
+										<b>DESCRIPTION</b>
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+										<td class='PlotVariable'>
+											dataset
+										</td>
+										<td class='PlotVarType'>
+											String
+										</td>
+										<td class='PlotDescription'>
+											Dataset Id
+										</td>
+									</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										colormap
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										The desired colourmap, typically set to 'default'
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										depth_limit
+									</td>
+									<td class='PlotVarType'>
+										Bool
+									</td>
+									<td class='PlotDescription'>
+										?
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										linearthresh
+									</td>
+									<td class='PlotVarType'>
+										Integer
+									</td>
+									<td class='PlotDescription'>
+										Depth where graph becomes logarithmic, default is 200
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										path
+									</td>
+									<td class='PlotVarType'>
+										2D list
+									</td>
+									<td class='PlotDescription'>
+										Points in Transect [[lat,lon],[lat,lon],...]
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										plotTitle
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Blank unless custom plot title is wanted
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										quantum
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										ex: "day", "month", ...
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										scale
+									</td>
+									<td class='PlotVarType'>
+										String - Comma separated
+									</td>
+									<td class='PlotDescription'>
+										Scale of the color range:<br>
+										"auto" for a scale determined by the data<br>
+										"min,max" for manual where min and max are the extremes of the scale
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										selectedPlot
+									</td>
+									<td class='PlotVarType'>
+										String - comma separated
+									</td>
+									<td class='PlotDescription'>
+										Used to decided which plots to show when velocity is selected
+										1 - Plot shown
+										0 - Plot not included
+
+										"magnitude, parallel, perpendicular": these are replaced with 1's or 0's to indicate which plots are shown
+										ex: "0,1,1" shows the parallel and perpendicular plots, but does not included magnitude
+										Parallel and Perpendicular is in reference to the transect line
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										showmap
+									</td>
+									<td class='PlotVarType'>
+										Bool
+									</td>
+									<td class='PlotDescription'>
+										true - map of transect is displayed
+										false - only the data plot(s) is displayed
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										surfacevariable
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Displays an additional plot showing the data of the variable at the surface along the transect
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										time
+									</td>
+									<td class='PlotVarType'>
+										String - ISO8601 Extended
+									</td>
+									<td class='PlotDescription'>
+										The time and date of the data wanted
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										type
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										The type of plot
+
+										'transect' for transect plots
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										variable
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Variable ID
+									</td>
+								</tr>
+							</table>
+							<!--Transect Example Query-->
+							<br>
+							<b>EXAMPLE:</b>
+							<pre>
+
+query = {
+	"dataset": "giops_day",
+	"colormap":"default",
+	"depth_limit":false,
+	"linearthresh":200,
+	"path":[[40,-50],[50,45]],
+	"plotTitle":"",
+	"quantum":"day",
+	"showmap":true,
+	"scale":"-5,30"
+	"selectedPlots":"1,1,0"
+	"time":'2018-08-09T00:00+00:00',
+	"type":"transect",
+	"variable":"vosaline",
+	"surfacevariable":"votemper"
+}
+							</pre>
+						</div>
+						<!-- Area Plot Information -->
+						<button class='howto_button' id="areaPlotButton" onclick="openContents(event, 'areaPlotPane', 'query_usage_all', 'areaPlotButton')">
+								<span>
+									<i class='fa fa-angle-down' style='font-size: 20px'></i>
+									<h4 style='display: inline; padding-left: 20px'>Area Plot</h4>
+								</span>
+						</button>
+						<div class='PlotPane' id='areaPlotPane'>							
+							<table class='PlotPaneTable' id='areaPlotPane'>
+								<tr class='PlotPaneTable'>
+									<td class='PlotVariable'>
+										<b>VARIABLE</b>
+									</td>
+									<td class='PlotVarType'>
+										<b>TYPE</b>
+									</td>
+									<td class='PlotDescription'>
+										<b>DESCRIPTION</b>
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										area : { <br>
+											"innerrings", <br>
+											"name",<br>
+											"polygons" <br>
+										}
+									</td>
+									<td class='PlotVarType'>
+										[{List, String, 3D List}]
+									</td>
+									<td class='PlotDescription'>
+										contains list of innerrings, name, and polygons...<br>
+										<br>
+										innerrings: ? <br>
+										name: ?<br>
+										polygons: list of lat,lon points of the area selected <br>
+										<br>
+										ex: [{"innerrings":[],"name":"","polygons":[[[55,-48],[55,-39],[45,-30],[45,-50]]]}]
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										bathymetry
+									</td>
+									<td class='PlotVarType'>
+										Bool
+									</td>
+									<td class='PlotDescription'>
+										True if bathymetry lines are wanted, false otherwise
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										colormap
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										which colormap should be used to display the variable
+										use 'default' for the default map
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										contour : { <br>
+											"colormap",<br>
+											"hatch",<br>
+											"legend",<br>
+											"levels",<br>
+											"variable"<br>
+										}
+									</td>
+									<td class='PlotVarType'>
+										JSON: {<br>
+										String<br>
+										Bool<br>
+										Bool<br>
+										String<br>
+										String<br>
+										}
+									</td>
+									<td class='PlotDescription'>
+	
+											colormap: the desired colourmap, 'default' sets the colormap to the default<br>
+											hatch: Will show hatching<br>
+											legend: Shows legend of the value of the countours shown<br>
+											levels: "first,second,third" each is set to the variable value in which the contour should be set, 'auto' will auto set the values<br>
+											variable: The variable that should be contoured (does not have to be the variable of the plot) "none" if no contours<br>
+											<br>
+											**A contour variable must be selected for these to take effect
+										
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										dataset
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Dataset ID
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										depth
+									</td>
+									<td class='PlotVarType'>
+										Integer
+									</td>
+									<td class='PlotDescription'>
+										Index of depth layer. <a onclick="openTab(event, 'Input_Options'); getDatasets()">Click here</a> for depth layer information
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										interp
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Desired Interpolation ex. 'gaussian'
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										neighbours
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Selects the maximum number of points to be included in the interpolation
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										projection	
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Projection used to superimpose the earth on a flat surface
+
+										Options:
+										'EPSG:3857' - Global (default projection)
+										'EPSG:32661' - Artic
+										'EPSG:3031' - Antarctic
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										scale
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										The color scale for the map, 'auto' will pick a scale based on the value of the variable in the area selected
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										radius
+									</td>
+									<td class='PlotVarType'>
+										Integer
+									</td>
+									<td class='PlotDescription'>
+										Limits the interpolation to a specific raidus around the point
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										'quiver':{ <br>
+											'colormap',<br>
+											'magnitude',<br>
+											'variable'<br>
+										}
+									</td>
+									<td class='PlotVarType'>
+										{String, String, String}
+									</td>
+									<td class='PlotDescription'>
+										Quivers are shown when a quiver variable is selected, for example, you can select quivers to show the velocity of the water around the entire area 
+										
+										colormap: Colourmap to use when 'colour' is selected for magnitude
+										magnitude: The method used to show the magnitude of the variable ('lenght', or 'colour')
+										variable: The variable to show quivers for, "none" to display quivers
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										showarea
+									</td>
+									<td class='PlotVarType'>
+										Bool
+									</td>
+									<td class='PlotDescription'>
+										bool - If true, a map of the selected area box will be shown
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										time
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										The time to show data for in ISO8601 extended format
+										Availble times for each dataset can be found <a onclick="openTab(event, 'Input_Options'); getDatasets()">here</a>
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										type
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										The type of plot to be created
+										'map' for area plots
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										variable
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										The Variable to display on the area
+									</td>
+								</tr>
+							</table>
+							<!--Area Exaxample Query-->
+							<br>
+							<b>EXAMPLE:</b>
+							<pre>
+
+query = {
+	"area":[{"innerrings":[],"name":"", "polygons":[[[50,-49],[45,-57],[50,-59],[50,-49]]]}],
+	"bathymetry":true,
+	"colormap":"default",
+	"contour":{"colormap":"default","hatch":false,"legend":true,"levels":"auto","variable":"none"},
+	"dataset":"giops_day",
+	"depth":0,
+	"interp":"gaussian",
+	"neighbours":10,
+	"projection":"EPSG:3857",
+	"quiver":{"colormap":"default","magnitude":"length","variable":"none"},
+	"radius":25,
+	"scale":"auto",
+	"showarea":true,
+	"time":'2018-08-9T00:00+00:00',
+	"type":"map",
+	"variable":"votemper"
+}
+							</pre>
+						</div>
+						<!-- Drifter Plot Information -->
+						<button class='howto_button' id="drifterPlotButton" onclick="openContents(event, 'drifterPlotPane', 'query_usage_all', 'drifterPlotButton')">
+								<span>
+									<i class='fa fa-angle-down' style='font-size: 20px'></i>
+									<h4 style='display: inline; padding-left: 20px'>Drifter Plot</h4>
+								</span>
+						</button>
+						<div class='PlotPane' id='drifterPlotPane'>
+							<table class='PlotPaneTable'>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										<b>VARIABLE</b>
+									</td>
+									<td class='PlotVarType'>
+										<b>TYPE</b>
+									</td>
+									<td class='PlotDescription'>
+										<b>DESCRIPTION</b>
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										buoyvariable
+									</td>
+									<td class='PlotVarType'>
+										List of Strings
+									</td>
+									<td class='PlotDescription'>
+										["sst"] ?
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										dataset
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Dataset Id
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										depth
+									</td>
+									<td class='PlotVarType'>
+										Integer
+									</td>
+									<td class='PlotDescription'>
+										Index of Depth Variable
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										drifter
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Drifter ID
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										latlon
+									</td>
+									<td class='PlotVarType'>
+										 Bool
+									</td>
+									<td class='PlotDescription'>
+										default is false
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										quantum
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										"day", "month", ...
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										showmap
+									</td>
+									<td class='PlotVarType'>
+										Bool
+									</td>
+									<td class='PlotDescription'>
+										If true shows the map of the selected area
+									</td>
+								</tr>
+								<tr class='PlotpaneRow'>
+									<td class='PlotVariable'>
+										type
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										'drifters' for drifters
+									</td>
+								</tr>
+								<tr class='PlotPaneRow'>
+									<td class='PlotVariable'>
+										variable
+									</td>
+									<td class='PlotVarType'>
+										String
+									</td>
+									<td class='PlotDescription'>
+										Variable ID
+									</td>
+								</tr>
+							</table>
+							<!--Drifter Example Query-->
+							<br>
+							<b>EXAMPLE:</b>
+							<pre>
+
+query = {
+	"buoyvariable":["sst"],
+	"dataset":"giops_day",
+	"depth":0,
+	"drifter":["300234063263870"],
+	"endtime":"2017-04-12T10:30:00.000Z",
+	"latlon":false,
+	"quantum":"day",
+	"showmap":true,
+	"starttime":
+	"2016-05-17T15:30:48.000Z",
+	"type":"drifter",
+	"variable":["votemper"]
+}
+							</pre>
+						</div>
+					</div>
 				</div>
 
 			</div><!-- doc-content -->
