@@ -120,7 +120,7 @@ function waitForVars(callback) {
 async function getDatasets() {
 
   $.ajax({
-    url: "http://trinity:50/navigator/api/v1.0/datasets/?id", success: function(datasets){
+    url: "http://navigator.oceansdata.ca/api/v1.0/datasets/?id", success: function(datasets){
 
       size = datasets.length;
       rows = 3 - (size % 3);    //Puts 5 datasets per row
@@ -226,7 +226,7 @@ async function classify3d_variables(datasets) {
     var number = this;
 
     $.ajax({
-      url: "http://trinity:50/navigator/api/v1.0/variables/?dataset=" + datasets[number]['id'] + "&3d_only", success: function(variables) {
+      url: "http://navigator.oceansdata.ca/api/v1.0/variables/?dataset=" + datasets[number]['id'] + "&3d_only", success: function(variables) {
    
         if (variables.length != 0) {
           addElement(number, variables[0]['id'])
@@ -250,7 +250,7 @@ async function populateVariables(datasets) {
   $(num_datasets).each(function() {
     var number = this;
     $.ajax({
-      url: "http://trinity:50/navigator/api/v1.0/variables/?dataset=" + datasets[number]['id'], success: function(variables) {
+      url: "http://navigator.oceansdata.ca/api/v1.0/variables/?dataset=" + datasets[number]['id'], success: function(variables) {
 
         // Initializes Variable Table
         variableTable = "<table style='width: 100%; padding: 5px'>"
@@ -298,7 +298,7 @@ async function populateTimestamps(datasets) {
     var number = this;  //Number of the dataset currently selected
 
     $.ajax({
-      url: "http://trinity:50/navigator/api/v1.0/timestamps/?dataset=" + datasets[number]['id'], success: function(timestamps) {
+      url: "http://navigator.oceansdata.ca/api/v1.0/timestamps/?dataset=" + datasets[number]['id'], success: function(timestamps) {
         
         //Creates the table
         variableTable = "<table style='height: 100%; width: 100%; padding: 5px;'>"
@@ -356,7 +356,7 @@ function constructDepthField(dataset) {
     console.warn(dataset['id'])
     console.warn(dataset['3d_var'])
     $.ajax({
-      url: "http://trinity:50/navigator/api/v1.0/depth/?dataset=" + dataset['id'] + "&variable=" + dataset['3d_var'], success: function(depths) {
+      url: "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + dataset['id'] + "&variable=" + dataset['3d_var'], success: function(depths) {
 
         minDepth = depths[1]['value'];
         maxDepth = depths[depths.length - 1]['value'];
@@ -432,7 +432,7 @@ function search(dataset) {
 
   //Finds all the depth layers for that dataset
   $.ajax({
-    url: "http://trinity:50/navigator/api/v1.0/depth/?dataset=" + dataset + "&variable=" + variable, success: function(a) {
+    url: "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + dataset + "&variable=" + variable, success: function(a) {
       
       var values = [];
       for (num in a) {
