@@ -1,0 +1,59 @@
+.doc_layout_main {
+    width: 100%;
+    display: inline-flex;
+    min-height: 100%;
+}
+
+.doc_layout_tbody {
+    width:100%;
+}
+
+.doc_layout_row {
+    width:100%;
+    display: inline-flex;
+    min-height: 100%;
+}
+
+.doc_left_col {
+    width: 25%;
+    display: block;
+    border-right: 5px solid grey;
+}
+
+.doc_right_col {
+    width: 75%;
+    display: inline-flex;
+    background-color: rgb(245,245,245);
+}
+
+#generalPlotPane {
+    display: block;
+}
+
+h2.requestheader {
+	border-bottom: 1px solid #879ECB;
+	color: #354C7B;
+	font-size: 150%;
+	font-weight: normal;
+	margin-top: 5px;
+	/*padding-top: 8px;*/
+	padding-bottom: 4px;
+	width: 100%;
+}
+
+.request_table {
+    width: 100%;
+}
+
+.request_table_row {
+    width:100%;
+}
+
+.request_col_left {
+    width: 95%;
+}
+
+.request_col_right {
+    width: 5%;
+    vertical-align: text-top;
+}

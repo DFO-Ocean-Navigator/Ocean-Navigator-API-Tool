@@ -27,6 +27,7 @@
 	<title>Ocean Navigator API</title>
 	<link href="tabs.css" rel="stylesheet" type="text/css">
 	<link href="css/plotInfo.css" rel = "stylesheet" type ="text/css">
+	<link href="css/doc_tab_layout.css" rel="stylesheet" type="text/css">
 		<link href="documentation.css" rel="stylesheet" type="text/css">
 		<link href="functions.css" rel="stylesheet" type="text/css">
 	<script src="jquery.js" type="text/javascript">
@@ -61,22 +62,20 @@
 	<div id="wrapper">
 		<!-- Sidebar -->
 		<div id="sidebar-wrapper">
-			<ul class="sidebar-nav">
-                <li>
-                    <img src="apple-icon.png">
-                </li>
-                <li class="sidebar-brand">Ocean Navigator API</li>
+			<div class="sidebar-nav">
                 
-        <li>
-          <a href="#documentation" onclick="openTab(event, 'Documentation')">Documentation</a>
-        </li>
-		<li>
-			<a href="#DataInfo" onclick="openTab(event, 'Input_Options'); getDatasets()">API Dataset Information</a>
-		</li>
-		<li>
+                <img class="sidebar_icon" src="apple-icon.png">
+                
+                <span class="sidebar-brand">Ocean Navigator API</span>
+            
+          		<a href="#documentation" onclick="openTab(event, 'Documentation')">Documentation</a>
+        
+				<a href="#DataInfo" onclick="openTab(event, 'Input_Options'); getDatasets()">API Dataset Information</a>
+		
+		
 			<a href="#PlotInfo" onclick="openTab(event, 'Contact')">Plotting Information</a>
-		</li>
-		</ul>
+		
+			</div>
 		</div><!-- /#sidebar-wrapper -->
 		<!-- Page Content -->
 		
@@ -94,43 +93,33 @@
 		</div>-->
 		<!--<div class="page-content-wrapper">
 			<div class="container_fluid">-->
-				<div class="tabcontent" id="Documentation">
+<div class="tabcontent" id="Documentation">
+	<div class='expand-button'>
+		<button class='howto_button' id="query_construct_button" onclick="openContents(event, 'query_construct', 'query_construct_all', 'query_construct_button')">
+			<span>
+				<i class='fa fa-angle-down' style='font-size: 20px;'></i>
+				<h4 style='display: inline; padding: 20px'>Format a Query</h4>
+			</span>
+		</button>
+	</div>
+	<div class='expand-contents' id="query_construct" border="1">
+		The Ocean Navigator uses 2 different methods to receive API queries. </br>
+		Both methods require the query to be prepended with "http://navigator.oceansdata.ca/" </br>
+		The first method uses Query Parameters, and the second uses Template Parameters </br>
+		</br>
+		<b>(1) Query Parameters</b>
+		</br>
+		The query method uses a base query followed by the input parameters </br>
+		To indicate the start of variable input, a ? is used.
+		<br/> Similarly, to include more than one variable in the query, seperate each variable with a &
+		<br/> Variables included at the end of a query can be defined using
+		<br/> ?variable= ...
+		<br/>
+		<br/> Example:
+		<br/>
 
-					<button onclick="toggleSidebar()" style="float: left; font-size: 22px;"><i class="fa fa-bars"></i></button>
-					<h3 style="padding-left: 40px;">API Documentation</h3>
-
-					<div id="top">
-				
-					</div>
-				
-					<h2 class="groupheader">
-						<a id="func-members" name="func-members"></a> How To:</h2>
-					<div class="how_to">
-						<div class='all_content' id="query_construct_all">
-							<div class='expand-button'>
-								<button class='howto_button' id="query_construct_button" onclick="openContents(event, 'query_construct', 'query_construct_all', 'query_construct_button')">
-									<span>
-										<i class='fa fa-angle-down' style='font-size: 20px;'></i>
-										<h4 style='display: inline; padding: 20px'>Format a Query</h4>
-									</span>
-								</button>
-							</div>
-							<div class='expand-contents' id="query_construct" border="1">
-								The Ocean Navigator uses 2 different methods to receive API queries. </br>
-								Both methods require the query to be prepended with "http://navigator.oceansdata.ca/" </br>
-								The first method uses Query Parameters, and the second uses Template Parameters </br>
-								</br>
-								<b>(1) Query Parameters</b>
-								</br>
-								The query method uses a base query followed by the input parameters </br>
-								To indicate the start of variable input, a ? is used.
-								<br/> Similarly, to include more than one variable in the query, seperate each variable with a &
-								<br/> Variables included at the end of a query can be defined using
-								<br/> ?variable= ...
-								<br/>
-								<br/> Example:
-								<br/>
-								<pre class='whitespace'>
+<!--WHITESPACE MATTERS-->
+<pre class='whitespace'>
 <a target="_blank" href="http://navigator.oceansdata.ca/api/variables/?dataset=giops_day&3d_only">http://navigator.oceansdata.ca/api/variables/?dataset=giops_day&3d_only</a><br/>
 
 ?          : beginning of parameter input
@@ -138,23 +127,22 @@ dataset    : parameter with assigned value
 =giops_day : assigning value to dataset
 &          : indicates next parameter
 3d_only    : standalone parameter (no value) 
-											</pre> When scripting, longer queries should be written in JSON and converted to encodedURI format
-								</br>
-								</br>
+</pre> When scripting, longer queries should be written in JSON and converted to encodedURI format
+		</br>
+		</br>
+		<b>(2) Template Parameters</b>
+		</br>
+		Template based parameters differ from query based parameters in various ways: </br>
+		<b>-</b> Parameter Order Matters </br>
+		<b>-</b> Parameter values are separated by '/' </br>
+		<b>-</b>Input paramater types must match expected parameter types </br>
+		This means you cannot provide an iteger if the query is expecting a string. </br>
 					
-					
-								<b>(2) Template Parameters</b>
-								</br>
-								Template based parameters differ from query based parameters in various ways: </br>
-								<b>-</b> Parameter Order Matters </br>
-								<b>-</b> Parameter values are separated by '/' </br>
-								<b>-</b>Input paramater types must match expected parameter types </br>
-								This means you cannot provide an iteger if the query is expecting a string. </br>
-					
-								The expectations for each query are outlined in the documentation below. </br>
-								</br>
-								Example:
-								<pre class='whitespace'>
+		The expectations for each query are outlined in the documentation below. </br>
+		</br>
+		Example:
+<!--WHITESPACE MATTERS-->
+<pre class='whitespace'>
 <a target="_blank" href="http://navigator.oceansdata.ca/api/class4/forecasts/class4_20180531_GIOPS_CONCEPTS_2.3_profile/500">http://navigator.oceansdata.ca/api/class4/forecasts/class4_20180531_GIOPS_CONCEPTS_2.3_profile</a>
 </br>
 format: /api/class4/&lt;string:q&gt;/&lt;string<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -162,87 +150,84 @@ format: /api/class4/&lt;string:q&gt;/&lt;string<script src="https://ajax.googlea
 /api/class4/       : Base
 &lt;string:q&gt;         : 1st Parameter Value
 &lt;string:class4_id&gt; : 2nd Parameter Value <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-											
-											</pre> API Queries can be tested by copying and pasting the query into a browser, or can be automated by constructing them in
-								a script
-							</div>
-						</div>
-						<div class='all_content' id="query_construct_json_all">
-							<div class='expand-button'>
-								<button class='howto_button' id="query_construct_json_button" onclick="openContents(event, 'query_construct_json', 'query_construct_json_all', 'query_construct_json_button')">
-									<span>
-										<i class='fa fa-angle-down' style='font-size: 20px'></i>
-										<h4 style='display: inline; padding-left: 20px'>Construct a JSON API - Script</h4>
-									</span>
-								</button>
-							</div>
-							<div class='expand-contents' id="query_construct_json">
-					
-								Using JSON to construct queries is very useful for creating long queries. </br>
-								It is both easier to make changes, as well as easier to read</br>
-								</br>
-								Although somewhat complicated, the example below is an excellent example of when you would want to use this method </br>
-								This example will save 10 images at 10 different timestamps to the current directory
-								<pre class='whitespace'>
+														
+</pre> 
+		API Queries can be tested by copying and pasting the query into a browser, or can be automated by constructing them in
+		a script
+	</div>
+	<div class='expand-button'>
+		<button class='howto_button' id="query_construct_json_button" onclick="openContents(event, 'query_construct_json', 'query_construct_json_all', 'query_construct_json_button')">
+			<span>
+				<i class='fa fa-angle-down' style='font-size: 20px'></i>
+				<h4 style='display: inline; padding-left: 20px'>Construct a JSON API - Script</h4>
+			</span>
+		</button>
+	</div>
+	<div class='expand-contents' id="query_construct_json">
+			
+		Using JSON to construct queries is very useful for creating long queries. </br>
+		It is both easier to make changes, as well as easier to read</br>
+		</br>
+		Although somewhat complicated, the example below is an excellent example of when you would want to use this method </br>
+		This example will save 10 images at 10 different timestamps to the current directory
+<pre class='whitespace'>
 from PIL import Image	<div class='comments'>#Library used to save images</div>
 import urllib	<div class='comments'>#Library used to convert and open URL's</div>
 
 <div class='comments'>#Constructs the JSON query - each line is a variable: value pair</div>
 query = {
-	"scale": "-1.6,5",
-	"depth_limit": False,
-	"colormap": "default",
-	"dataset": "glorys3",
-	"showmap": True,
-	"variable": "votemper",
-	"surfacevariable": "none",
-	"time": 207,
-	"quantum": "month",
-	"path": [[47.649768922115356, -52.60316173355579], [45.227624722564485, -48.53822032730579]],
-	"type": "transect",
-	"linearthresh": 200,
+"scale": "-1.6,5",
+"depth_limit": False,
+"colormap": "default",
+"dataset": "glorys3",
+"showmap": True,
+"variable": "votemper",
+"surfacevariable": "none",
+"time": 207,
+"quantum": "month",
+"path": [[47.649768922115356, -52.60316173355579], [45.227624722564485, -48.53822032730579]],
+"type": "transect",
+"linearthresh": 200,
 }
 
 <div class='comments'>#Loops through 10 different timestamps</div>
 for t in range(0,10)  <div class='comments'>#In practice, the range would be a valid time format</div>
-	query['time'] = t  <div class='comments'>#Sets the time portion of the query</div>
+query['time'] = t  <div class='comments'>#Sets the time portion of the query</div>
 
-	<div class='comments'>#Constructs the URL</div>
-	url = "http://navigator.oceansdata.ca/plot/?" + urlliv.urlencode({	
-		"query": json.dumps(query),	<div class='comments'>#Converts the query from JSON to encodedURI</div>
-		"dpi" : "72",
-		"size" : "10x7",
-	})
-	
-	<div class='comments'>#Opens the URL / Sends the API Request</div>
-	with closing(urllib.urlopen(url)) as f:
-		img = Image.open(f)
-		images.save("image" + str(t) + ".png", "PNG")  <div class='comments'>#Saves the image as image{#}.png</div>
+<div class='comments'>#Constructs the URL</div>
+url = "http://navigator.oceansdata.ca/plot/?" + urlliv.urlencode({	
+"query": json.dumps(query),	<div class='comments'>#Converts the query from JSON to encodedURI</div>
+"dpi" : "72",
+"size" : "10x7",
+})
+
+<div class='comments'>#Opens the URL / Sends the API Request</div>
+with closing(urllib.urlopen(url)) as f:
+img = Image.open(f)
+images.save("image" + str(t) + ".png", "PNG")  <div class='comments'>#Saves the image as image{#}.png</div>
+
 <a href="save_image.py" download><img class='icon_custom' src="savefile_icon.png"></a>
-											</pre> This will save an image for each time stamp in the specified range </br>
-								**Example written in python3**
-							</div>
-						</div>
-						<div class='all_content' id="query_usage_all">
-							<div class='expand-button'>
-								<button class='howto_button' id="query_usage_button" onclick="openContents(event, 'query_usage', 'query_usage_all', 'query_usage_button')">
-									<span>
-										<i class='fa fa-angle-down' style='font-size: 20px'></i>
-										<h4 style='display: inline; padding-left: 20px'>Construct a Formatted API Script</h4>
-									</span>
-								</button>
-							</div>
+</pre> This will save an image for each time stamp in the specified range </br>
+		**Example written in python3**
+	</div>
+	<div class='expand-button'>
+		<button class='howto_button' id="query_usage_button" onclick="openContents(event, 'query_usage', 'query_usage_all', 'query_usage_button')">
+			<span>
+				<i class='fa fa-angle-down' style='font-size: 20px'></i>
+				<h4 style='display: inline; padding-left: 20px'>Construct a Formatted API Script</h4>
+			</span>
+		</button>
+	</div>
+	<div class='expand-contents' id="query_usage">
 					
-							<div class='expand-contents' id="query_usage">
-					
-								There are multiple ways to construct an API request in a script. 2 examples are given below.</br>
-								**Both examples will print 4 lists displaying the depths available for each of the variables specified** </br>
-								</br>
-								<b>(1) String Replacement</b>
-								</br>
-								In this example, the 3 curly brace sets "{}" will be replaced by the 3 values given in .format() </br>
-								These values can be assigned, incremented, or modified to make multiple automated API requests. </br>
-								<pre class='whitespace'>
+			There are multiple ways to construct an API request in a script. 2 examples are given below.</br>
+			**Both examples will print 4 lists displaying the depths available for each of the variables specified** </br>
+			</br>
+			<b>(1) String Replacement</b>
+			</br>
+			In this example, the 3 curly brace sets "{}" will be replaced by the 3 values given in .format() </br>
+			These values can be assigned, incremented, or modified to make multiple automated API requests. </br>
+<pre class='whitespace'>
 import urllib	
 
 base_url = "http://navigator.oceansdata.ca/api/v1.0/depth/"
@@ -250,357 +235,223 @@ dataset = 'giops_day'
 variables = ['votemper', 'vosaline', 'vozocrtx', 'vomecrty']
 
 for variable in variables:
-	url = ('{}?dataset={}&variable={}'.format(base_url, dataset, variable))
-	f = urllib.urlopen(url)
-	output = f.read()
-	print(output)
+url = ('{}?dataset={}&variable={}'.format(base_url, dataset, variable))
+f = urllib.urlopen(url)
+output = f.read()
+print(output)
 <a href="print_depth_replacement.py" download><img class='icon_custom' src="savefile_icon.png"></a>
-					</pre> **Example written in python3** </br>
-								</br>
-								<b>(2) String Concatenation</b>
-								</br>
-								In this example, the variables are incorporated directly in place, and are concatenated together in the order they appear
-								</br>
-								The text given in quotations "..." are hardcoded strings which will become part of the query
-								<pre class='whitespace'>
+</pre> **Example written in python3** </br>
+			</br>
+			<b>(2) String Concatenation</b>
+			</br>
+			In this example, the variables are incorporated directly in place, and are concatenated together in the order they appear
+			</br>
+			The text given in quotations "..." are hardcoded strings which will become part of the query
+<!--WHITESPACE IS IMPORTANT-->
+<pre class='whitespace'>
 import urllib
 
 dataset = giops_day
 variables = [votemper, vosaline, vozocrtx, vomecrty]
 
 for variable in variables:
-	url = "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + dataset + "&variables=" + variable
-	f = urllib.urlopen(link)
-	output = f.read()
-	print(output)
+url = "http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=" + dataset + "&variables=" + variable
+f = urllib.urlopen(link)
+output = f.read()
+print(output)
 <a href="print_depth_concatenate.py" download><img class='icon_custom' src="savefile_icon.png"></a>
-					</pre> **Example written in python3**
-							</div>
-						</div>
-					</div>
-																		
-					
-				<div class="request_links">								
-					<table class="memberdecls">
-						<tr class="heading">
-							<td colspan="2">
-								<h2 class="groupheader"><a id="func-members" name="func-members"></a>API Queries</h2>
-							</td>
-						</tr>
-						
-						<!--DATASETS-->
-						<tr class="memitem:datasets">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#datasets">/api/v1.0/datasets/</a>
-							</td>
-						</tr>
-						<tr class="separator:datasets">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-
-						<!--DATASETS ID-->
-						<tr class="memitem:datasets_id">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#datasets_id">/api/v1.0/datasets/?id</a>
-							</td>
-						</tr>
-						<tr class="separator:datasets_id">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-
-						<!--VARIABLES-->
-						<tr class="memitem:variables">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#variables">/api/v1.0/variables/</a>
-							</td>
-						</tr>
-						<tr class="separator:variables">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						
-						<!--OBSERVATION VARIABLES-->
-						<tr class="memitem:observation_variables">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#observation_variables">/api/v1.0/observationvariables/</a>
-							</td>
-						</tr>
-						<tr class="separator:observation_variables">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						
-						<!--TIMESTAMPS-->
-						<tr class="memitem:timestamps">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#timestamps">/api/v1.0/timestamps/?dataset=' '</a>
-							</td>
-						</tr>
-						<tr class="separator:timestamps">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-
-						<!--DEPTH-->
-						<tr class="memitem:depth">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#depth">/api/v1.0/depth/?dataset=&lt;string:dataset_id&gt;&amp;variable=&lt;string:variable&gt;</a>
-							</td>
-						</tr>
-						<tr class="separator:depth">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						
-						<!--SCALE-->
-						<tr class="memitem:scale">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#scale">/api/v1.0/scale/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:scale&gt;.png</a>
-							</td>
-						</tr>
-						<tr class="separator:scale">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-
-						<!--RANGE-->
-						<tr class="memitem:range">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#range">/api/v1.0/range/&lt;string:dataset_id&gt;/ &lt;string:variable&gt;/ &lt;string:interp&gt;/ &lt;string:radius&gt;/&lt;string:neighbours&gt;/&lt;string:projection&gt;/&lt;string:extent&gt;/&lt;string:depth&gt;/&lt;string:time&gt;.json</a>
-							</td>
-						</tr>
-						<tr class="separator:range">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						
-						<!--DATA-->
-						<tr class="memitem:data">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#data">/api/v1.0/data/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:date&gt;/&lt;string:Depth&gt;/
-										&lt;string:location&gt;.json</a>
-							</td>
-						</tr>
-						<tr class="separator:data">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						
-						<!--CLASS4-->
-						<tr class="memitem:class4">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#class4">/api/v1.0/class4/&lt;string:q&gt;/&lt;string:class4_id&gt;/</a>
-							</td>
-						</tr>
-						<tr class="separator:class4">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						
-						<!--DRIFTERS-->
-						<tr class="memitem:drifters">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#drifters">/api/v1.0/drifters/&lt;string:q&gt;/&lt;string:drifter_id&gt;</a>
-							</td>
-						</tr>
-						<tr class="separator:drifters">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						
-						<!--STATS-->
-						<tr class="memitem:stats">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#stats">/api/v1.0/stats/?query='...'</a>
-							</td>
-						</tr>
-						<tr class="separator:stats">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-
-						<!--SUBSET-->
-						<tr class="memitem:subset">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#subset">/api/v1.0/subset/?query='...'</a>
-							</td>
-						</tr>
-						<tr class="separator:subset">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						
-						<!--PLOT-->
-						<tr class="memitem:plot">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#plot">/api/v1.0/plot/?query='...'</a>
-							</td>
-						</tr>
-						<tr class="separator:plot">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						
-						<!--COLORS-->
-						<tr class="memitem:colors">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#colors">/api/v1.0/colors/</a>
-							</td>
-						</tr>
-						<tr class="separator:colors">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-
-						<!--COLORMAPS-->
-						<tr class="memitem:colormaps">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#colormaps">/api/v1.0/colormaps/</a>
-							</td>
-						</tr>
-						<tr class="separator:colormaps">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-
-						<!--COLORMAPS IMAGES-->
-						<tr class="memitem:colormaps_image">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#colormaps_image">/api/v1.0/colormaps.png</a>
-							</td>
-						</tr>
-						<tr class="separator:colormaps_image">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						
-						<tr class="memitem:aa7dc666c286b9bee527dc0a54c3dfb2c">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#aa7dc666c286b9bee527dc0a54c3dfb2c">/api/v1.0/&lt;string:q&gt;/</a>
-							</td>
-						</tr>
-						<tr class="separator:aa7dc666c286b9bee527dc0a54c3dfb2c">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-
-						<tr class="memitem:a1556b1b7886947e93c0bf92b5199e0ed">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#a1556b1b7886947e93c0bf92b5199e0ed">/api/v1.0/&lt;string:q&gt;/&lt;string:projection&gt;/&lt;int:resolution&gt;/&lt;string:extent&gt;/&lt;string:file_id&gt;.json</a>
-							</td>
-						</tr>
-						<tr class="separator:a1556b1b7886947e93c0bf92b5199e0ed">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						<tr class="memitem:aba7d3e274471275dede916bdb40838e4">
-							<td class="memItemRight" valign="bottom">
-								<a class="el" href="index.html#aba7d3e274471275dede916bdb40838e4">/api/v1.0/&lt;string:q&gt;/&lt;string:q_id&gt;.json</a>
-							</td>
-						</tr>
-						<tr class="separator:aba7d3e274471275dede916bdb40838e4">
-							<td class="memSeparator" colspan="2">&#160;</td>
-						</tr>
-						
-					</table>
-				</div>	
-					<h2 class="groupheader">API Query Documentation</h2>
-					
-
-<!--DATASETS - DESCRIPTION-->
-<a class="anchor" id="datasets"></a>
-<div class="memitem">
-	<div class="memproto">
-		<table class="memname">
-			<tr>
-				<td class="memname">/api/v1.0/datasets/</td>
-			</tr>
-		</table>
+</pre> **Example written in python3**
 	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+			
+						
+					<!--DATASETS - DESCRIPTION-->
+					<div class="expand-contents" id="dataset_request">
+						<div class="memname">/api/v1.0/datasets/</div>
+<pre class="fragment">
 Will return a list of possible datasets and their corresponding data
 </pre>
-	</div>
-</div>
-
-<!--DATASET_ID - DESCRIPTION-->
-<a class="anchor" id="datasets_id"></a>
-<div class="memitem">
-	<div class="memproto">
-		<table class="memname">
-			<tr>
-				<td class="memname">/api/v1.0/datasets/?id</td>
-			</tr>
-		</table>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+					<!--DATASET_ID - DESCRIPTION-->
+					<div class="memname">/api/v1.0/datasets/?id</div>
+<pre class="fragment">
 Will return a list of Dataset names and their corresponding id's
 </pre>
-	</div>
-</div>
+					</div>
 
-<!--VARIABLES - DESCRIPTION-->
-<a class="anchor" id="variables"></a>
-
-<div class="memitem">
-	<div class="memproto">
-		<table class="memname">
-			<tr>
-				<td class="memname">/api/v1.0/variables/?dataset=&lt;dataset_id&gt;&amp;3d_only&amp;vectors_only&amp;vectors</td>
-			</tr>
-		</table>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+					<!--VARIABLES - DESCRIPTION-->
+					<div class='expand-contents' id="variables_request">
+						<div class="memproto">
+							<table class="memname">
+								<tr>
+									<td class="memname">/api/v1.0/variables/?dataset=&lt;dataset_id&gt;&amp;3d_only&amp;vectors_only&amp;vectors</td>
+								</tr>
+							</table>
+						</div>
+						<div class="memdoc">
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/variables/?dataset=giops_day">/api/v1.0/variables/?dataset=giops_day</a>
-
+	
 **Only use variables required for your specific request**
-
+	
 dataset_id   : Dataset to extract data - Can be found using /api/datasets/id
 3d_only      : When included, ONLY variables with depth will be shown
 vectors_only : When included, ONLY variables with magnitude will be shown 
 vectors      : When included, magnitude components will be included
-
+	
 **Boolean: True / False**
 Will return a list of variables in the specified dataset, this output can be filtered by including keywords in the query
 </pre>
-	</div>
+						</div>
+					</div>
 </div>
 
-<!--OBSERVATION VARIABLES - DESCRIPTION-->
-<a class="anchor" id="observation_variables"></a>
-
-<div class="memitem">
-	<div class="memproto">
-		<table class="memname">
-			<tr>
-				<td class="memname">/api/v1.0/observationvariables/</td>
-			</tr>
-		</table>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+<div class="tabcontent" id="Input_Options">
+	<table class="doc_layout_main">
+		<tbody class="doc_layout_tbody">
+			<tr class="doc_layout_row">
+				<td class="doc_left_col">
+					
+					
+					<!--API REQUEST BUTTONS-->
+					<h2 class="requestheader">
+						Dataset Information
+					</h2>
+					<div class="request_buttons">
+						<div class='expand-button'>
+								<button class='request_button' id="dataset_request_btn" onclick="openRequest(event, 'dataset_request', 'query_usage_all', 'dataset_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+											<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Dataset Info</h4></td>
+											<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
+									</tr></table>
+								</button>
+						</div>
+						<div class='expand-button'>
+								<button class='request_button' id="variables_request_btn" onclick="openRequest(event, 'variables_request', 'query_usage_all', 'variables_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Variables</h4></td>
+										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
+									</tr></table>
+								</button>
+						</div>
+						<div class='expand-button'>
+								<button class='request_button' id="obs_variables_request_btn" onclick="openRequest(event, 'obs_variables_request', 'query_usage_all', 'obs_variables_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Observation Variables</h4></td>
+										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
+									</tr></table>
+								</button>
+						</div>
+						<div class='expand-button'>
+								<button class='request_button' id="timestamps_request_btn" onclick="openRequest(event, 'timestamps_request', 'query_usage_all', 'timestamps_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Timestamps</h4></td>
+										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px; text-align: right'></i></td>
+									</tr></table>
+								</button>
+						</div>
+						<div class='expand-button'>
+								<button class='request_button' id="depth_request_btn" onclick="openRequest(event, 'depth_request', 'query_usage_all', 'depth_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Depth</h4></td>
+										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
+									</tr></table>
+								</button>
+						</div>
+						<div class='expand-button'>
+								<button class='request_button' id="scale_request_btn" onclick="openRequest(event, 'scale_request', 'query_usage_all', 'scale_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Scale</h4></td>
+										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
+									</tr></table>
+								</button>
+						</div>
+						<div class='expand-button'>
+								<button class='request_button' id="range_request_btn" onclick="openRequest(event, 'range_request', 'query_usage_all', 'range_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Range</h4></td>
+										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
+									</tr></table>
+								</button>
+						</div>
+						<div class='expand-button'>
+								<button class='request_button' id="data_request_btn" onclick="openRequest(event, 'data_request', 'query_usage_all', 'data_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Point Data</h4></td>
+										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
+									</tr></table>
+								</button>
+						</div>
+						<div class='expand-button'>
+								<button class='request_button' id="class4_list_request_btn" onclick="openRequest(event, 'class4_list_request', 'query_usage_all', 'class4_list_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Class4 List</h4></td>
+										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
+									</tr></table>
+								</button>
+						</div>
+						<div class='expand-button'>
+								<button class='request_button' id="drifter_request_btn" onclick="openRequest(event, 'drifter_request', 'query_usage_all', 'drifter_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Drifters</h4></td>
+										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
+									</tr></table>
+								</button>
+						</div>
+						<div class='expand-button'>
+								<button class='request_button' id="stats_request_btn" onclick="openRequest(event, 'stats_request', 'query_usage_all', 'stats_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Area Statistics</h4></td>
+										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
+									</tr></table>
+								</button>
+						</div>
+						<div class='expand-button'>
+								<button class='request_button' id="subset_request_btn" onclick="openRequest(event, 'subset_request', 'query_usage_all', 'subset_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Subset</h4></td>
+										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
+									</tr></table>
+								</button>
+						</div>
+						<div class='expand-button'>
+								<button class='request_button' id="plot_request_btn" onclick="openRequest(event, 'plot_request', 'query_usage_all', 'plot_request_btn')">
+									<table class="request_table"><tr class="request_table_row">
+										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Create Plot</h4></td>
+										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
+									</tr></table>
+								</button>
+						</div>
+					</div>
+				</td>
+			<td class="doc_right_col">
+				<div class='expand-button'>
+					
+						<!--OBSERVATION VARIABLES - DESCRIPTION-->
+						<div class="expand-contents" id="obs_variables_request">
+							<div class="memname">/api/v1.0/observationvariables/</div>
+							
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/observationvariables">/api/v1.0/observationvariables/</a>
 
 Returns a list of the possible observation variables
 </pre>
-	</div>
-</div>
-
-<!--TIMESTAMPS - DESCRIPTION-->
-<a class="anchor" id="timestamps"></a>
-<div class="memitem">
-	<div class="memproto">
-		<table class="memname">
-			<tr>
-				<td class="memname">/api/v1.0/timestamps/?dataset=&lt;string:dataset&gt;</td>
-			</tr>
-		</table>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+							
+						</div>
+						<!--TIMESTAMPS - DESCRIPTION-->
+						<div class="expand-contents" id="timestamps_request">
+							<div class="memname">/api/v1.0/timestamps/?dataset=&lt;string:dataset&gt;</div>
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/timestamps/?dataset=giops_day">/api/v1.0/timestamps/?dataset=giops_day</a>
 
 &lt;string:dataset&gt; : Dataset id - Can be found using /api/datasets
 
 Finds all timestamps associated with a dataset
 </pre>
-	</div>
-</div>
-
-<!-- DEPTH - DESCRIPTION-->
-<a class="anchor" id="depth"></a>
-<div class="memitem">
-	<div class="memproto">
-		<div class="memname">/api/v1.0/depth/?dataset=&lt;string:dataset_id&gt;&amp;variable=&lt;string:variable&gt;</div>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						</div>
+						<!-- DEPTH - DESCRIPTION-->
+						<div class="expand-contents" id="depth_request">
+							<div class="memname">/api/v1.0/depth/?dataset=&lt;string:dataset_id&gt;&amp;variable=&lt;string:variable&gt;</div>
+	
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=giops_day&variable=votemper">/api/v1.0/depth/?dataset=giops_day&variable=votemper</a>
 
 &lt;dataset_id&gt;  : id of the desired dataset - Can be found using /api/datasets/id
@@ -608,129 +459,92 @@ example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/depth/
 
 Returns all depths available for that variable in the dataset
 </pre>
-	</div>
-</div>
-
-<!--SCALE - DESCRIPTION-->
-<a class="anchor" id="scale"></a>
-<div class="memitem">
-	<div class="memproto">
-		<table class="memname">
-			<tr>
-				<td class="memname">/api/v1.0/scale/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:scale_min, scale_max&gt;.png</td>
-			</tr>
-		</table>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						</div>
+						<!--SCALE - DESCRIPTION-->
+						<div class="expand-contents" id="scale_request">
+							<div class="memname">/api/v1.0/scale/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:scale_min, scale_max&gt;.png</div>
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/scale/giops_day/votemper/-5,30.png">/api/v1.0/scale/giops_day/votemper/-5,30.png</a>
-
+		
 &lt;string:dataset&gt;    			  : Dataset id - found using /api/datasets/id
 &lt;string:variable&gt;   			  : Type of data to retrieve - found using /api/variables/?dataset='...'
 &lt;string:scale_min,scale_max&gt;    : Desired Scale
-
+		
 Returns a coloured scale bar using the provided scale
 </pre>
-	</div>
-</div>
+						</div>
 
-<!--RANGE - DESCRIPTION-->
-<a class="anchor" id="range"></a>
-<div class="memitem">
-	<div class="memproto">
-		<div class="memname">/api/v1.0/range/&lt;string:dataset_id&gt;/&lt;string:variable&gt;/&lt;string:interp&gt;/&lt;string:radius&gt;/&lt;string:neighbours&gt;/&lt;string:projection&gt;/&lt;string:extent&gt;/&lt;string:depth&gt;/&lt;string:time&gt;.json</div>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						<!--RANGE - DESCRIPTION-->
+						<div class="expand-contents" id="range_request">
+								<div class="memname">/api/v1.0/range/&lt;string:dataset_id&gt;/&lt;string:variable&gt;/&lt;string:interp&gt;/&lt;string:radius&gt;/&lt;string:neighbours&gt;/&lt;string:projection&gt;/&lt;string:extent&gt;/&lt;string:depth&gt;/&lt;string:time&gt;.json</div>						
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1/0/data/giops_day/votemper/823/0/63.51801708389351,-56.13861083984375.json">/api/v1.0/data/giops_day/votemper/823/0/63.51801708389351,-56.13861083984375.json</a>
-
+		
 &lt;string:interp&gt;     : Dataset id - Can be found using /api/v1.0/datasets/?id
 &lt;string:radius&gt;     : Type of data to retrieve - found using /api/v1.0/variables/?dataset='...'
 &lt;int:neighbours&gt;    : Time of data collection
 &lt;string:dataset_id&gt; : Water Depth - found using /api/v1.0/depth/?dataset='...'
 &lt;string:Lat,Lon&gt;    : Location of the data you want to retrieve
-
+		
 **All Components Must be Included**
-
+		
 Returns JSON object containing the location, name, units, and value based on the input values
 </pre>
-	</div>
-</div>
+						</div>
 
-<!--DATA - DESCRIPTION-->
-<a class="anchor" id="data"></a>
-<div class="memitem">
-	<div class="memproto">
-		<div class="memname">/api/v1.0/data/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:time&gt;/&lt;string:Depth&gt;/&lt;string:location&gt;.json'</div>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						<!--DATA - DESCRIPTION-->
+						<div class="expand-contents" id="data_request">
+							<div class="memname">/api/v1.0/data/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:time&gt;/&lt;string:Depth&gt;/&lt;string:location&gt;.json'</div>
+							
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/data/giops_day/votemper/823/0/63.51801708389351,-56.13861083984375.json">/api/v1.0/data/giops_day/votemper/823/0/63.51801708389351,-56.13861083984375.json</a>
-
+		
 &lt;string:dataset&gt;  : Dataset id - Can be found using /api/v1.0/datasets/?id
 &lt;string:variable&gt; : Type of data to retrieve - found using /api/v1.0/variables/?dataset='...'
 &lt;string:time&gt;     : Timestamp of data collection
 &lt;string:Depth&gt;    : Water Depth - found using /api/v1.0/depth/?dataset='...'
 &lt;string:Lat,Lon&gt;  : Location of the data you want to retrieve
-
+		
 **All Components Must be Included**
-
+		
 Returns JSON object containing the location, name, units, and value based on the input values
 </pre>
-	</div>
-</div>
-<!--CLASS4 - DESCRIPTION-->
-<a class="anchor" id="class4"></a>
-<div class="memitem">
-	<div class="memproto">
-		<div class="memname">/api/v1.0/class4/&lt;string:q&gt;/&lt;string:class4_id&gt;/</div>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						</div>
+						
+						<!--CLASS4 - DESCRIPTION-->
+						<div class="expand-contents" id="class4_list_request">
+							<div class="memname">/api/v1.0/class4/&lt;string:q&gt;/&lt;string:class4_id&gt;/</div>
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/class4/models/class4_20180512_GIOPS_CONCEPTS_2.3_profile/100">/api/class4/models/class4_20180512_GIOPS_CONCEPTS_2.3_profile/100</a>
-
+		
 &lt;string:q&gt;         : forecasts (dates) models (?) 
 &lt;string:class4_id&gt; : ID of the desired class4 - Can be found using /api/v1.0/class4/
-
+		
 Returns in-situ observations with global prediction system estimates
 </pre>
-	</div>
-</div>
+						</div>
 
-<!--DRIFTERS - DESCRIPTION-->
-<a class="anchor" id="drifters"></a>
-<div class="memitem">
-	<div class="memproto">
-		<div class="memname">/api/v1.0/drifters/&lt;string:q&gt;/&lt;string:drifter_id&gt;</div>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						<!--DRIFTERS - DESCRIPTION-->
+						<div class="expand-contents" id="drifter_request">
+							<div class="memname">/api/v1.0/drifters/&lt;string:q&gt;/&lt;string:drifter_id&gt;</div>
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/drifters/vars/300234063261890">/api/v1.0/drifters/vars/300234063261890/</a>
-
+		
 &lt;string:q&gt;          : vars / time (Data Request)
 &lt;string:drifter_id&gt; : ID of Drifter of Interest - Options can be found using /api/
-
+		
 Vars - Returns a list of Variables applicable to the specified drifter
 Time - Returns the max and min time of the specified drifter
-
+		
 </pre>
-	</div>
-</div>
+						</div>
 
-<!--STATS - DESCRIPTION-->
-<a class="anchor" id="stats"></a>
-<div class="memitem">
-	<div class="memproto">
-		<table class="memname">
-			<tr>
-				<td class="memname">/api/v1.0/stats/?query=&lt;string:query&gt;</td>
-			</tr>
-		</table>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						<!--STATS - DESCRIPTION-->
+						<div class="expand-contents" id="stats_request">
+							<div class="memname">/api/v1.0/stats/?query=&lt;string:query&gt;</div>
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca">not working</a>
-
+								
 &lt;string:query&gt; = {
   dataset  : Dataset id - found using /api/v1.0/datasets/id
   variable : Type of data to plot - Options found using /api/v1.0/variables/?dataset='...'
@@ -745,23 +559,14 @@ example: <a target="_blank" href="http://navigator.oceansdata.ca">not working</a
 Returns a list of statistical variables associated with the plot selected.
 This may include variable name, units, min, max, mean, median, and stddev
 </pre>
-	</div>
-</div>
+						</div>
 
-<!--SUBSET - DESCRIPTION-->
-<a class="anchor" id="subset"></a>
-<div class="memitem">
-	<div class="memproto">
-		<table class="memname">
-			<tr>
-				<td class="memname">/api/v1.0/subset/?query='...'</td>
-			</tr>
-		</table>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						<!--SUBSET - DESCRIPTION-->
+						<div class="expand-contents" id="subset_request">
+							<div class="memname">/api/v1.0/subset/?query='...'</div>
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/subset/?&output_format=NETCDF3_CLASSIC&dataset_name=riops&variables=sokaraml&min_range=51.09063483675129,-55.392697784916535&max_range=60.20578518215365,-39.836057159916535&time=4661,4661&should_zip=0">Click for Example</a>
-
+								
 query = {
 	Output Format : File Format
 	Dataset id    : id of the desired dataset - found using /api/v1.0/datasets/id
@@ -779,25 +584,60 @@ Bounding Box:
 **Not all components of query are required
 Returns a subset of data based on the criteria provided, this can be in multiple different file formats
 </pre>
-	</div>
-</div>
+						</div>
 
 <!--PLOT - DESCRIPTION-->
-<a class="anchor" id="plot"></a>
-<div class="memitem">
-	<div class="memproto">
-		<table class="memname">
-			<tr>
-				<td class="memname">/api/v1.0/plot/?query=&lt;json:query&gt;</td>
-			</tr>
-		</table>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+
+						<div class="expand-contents" id="plot_request">
+						<!-- GENERAL PLOT INFO BUTTON -->
+						<button class='plot-state-active' id="generalPlotButton" onclick="openPlot(event, 'generalPlotPane', 'generalPlot', 'generalPlotButton')">
+								<span>
+									<i class='fa fa-angle-down' style='font-size: 20px'></i>
+									<h4 style='display: inline; padding-left: 20px'>General</h4>
+								</span>
+						</button>
+						<!-- POINT PLOT INFORMATION BUTTON -->
+						<button class='plot_button' id="pointPlotButton" onclick="openPlot(event, 'pointPlotPane', 'pointPlot', 'pointPlotButton')">
+								<span>
+									<i class='fa fa-angle-down' style='font-size: 20px'></i>
+									<h4 style='display: inline; padding-left: 20px'>Point</h4>
+								</span>
+						</button>
+						<!-- TRANSECT PLOT INFORMATION BUTTON -->
+						<button class='plot_button' id="transectPlotButton" onclick="openPlot(event, 'transectPlotPane', 'transectPlot', 'transectPlotButton')">
+								<span>
+									<i class='fa fa-angle-down' style='font-size: 20px'></i>
+									<h4 style='display: inline; padding-left: 20px'>Transect</h4>
+								</span>
+						</button>
+						<!-- AREA PLOT INFORMATION BUTTON -->
+						<button class='plot_button' id="areaPlotButton" onclick="openPlot(event, 'areaPlotPane', 'areaPlot', 'areaPlotButton')">
+								<span>
+									<i class='fa fa-angle-down' style='font-size: 20px'></i>
+									<h4 style='display: inline; padding-left: 20px'>Area</h4>
+								</span>
+						</button>
+						<!-- DRIFTER PLOT INFORMATION BUTTON -->
+						<button class='plot_button' id="drifterPlotButton" onclick="openPlot(event, 'drifterPlotPane', 'drifterPlot', 'drifterPlotButton')">
+								<span>
+									<i class='fa fa-angle-down' style='font-size: 20px'></i>
+									<h4 style='display: inline; padding-left: 20px'>Drifter</h4>
+								</span>
+						</button>
+						<!-- CLASS4 PLOT INFORMATION BUTTON -->
+						<button class='plot_button' id="class4PlotButton" onclick="openPlot(event, 'class4PlotPane', 'class4Plot', 'class4PlotButton')">
+								<span>
+									<i class='fa fa-angle-down' style='font-size: 20px'></i>
+									<h4 style='display: inline; padding-left: 20px'>Class4</h4>
+								</span>
+						</button>
+						<div class="PlotPane" id="generalPlotPane">
+							<div class="memname">/api/v1.0/plot/?query=&lt;json:query&gt;</div>
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/plot/?query=%7B%22area%22%3A%5B%7B%22innerrings%22%3A%5B%5D%2C%22name%22%3A%22%22%2C%22polygons%22%3A%5B%5B%5B62.27693797488524%2C-53.94134521484374%5D%2C%5B59.98669914224615%2C-36.80267333984375%5D%2C%5B56.180809047819764%2C-37.681579589843736%5D%2C%5B56.434830853922364%2C-55.96282958984374%5D%2C%5B62.27693797488524%2C-53.94134521484374%5D%5D%5D%7D%5D%2C%22bathymetry%22%3Atrue%2C%22colormap%22%3A%22default%22%2C%22contour%22%3A%7B%22colormap%22%3A%22default%22%2C%22hatch%22%3Afalse%2C%22legend%22%3Atrue%2C%22levels%22%3A%22auto%22%2C%22variable%22%3A%22%22%7D%2C%22dataset%22%3A%22giops_day%22%2C%22depth%22%3A0%2C%22interp%22%3A%22gaussian%22%2C%22neighbours%22%3A10%2C%22projection%22%3A%22EPSG%3A3857%22%2C%22quiver%22%3A%7B%22colormap%22%3A%22default%22%2C%22magnitude%22%3A%22length%22%2C%22variable%22%3A%22%22%7D%2C%22radius%22%3A25%2C%22scale%22%3A%22-5%2C30%2Cauto%22%2C%22showarea%22%3Atrue%2C%22time%22%3A823%2C%22type%22%3A%22map%22%2C%22variable%22%3A%22votemper%22%7D&format=png">Click for Example</a>
-
+								
 **MORE DETAILS ABOUT PLOTS CAN BE FOUND <a href="#PlotInfo" onclick="openTab(event, 'Contact')">HERE</a>
-
+								
 &lt;json:query&gt; = {
 	scale	  : 
 	quiver	  : 
@@ -835,922 +675,646 @@ Plot Types - map, transect, timeseries, ts, sound, profile, hovmoller, observati
 
 This query is used to create plots of all types, as well as to create some file types including csv
 </pre>
+						</div>
+
+<!-- Main container for the plot information-->
+<!--
+	This container contains 4 panes, 1 for each of the types of the plots
+	Each pane consists of a table, as well as a <pre> element.
+	The table is made up of rows, and 3 cols
+		- Each column has different sizing (This is the reason for using 3 different classes)
+	The <pre> element displays the JSON example and is needed to maintain whitespace
+-->
+<div class='plotInformation'>
+	
+	<!-- POINT PLOT INFORMATION -->
+	<div class='PlotPane' id='pointPlotPane'>
+		<table class='PlotPaneTable'>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'><b>VARIABLE</b></td>
+				<td class='PlotVarType'><b>TYPE</b></td>
+				<td class='PlotDescription'><b>DESCRIPTION</b></td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>dataset</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Dataset ID</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>names</td>
+				<td class='PlotVarType'>List</td>
+				<td class='PlotDescription'>Sometimes [lat,lon]</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>plotTitle</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Blank unless a custom plot title is wanted</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>quantum</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>"day", "month"...</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>showmap</td>
+				<td class='PlotVarType'>Bool</td>
+				<td class='PlotDescription'>true if map of selected point is wanted</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>station</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>lat,lon,null</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>time</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Time given in ISO8601 Extended</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>endtime</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>The end time for a time ranged plot - Given in ISO8601 extended format</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>type</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>point</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>variable</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>variable id (Additional variables can be added by seperating with a comma)</td>
+			</tr>
+		</table>
+		<!--Point Example Query-->
+		<br>
+		<b>EXAMPLE:</b>
+		<pre>
+
+query = {
+"dataset": "giops_day",
+"names":["50,-48"],
+"plotTitle":"",
+"quantum":"day",
+"showmap":true,
+"station":[[50,-48]],
+"time":'2018-08-09T00:00+00:00',
+"type":"profile",
+"variable":"votemper"
+}
+		</pre>
+	</div>
+	
+	<!-- TRANSECT PLOT INFORMATION -->
+	<div class='PlotPane' id='transectPlotPane'>
+		<table class='PlotPaneTable'>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'><b>VARIABLE</b></td>
+				<td class='PlotVarType'><b>TYPE</b></td>
+				<td class='PlotDescription'><b>DESCRIPTION</b></td>
+			</tr>
+			<tr class='PlotPaneRow'>
+					<td class='PlotVariable'>dataset</td>
+					<td class='PlotVarType'>String</td>
+					<td class='PlotDescription'>Dataset ID</td>
+				</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>colormap</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>The desired colourmap, typically set to 'default'</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>depth_limit</td>
+				<td class='PlotVarType'>Bool</td>
+				<td class='PlotDescription'>?</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>linearthresh</td>
+				<td class='PlotVarType'>Integer</td>
+				<td class='PlotDescription'>Depth where graph becomes logarithmic, default is 200</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>path</td>
+				<td class='PlotVarType'>2D list</td>
+				<td class='PlotDescription'>Points in Transect [[lat,lon],[lat,lon],...]</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>plotTitle</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Blank unless custom plot title is wanted</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>quantum</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>ex: "day", "month", ...</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>scale</td>
+				<td class='PlotVarType'>String - Comma separated</td>
+				<td class='PlotDescription'>
+					Scale of the color range:<br>
+					"auto" for a scale determined by the data<br>
+					"min,max" for manual where min and max are the extremes of the scale
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>selectedPlot</td>
+				<td class='PlotVarType'>String - comma separated</td>
+				<td class='PlotDescription'>
+					Used to decided which plots to show when velocity is selected
+					1 - Plot shown
+					0 - Plot not included
+
+					"magnitude, parallel, perpendicular": these are replaced with 1's or 0's to indicate which plots are shown
+					ex: "0,1,1" shows the parallel and perpendicular plots, but does not included magnitude
+					Parallel and Perpendicular is in reference to the transect line
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>showmap</td>
+				<td class='PlotVarType'>Bool</td>
+				<td class='PlotDescription'>
+					true - map of transect is displayed
+					false - only the data plot(s) is displayed
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>surfacevariable</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>
+					Displays an additional plot showing the data of the variable at the surface along the transect
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>time</td>
+				<td class='PlotVarType'>String - ISO8601 Extended</td>
+				<td class='PlotDescription'>The time and date of the data wanted</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>type</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>
+					The type of plot
+
+					'transect' for transect plots
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>variable</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Variable ID</td>
+			</tr>
+		</table>
+		<!--Transect Example Query-->
+		<br>
+		<b>EXAMPLE:</b>
+		<pre>
+
+query = {
+"dataset": "giops_day",
+"colormap":"default",
+"depth_limit":false,
+"linearthresh":200,
+"path":[[40,-50],[50,45]],
+"plotTitle":"",
+"quantum":"day",
+"showmap":true,
+"scale":"-5,30"
+"selectedPlots":"1,1,0"
+"time":'2018-08-09T00:00+00:00',
+"type":"transect",
+"variable":"vosaline",
+"surfacevariable":"votemper"
+}
+		</pre>
+	</div>
+	
+	<!-- AREA PLOT INFORMATION -->
+	<div class='PlotPane' id='areaPlotPane'>							
+		<table class='PlotPaneTable' id='areaPlotPane'>
+			<tr class='PlotPaneTable'>
+				<td class='PlotVariable'><b>VARIABLE</b></td>
+				<td class='PlotVarType'><b>TYPE</b></td>
+				<td class='PlotDescription'><b>DESCRIPTION</b></td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>
+					area : { <br>
+						"innerrings", <br>
+						"name",<br>
+						"polygons" <br>
+					}
+				</td>
+				<td class='PlotVarType'>[{List, String, 3D List}]</td>
+				<td class='PlotDescription'>
+					contains list of innerrings, name, and polygons...<br>
+					<br>
+					innerrings: ? <br>
+					name: ?<br>
+					polygons: list of lat,lon points of the area selected <br>
+					<br>
+					ex: [{"innerrings":[],"name":"","polygons":[[[55,-48],[55,-39],[45,-30],[45,-50]]]}]
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>bathymetry</td>
+				<td class='PlotVarType'>Bool</td>
+				<td class='PlotDescription'>True if bathymetry lines are wanted, false otherwise</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>colormap</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>
+					which colormap should be used to display the variable
+					use 'default' for the default map
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>
+					contour : { <br>
+						"colormap",<br>
+						"hatch",<br>
+						"legend",<br>
+						"levels",<br>
+						"variable"<br>
+					}
+				</td>
+				<td class='PlotVarType'>
+					JSON: {<br>
+					String<br>
+					Bool<br>
+					Bool<br>
+					String<br>
+					String<br>
+					}
+				</td>
+				<td class='PlotDescription'>
+
+						colormap: the desired colourmap, 'default' sets the colormap to the default<br>
+						hatch: Will show hatching<br>
+						legend: Shows legend of the value of the countours shown<br>
+						levels: "first,second,third" each is set to the variable value in which the contour should be set, 'auto' will auto set the values<br>
+						variable: The variable that should be contoured (does not have to be the variable of the plot) "none" if no contours<br>
+						<br>
+						**A contour variable must be selected for these to take effect
+					
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>dataset</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Dataset ID</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>depth</td>
+				<td class='PlotVarType'>Integer</td>
+				<td class='PlotDescription'>
+					Index of depth layer. <a onclick="openTab(event, 'Input_Options'); getDatasets()">Click here</a> for depth layer information
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>interp</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Desired Interpolation ex. 'gaussian'</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>neighbours</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Selects the maximum number of points to be included in the interpolation</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>projection</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>
+					Projection used to superimpose the earth on a flat surface
+
+					Options:
+					'EPSG:3857' - Global (default projection)
+					'EPSG:32661' - Artic
+					'EPSG:3031' - Antarctic
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>
+					scale
+				</td>
+				<td class='PlotVarType'>
+					String
+				</td>
+				<td class='PlotDescription'>
+					The color scale for the map, 'auto' will pick a scale based on the value of the variable in the area selected
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>
+					radius
+				</td>
+				<td class='PlotVarType'>
+					Integer
+				</td>
+				<td class='PlotDescription'>
+					Limits the interpolation to a specific raidus around the point
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>
+					'quiver':{ <br>
+						'colormap',<br>
+						'magnitude',<br>
+						'variable'<br>
+					}
+				</td>
+				<td class='PlotVarType'>
+					{String, String, String}
+				</td>
+				<td class='PlotDescription'>
+					Quivers are shown when a quiver variable is selected, for example, you can select quivers to show the velocity of the water around the entire area 
+					
+					colormap: Colourmap to use when 'colour' is selected for magnitude
+					magnitude: The method used to show the magnitude of the variable ('lenght', or 'colour')
+					variable: The variable to show quivers for, "none" to display quivers
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>showarea</td>
+				<td class='PlotVarType'>Bool</td>
+				<td class='PlotDescription'>bool - If true, a map of the selected area box will be shown</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>time</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>
+					The time to show data for in ISO8601 extended format
+					Availble times for each dataset can be found <a onclick="openTab(event, 'Input_Options'); getDatasets()">here</a>
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>type</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>
+					The type of plot to be created
+					'map' for area plots
+				</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>variable</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>The Variable to display on the area</td>
+			</tr>
+		</table>
+		<!--Area Exaxample Query-->
+		<br>
+		<b>EXAMPLE:</b>
+		<pre>
+
+query = {
+"area":[{"innerrings":[],"name":"", "polygons":[[[50,-49],[45,-57],[50,-59],[50,-49]]]}],
+"bathymetry":true,
+"colormap":"default",
+"contour":{"colormap":"default","hatch":false,"legend":true,"levels":"auto","variable":"none"},
+"dataset":"giops_day",
+"depth":0,
+"interp":"gaussian",
+"neighbours":10,
+"projection":"EPSG:3857",
+"quiver":{"colormap":"default","magnitude":"length","variable":"none"},
+"radius":25,
+"scale":"auto",
+"showarea":true,
+"time":'2018-08-9T00:00+00:00',
+"type":"map",
+"variable":"votemper"
+}
+		</pre>
+	</div>
+	
+	<!-- DRIFTER PLOT INFORMATION -->
+	<div class='PlotPane' id='drifterPlotPane'>
+		<table class='PlotPaneTable'>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>
+					<b>VARIABLE</b>
+				</td>
+				<td class='PlotVarType'><b>TYPE</b></td>
+				<td class='PlotDescription'><b>DESCRIPTION</b></td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>buoyvariable</td>
+				<td class='PlotVarType'>List of Strings</td>
+				<td class='PlotDescription'>["sst"] ?</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>dataset</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Dataset ID</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>depth</td>
+				<td class='PlotVarType'>Integer</td>
+				<td class='PlotDescription'>Index of Depth Variable</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>drifter</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Drifter ID</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>latlon</td>
+				<td class='PlotVarType'>Bool</td>
+				<td class='PlotDescription'>default is false</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>quantum</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>"day", "month", ...</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>showmap</td>
+				<td class='PlotVarType'>Bool</td>
+				<td class='PlotDescription'>If true shows the map of the selected area</td>
+			</tr>
+			<tr class='PlotpaneRow'>
+				<td class='PlotVariable'>type</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>'drifters' for drifters</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>variable</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Variable ID</td>
+			</tr>
+		</table>
+		<!--Drifter Example Query-->
+		<br>
+		<b>EXAMPLE:</b>
+		<pre>
+
+query = {
+"buoyvariable":["sst"],
+"dataset":"giops_day",
+"depth":0,
+"drifter":["300234063263870"],
+"endtime":"2017-04-12T10:30:00.000Z",
+"latlon":false,
+"quantum":"day",
+"showmap":true,
+"starttime":
+"2016-05-17T15:30:48.000Z",
+"type":"drifter",
+"variable":["votemper"]
+}
+		</pre>
+	</div>
+
+	<!-- CLASS4 PLOT INFORMATION -->
+	<div class='PlotPane' id='class4PlotPane'>
+		<table class='PlotPaneTable'>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'><b>VARIABLE</b></td>
+				<td class='PlotVarType'><b>TYPE</b></td>
+				<td class='PlotDescription'><b>DESCRIPTION</b></td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>class4id</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Id of Class4</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>climatology</td>
+				<td class='PlotVarType'>bool</td>
+				<td class='PlotDescription'>Includes climatology on the plot if true</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>error</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>Can be "climatology" or "observation"</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>forecast</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>? typically "best"</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>models</td>
+				<td class='PlotVarType'>List of ?</td>
+				<td class='PlotDescription'>typically and empty list: []</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>showmap</td>
+				<td class='PlotVarType'>bool</td>
+				<td class='PlotDescription'>True to show a map of the area around the selected class4</td>
+			</tr>
+			<tr class='PlotPaneRow'>
+				<td class='PlotVariable'>type</td>
+				<td class='PlotVarType'>String</td>
+				<td class='PlotDescription'>"class4" for Class4 plots</td>
+			</tr>
+		</table>
+		<!-- Class4 Example Query-->
+		<br>
+		<b>EXAMPLE:</b>
+		<pre>
+	
+query = {
+"dataset": "giops_day",
+"names":["50,-48"],
+"plotTitle":"",
+"quantum":"day",
+"showmap":true,
+"station":[[50,-48]],
+"time":'2018-08-09T00:00+00:00',
+"type":"profile",
+"variable":"votemper"
+}
+		</pre>
 	</div>
 </div>
-<!--COLORS - DESCRIPTION-->
-<a class="anchor" id="colors"></a>
-<div class="memitem">
-	<div class="memproto">
-		<div class="memname">/api/v1.0/colors/</div>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+</div>
+<!-- END OF PLOT -->
+
+						</div>
+
+						<!--COLORS - DESCRIPTION-->
+						<div class="expand-contents">
+							<div class="memname">/api/v1.0/colors/</div>
+<pre class="fragment">
 Returns a list of colours for use in colour maps
 </pre>
-	</div>
-</div>
+						</div>
 
-<!--COLORMAPS - DESCRIPTION-->
-<a class="anchor" id="colormaps"></a>
-<div class="memitem">
-	<div class="memproto">
-		<div class="memname">/api/v1.0/colormaps/</div>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						<!--COLORMAPS - DESCRIPTION-->
+						<div class="expand-contents">
+							<div class="memname">/api/v1.0/colormaps/</div>
+<pre class="fragment">
 Returns a list of colourmaps
 </pre>
-	</div>
-</div>
+						</div>
 
-<!--COLORMAPS_IMAGE - DESCRIPTION-->
-<a class="anchor" id="colormaps_image"></a>
-<div class="memitem">
-	<div class="memproto">
-		<div class="memname">/api/v1.0/colormaps.png</div>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						<!--COLORMAPS_IMAGE - DESCRIPTION-->
+						<div class="expand-contents">
+							<div class="memname">/api/v1.0/colormaps.png</div>
+<pre class="fragment">
 Returns image of colourmap example configurations
 </pre>
-	</div>
-</div>
+						</div>
 
-<!-- SINGLE STRING - DESCRIPTION-->
-<a class="anchor" id="aa7dc666c286b9bee527dc0a54c3dfb2c"></a>
-<div class="memitem">
-	<div class="memproto">
-		<table class="memname">
-			<tr>
-				<td class="memname">/api/v1.0/&lt;string:q&gt;/</td>
-			</tr>
-		</table>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						<!-- SINGLE STRING - DESCRIPTION-->
+						<div class="expand-contents">
+							<div class="memname">/api/v1.0/&lt;string:q&gt;/</div>
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/lines/">/api/v1.0/lines/</a>
-
+								
 &lt;string:q&gt; : Zone Type Can be (points,lines, areas, or class4)
-
+								
 Returns predefined  points / lines / areas / class4's
 </pre>
-	</div>
-</div>
+						</div>
 
-<!--TWO STRINGS - DESCRIPTION-->
-<a class="anchor" id="aba7d3e274471275dede916bdb40838e4"></a>
-<div class="memitem">
-	<div class="memproto">
-		<table class="memname">
-			<tr>
-				<td class="memname">/api/v1.0/&lt;string:q&gt;/&lt;string:q_id&gt;.json'</td>
-			</tr>
-		</table>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						<!--TWO STRINGS - DESCRIPTION-->
+						<div class="expand-contents">
+							<div class="memname">/api/v1.0/&lt;string:q&gt;/&lt;string:q_id&gt;.json'</div>
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/drifters/meta.json">/api/v1.0/drifters/meta.json</a>
-
+								
 &lt;string:q&gt;    : Type of Data (areas, class4, drifters, observation)
 &lt;string:q_id&gt; : metafile name drifters: meta, observation: meta
-
+								
 Returns a list of all the objects of the selected type
 </pre>
+						</div>
 
-	</div>
-</div>
-
-<!-- FIVE STRINGS - DESCRIPTION-->
-<a class="anchor" id="dataset_id"></a>
-<div class="memitem">
-	<div class="memproto">
-		<table class="memname">
-			<tr>
-				<td class="memname">/api/v1.0/&lt;string:q&gt;/&lt;string:projection&gt;/&lt;int:resolution&gt;/&lt;string:extent&gt;/&lt;string:file_id&gt;.json</td>
-			</tr>
-		</table>
-	</div>
-	<div class="memdoc">
-		<pre class="fragment">
+						<!-- FIVE STRINGS - DESCRIPTION-->
+						<div class="expand-contents">
+							<div class="memname">/api/v1.0/&lt;string:q&gt;/&lt;string:projection&gt;/&lt;int:resolution&gt;/&lt;string:extent&gt;/&lt;string:file_id&gt;.json</div>
+<pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/class4/EPSG:3857/9784/-15618972,1596939,4487023,12369057/class4_20180510_GIOPS_CONCEPTS_2.3_profile.json">/api/v1.0/class4/EPSG:3857/9784/-15618972,1596939,4487023,12369057/class4_20180510_GIOPS_CONCEPTS_2.3_profile.json</a>
 --At this time, only the class4 option is available
-
+								
 &lt;string:q&gt;          : Type of data (points, lines, areas, class4, drifters, observations)
 &lt;string:projection&gt; : Current projection of the map (EPSG:3857, EPSG:32661, EPSG:3031)
 &lt;int:resolution&gt;    : Current zoom level of the map
 &lt;string:extent&gt;     : The current bounds of the map view
 &lt;string:file_id&gt;    : Class 4 file ID
-
+								
 **All Components Must be Included**
 **Used Primarily by WebPage**
 At this time will return a list of class4's and their data
 </pre>
-	</div>
-</div>
+						</div>
 
-</div>
+					</td>
+				</tr>
+			</tbody>
+			</table>
+		</div>
 				<!-- contents -->
 
-	<div class="tabcontent" id="Input_Options">
-		<button onclick="toggleSidebar()" style="float: left; font-size: 22px;"><i class="fa fa-bars"></i></button>
-		<h3 style="padding-left: 40px;">Input Options</h3>	
-		<h2 class="groupheader"></h2>
-		<h2>Available Datasets</h2>
+	<div class="tabcontent" id="Contact">
+		<h2 class="groupheader"><b>Available Datasets</b></h2>
 		<div class='datasets' id="load_datasets"></div>
 	</div>
 
-				<!-- Plot Information Page Wrapper -->
-				<div class="tabcontent" id="Contact">
-					<!-- Page Header -->
-					<button onclick="toggleSidebar()" style="float: left; font-size: 22px;"><i class="fa fa-bars"></i></button>
-					<h3 style="padding-left: 40px;">Plot API Information</h3>
-					<p>
-						This page provides different variables that can be included in your plot queries.
-						Some of them are required while others are optional and are used to achieve the 
-						described task outlined next to them. </br>
-						**Class4's do not use this api request to create plots
-					</p>
-
-					<!-- Main container for the plot information-->
-					<!--
-						This container contains 4 panes, 1 for each of the types of the plots
-						Each pane consists of a table, as well as a <pre> element.
-						The table is made up of rows, and 3 cols
-							- Each column has different sizing (This is the reason for using 3 different classes)
-						The <pre> element displays the JSON example and is needed to maintain whitespace
-					-->
-					<div class='plotInformation'>
-						<!-- Point Plot Info -->
-						<button class='howto_button' id="pointPlotButton" onclick="openContents(event, 'pointPlotPane', 'query_usage_all', 'pointPlotButton')">
-								<span>
-									<i class='fa fa-angle-down' style='font-size: 20px'></i>
-									<h4 style='display: inline; padding-left: 20px'>Point Plot</h4>
-								</span>
-						</button>
-						<div class='PlotPane' id='pointPlotPane'>
-							<table class='PlotPaneTable'>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										<b>VARIABLE</b>
-									</td>
-									<td class='PlotVarType'>
-										<b>TYPE</b>
-									</td>
-									<td class='PlotDescription'>
-										<b>DESCRIPTION</b>
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										dataset
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Dataset ID
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										names
-									</td>
-									<td class='PlotVarType'>
-										List
-									</td>
-									<td class='PlotDescription'>
-										Sometimes [lat,lon]
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										plotTitle
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Blank unless a custom plot title is wanted
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										quantum
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										"day", "month"...
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										showmap
-									</td>
-									<td class='PlotVarType'>
-										Bool
-									</td>
-									<td class='PlotDescription'>
-										true if map of selected point is wanted
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										station
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										lat,lon,null
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										time
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Time given in ISO8601 Extended
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										endtime
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										The end time for a time ranged plot - Given in ISO8601 extended format
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										type
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										point
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										variable
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										variable id (Additional variables can be added by seperating with a comma)
-									</td>
-								</tr>
-							</table>
-							<!--Point Example Query-->
-							<br>
-							<b>EXAMPLE:</b>
-							<pre>
-
-query = {
-	"dataset": "giops_day",
-	"names":["50,-48"],
-	"plotTitle":"",
-	"quantum":"day",
-	"showmap":true,
-	"station":[[50,-48]],
-	"time":'2018-08-09T00:00+00:00',
-	"type":"profile",
-	"variable":"votemper"
-}
-							</pre>
-						</div>
-						<!-- Transect Plot Info -->
-						<button class='howto_button' id="transectPlotButton" onclick="openContents(event, 'transectPlotPane', 'query_usage_all', 'transectPlotButton')">
-								<span>
-									<i class='fa fa-angle-down' style='font-size: 20px'></i>
-									<h4 style='display: inline; padding-left: 20px'>Transect Plot</h4>
-								</span>
-						</button>
-						<div class='PlotPane' id='transectPlotPane'>
-							<table class='PlotPaneTable'>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										<b>VARIABLE</b>
-									</td>
-									<td class='PlotVarType'>
-										<b>TYPE</b>
-									</td>
-									<td class='PlotDescription'>
-										<b>DESCRIPTION</b>
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-										<td class='PlotVariable'>
-											dataset
-										</td>
-										<td class='PlotVarType'>
-											String
-										</td>
-										<td class='PlotDescription'>
-											Dataset Id
-										</td>
-									</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										colormap
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										The desired colourmap, typically set to 'default'
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										depth_limit
-									</td>
-									<td class='PlotVarType'>
-										Bool
-									</td>
-									<td class='PlotDescription'>
-										?
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										linearthresh
-									</td>
-									<td class='PlotVarType'>
-										Integer
-									</td>
-									<td class='PlotDescription'>
-										Depth where graph becomes logarithmic, default is 200
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										path
-									</td>
-									<td class='PlotVarType'>
-										2D list
-									</td>
-									<td class='PlotDescription'>
-										Points in Transect [[lat,lon],[lat,lon],...]
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										plotTitle
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Blank unless custom plot title is wanted
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										quantum
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										ex: "day", "month", ...
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										scale
-									</td>
-									<td class='PlotVarType'>
-										String - Comma separated
-									</td>
-									<td class='PlotDescription'>
-										Scale of the color range:<br>
-										"auto" for a scale determined by the data<br>
-										"min,max" for manual where min and max are the extremes of the scale
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										selectedPlot
-									</td>
-									<td class='PlotVarType'>
-										String - comma separated
-									</td>
-									<td class='PlotDescription'>
-										Used to decided which plots to show when velocity is selected
-										1 - Plot shown
-										0 - Plot not included
-
-										"magnitude, parallel, perpendicular": these are replaced with 1's or 0's to indicate which plots are shown
-										ex: "0,1,1" shows the parallel and perpendicular plots, but does not included magnitude
-										Parallel and Perpendicular is in reference to the transect line
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										showmap
-									</td>
-									<td class='PlotVarType'>
-										Bool
-									</td>
-									<td class='PlotDescription'>
-										true - map of transect is displayed
-										false - only the data plot(s) is displayed
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										surfacevariable
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Displays an additional plot showing the data of the variable at the surface along the transect
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										time
-									</td>
-									<td class='PlotVarType'>
-										String - ISO8601 Extended
-									</td>
-									<td class='PlotDescription'>
-										The time and date of the data wanted
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										type
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										The type of plot
-
-										'transect' for transect plots
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										variable
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Variable ID
-									</td>
-								</tr>
-							</table>
-							<!--Transect Example Query-->
-							<br>
-							<b>EXAMPLE:</b>
-							<pre>
-
-query = {
-	"dataset": "giops_day",
-	"colormap":"default",
-	"depth_limit":false,
-	"linearthresh":200,
-	"path":[[40,-50],[50,45]],
-	"plotTitle":"",
-	"quantum":"day",
-	"showmap":true,
-	"scale":"-5,30"
-	"selectedPlots":"1,1,0"
-	"time":'2018-08-09T00:00+00:00',
-	"type":"transect",
-	"variable":"vosaline",
-	"surfacevariable":"votemper"
-}
-							</pre>
-						</div>
-						<!-- Area Plot Information -->
-						<button class='howto_button' id="areaPlotButton" onclick="openContents(event, 'areaPlotPane', 'query_usage_all', 'areaPlotButton')">
-								<span>
-									<i class='fa fa-angle-down' style='font-size: 20px'></i>
-									<h4 style='display: inline; padding-left: 20px'>Area Plot</h4>
-								</span>
-						</button>
-						<div class='PlotPane' id='areaPlotPane'>							
-							<table class='PlotPaneTable' id='areaPlotPane'>
-								<tr class='PlotPaneTable'>
-									<td class='PlotVariable'>
-										<b>VARIABLE</b>
-									</td>
-									<td class='PlotVarType'>
-										<b>TYPE</b>
-									</td>
-									<td class='PlotDescription'>
-										<b>DESCRIPTION</b>
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										area : { <br>
-											"innerrings", <br>
-											"name",<br>
-											"polygons" <br>
-										}
-									</td>
-									<td class='PlotVarType'>
-										[{List, String, 3D List}]
-									</td>
-									<td class='PlotDescription'>
-										contains list of innerrings, name, and polygons...<br>
-										<br>
-										innerrings: ? <br>
-										name: ?<br>
-										polygons: list of lat,lon points of the area selected <br>
-										<br>
-										ex: [{"innerrings":[],"name":"","polygons":[[[55,-48],[55,-39],[45,-30],[45,-50]]]}]
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										bathymetry
-									</td>
-									<td class='PlotVarType'>
-										Bool
-									</td>
-									<td class='PlotDescription'>
-										True if bathymetry lines are wanted, false otherwise
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										colormap
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										which colormap should be used to display the variable
-										use 'default' for the default map
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										contour : { <br>
-											"colormap",<br>
-											"hatch",<br>
-											"legend",<br>
-											"levels",<br>
-											"variable"<br>
-										}
-									</td>
-									<td class='PlotVarType'>
-										JSON: {<br>
-										String<br>
-										Bool<br>
-										Bool<br>
-										String<br>
-										String<br>
-										}
-									</td>
-									<td class='PlotDescription'>
-	
-											colormap: the desired colourmap, 'default' sets the colormap to the default<br>
-											hatch: Will show hatching<br>
-											legend: Shows legend of the value of the countours shown<br>
-											levels: "first,second,third" each is set to the variable value in which the contour should be set, 'auto' will auto set the values<br>
-											variable: The variable that should be contoured (does not have to be the variable of the plot) "none" if no contours<br>
-											<br>
-											**A contour variable must be selected for these to take effect
-										
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										dataset
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Dataset ID
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										depth
-									</td>
-									<td class='PlotVarType'>
-										Integer
-									</td>
-									<td class='PlotDescription'>
-										Index of depth layer. <a onclick="openTab(event, 'Input_Options'); getDatasets()">Click here</a> for depth layer information
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										interp
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Desired Interpolation ex. 'gaussian'
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										neighbours
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Selects the maximum number of points to be included in the interpolation
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										projection	
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Projection used to superimpose the earth on a flat surface
-
-										Options:
-										'EPSG:3857' - Global (default projection)
-										'EPSG:32661' - Artic
-										'EPSG:3031' - Antarctic
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										scale
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										The color scale for the map, 'auto' will pick a scale based on the value of the variable in the area selected
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										radius
-									</td>
-									<td class='PlotVarType'>
-										Integer
-									</td>
-									<td class='PlotDescription'>
-										Limits the interpolation to a specific raidus around the point
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										'quiver':{ <br>
-											'colormap',<br>
-											'magnitude',<br>
-											'variable'<br>
-										}
-									</td>
-									<td class='PlotVarType'>
-										{String, String, String}
-									</td>
-									<td class='PlotDescription'>
-										Quivers are shown when a quiver variable is selected, for example, you can select quivers to show the velocity of the water around the entire area 
-										
-										colormap: Colourmap to use when 'colour' is selected for magnitude
-										magnitude: The method used to show the magnitude of the variable ('lenght', or 'colour')
-										variable: The variable to show quivers for, "none" to display quivers
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										showarea
-									</td>
-									<td class='PlotVarType'>
-										Bool
-									</td>
-									<td class='PlotDescription'>
-										bool - If true, a map of the selected area box will be shown
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										time
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										The time to show data for in ISO8601 extended format
-										Availble times for each dataset can be found <a onclick="openTab(event, 'Input_Options'); getDatasets()">here</a>
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										type
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										The type of plot to be created
-										'map' for area plots
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										variable
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										The Variable to display on the area
-									</td>
-								</tr>
-							</table>
-							<!--Area Exaxample Query-->
-							<br>
-							<b>EXAMPLE:</b>
-							<pre>
-
-query = {
-	"area":[{"innerrings":[],"name":"", "polygons":[[[50,-49],[45,-57],[50,-59],[50,-49]]]}],
-	"bathymetry":true,
-	"colormap":"default",
-	"contour":{"colormap":"default","hatch":false,"legend":true,"levels":"auto","variable":"none"},
-	"dataset":"giops_day",
-	"depth":0,
-	"interp":"gaussian",
-	"neighbours":10,
-	"projection":"EPSG:3857",
-	"quiver":{"colormap":"default","magnitude":"length","variable":"none"},
-	"radius":25,
-	"scale":"auto",
-	"showarea":true,
-	"time":'2018-08-9T00:00+00:00',
-	"type":"map",
-	"variable":"votemper"
-}
-							</pre>
-						</div>
-						<!-- Drifter Plot Information -->
-						<button class='howto_button' id="drifterPlotButton" onclick="openContents(event, 'drifterPlotPane', 'query_usage_all', 'drifterPlotButton')">
-								<span>
-									<i class='fa fa-angle-down' style='font-size: 20px'></i>
-									<h4 style='display: inline; padding-left: 20px'>Drifter Plot</h4>
-								</span>
-						</button>
-						<div class='PlotPane' id='drifterPlotPane'>
-							<table class='PlotPaneTable'>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										<b>VARIABLE</b>
-									</td>
-									<td class='PlotVarType'>
-										<b>TYPE</b>
-									</td>
-									<td class='PlotDescription'>
-										<b>DESCRIPTION</b>
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										buoyvariable
-									</td>
-									<td class='PlotVarType'>
-										List of Strings
-									</td>
-									<td class='PlotDescription'>
-										["sst"] ?
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										dataset
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Dataset Id
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										depth
-									</td>
-									<td class='PlotVarType'>
-										Integer
-									</td>
-									<td class='PlotDescription'>
-										Index of Depth Variable
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										drifter
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Drifter ID
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										latlon
-									</td>
-									<td class='PlotVarType'>
-										 Bool
-									</td>
-									<td class='PlotDescription'>
-										default is false
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										quantum
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										"day", "month", ...
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										showmap
-									</td>
-									<td class='PlotVarType'>
-										Bool
-									</td>
-									<td class='PlotDescription'>
-										If true shows the map of the selected area
-									</td>
-								</tr>
-								<tr class='PlotpaneRow'>
-									<td class='PlotVariable'>
-										type
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										'drifters' for drifters
-									</td>
-								</tr>
-								<tr class='PlotPaneRow'>
-									<td class='PlotVariable'>
-										variable
-									</td>
-									<td class='PlotVarType'>
-										String
-									</td>
-									<td class='PlotDescription'>
-										Variable ID
-									</td>
-								</tr>
-							</table>
-							<!--Drifter Example Query-->
-							<br>
-							<b>EXAMPLE:</b>
-							<pre>
-
-query = {
-	"buoyvariable":["sst"],
-	"dataset":"giops_day",
-	"depth":0,
-	"drifter":["300234063263870"],
-	"endtime":"2017-04-12T10:30:00.000Z",
-	"latlon":false,
-	"quantum":"day",
-	"showmap":true,
-	"starttime":
-	"2016-05-17T15:30:48.000Z",
-	"type":"drifter",
-	"variable":["votemper"]
-}
-							</pre>
-						</div>
-					</div>
-				</div>
-
-			</div><!-- doc-content -->
+			
 			<!-- start footer part -->
 		</div>
 		

@@ -2,6 +2,11 @@ var active_dataset
 var panesPopulated = false;
 var currentDepths
 
+// CURRENT TAB VARIABLES
+var currentPlotTab = "generalPlot";
+var currentRequestTab = "dataset_request";
+
+
 function toggleSidebar() {
 
   state = document.getElementById("sidebar-wrapper")
@@ -66,15 +71,61 @@ function openContents(event, name, all, button) {
     document.getElementById(name).style.display = "none"  //Hides the tab contents
     document.getElementById(all).style.backgroundColor = "rgb(245, 245, 245)";
     document.getElementById(button).style.backgroundColor = "rgb(245,245,245)"; //Changes the color of the button back to normal
-    //document.getElementById(button).style.hover.backgroundColor = "rgb(204, 204, 204)"
-  
+    
   //If the tab selected currently hidden
   } else {
-
     document.getElementById(button).className = 'ui-state-active' //Adds the class to indicate that the button has been clicked and the tab is open
     document.getElementById(name).style.display = "block" //Display the tab contents
     document.getElementById(all).style.backgroundColor = "rgb(204, 204, 204)"; 
     document.getElementById(button).style.backgroundColor = "rgb(204, 204, 204)";  //Changes the color of the button to a darker grey while the tab is open
+  }
+
+}
+
+function openRequest(event, name, all, button) {
+  var i, tabcontent, tablinks;
+
+  tabcontent = document.getElementsByClassName("expand-contents");
+  
+  //If the tab selected is currently being shown
+  if (document.getElementById(name).style.display == "block") {
+    document.getElementById(button).className = 'request_button'
+    document.getElementById(name).style.display = "none"  //Hides the tab contents
+    document.getElementById(button).style.backgroundColor = "rgb(245,245,245)"; //Changes the color of the button back to normal
+    
+  //If the tab selected currently hidden
+  } else {
+    document.getElementById(currentRequestTab).style.display = "none";
+    document.getElementById(currentRequestTab + "_btn").className = 'request_button';
+    document.getElementById(currentRequestTab + "_btn").style.backgroundColor = "rgb(245,245,245)";
+    document.getElementById(button).className = 'request-state-active' //Adds the class to indicate that the button has been clicked and the tab is open
+    document.getElementById(name).style.display = "block" //Display the tab contents
+    document.getElementById(button).style.backgroundColor = "rgb(204, 204, 204)";  //Changes the color of the button to a darker grey while the tab is open
+    currentRequestTab = name;
+  }
+
+}
+
+function openPlot(event, name, all, button) {
+  var i, tabcontent, tablinks;
+
+  tabcontent = document.getElementsByClassName("expand-contents");
+  
+  //If the tab selected is currently being shown
+  if (document.getElementById(name).style.display == "block") {
+    document.getElementById(button).className = 'plot_button'
+    document.getElementById(name).style.display = "none"  //Hides the tab contents
+    document.getElementById(button).style.backgroundColor = "rgb(245,245,245)"; //Changes the color of the button back to normal
+    
+  //If the tab selected currently hidden
+  } else {
+    document.getElementById(currentPlotTab + "Pane").style.display = "none";
+    document.getElementById(currentPlotTab + "Button").className = 'plot_button';
+    document.getElementById(currentPlotTab + "Button").style.backgroundColor = "rgb(245,245,245)";
+    document.getElementById(button).className = 'plot-state-active'; //Adds the class to indicate that the button has been clicked and the tab is open
+    document.getElementById(name).style.display = "block"; //Display the tab contents
+    document.getElementById(button).style.backgroundColor = "rgb(204, 204, 204)";  //Changes the color of the button to a darker grey while the tab is open
+    currentPlotTab = all;
   }
 
 }
