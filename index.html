@@ -30,9 +30,8 @@
 	<link href="css/doc_tab_layout.css" rel="stylesheet" type="text/css">
 		<link href="documentation.css" rel="stylesheet" type="text/css">
 		<link href="functions.css" rel="stylesheet" type="text/css">
-	<script src="jquery.js" type="text/javascript">
-	</script>
-	
+	<script src="jquery.js" type="text/javascript"></script>
+	<script src="js/request.js" type="text/javasript"></script>
 	<script src="dynsections.js" type="text/javascript">
 	</script>
 	<link href="navtree.css" rel="stylesheet" type="text/css">
@@ -260,47 +259,7 @@ output = f.read()
 print(output)
 <a href="print_depth_concatenate.py" download><img class='icon_custom' src="savefile_icon.png"></a>
 </pre> **Example written in python3**
-	</div>
-			
-						
-					<!--DATASETS - DESCRIPTION-->
-					<div class="expand-contents" id="dataset_request">
-						<div class="memname">/api/v1.0/datasets/</div>
-<pre class="fragment">
-Will return a list of possible datasets and their corresponding data
-</pre>
-					<!--DATASET_ID - DESCRIPTION-->
-					<div class="memname">/api/v1.0/datasets/?id</div>
-<pre class="fragment">
-Will return a list of Dataset names and their corresponding id's
-</pre>
-					</div>
-
-					<!--VARIABLES - DESCRIPTION-->
-					<div class='expand-contents' id="variables_request">
-						<div class="memproto">
-							<table class="memname">
-								<tr>
-									<td class="memname">/api/v1.0/variables/?dataset=&lt;dataset_id&gt;&amp;3d_only&amp;vectors_only&amp;vectors</td>
-								</tr>
-							</table>
-						</div>
-						<div class="memdoc">
-<pre class="fragment">
-example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/variables/?dataset=giops_day">/api/v1.0/variables/?dataset=giops_day</a>
-	
-**Only use variables required for your specific request**
-	
-dataset_id   : Dataset to extract data - Can be found using /api/datasets/id
-3d_only      : When included, ONLY variables with depth will be shown
-vectors_only : When included, ONLY variables with magnitude will be shown 
-vectors      : When included, magnitude components will be included
-	
-**Boolean: True / False**
-Will return a list of variables in the specified dataset, this output can be filtered by including keywords in the query
-</pre>
-						</div>
-					</div>
+	</div>			
 </div>
 
 <div class="tabcontent" id="Input_Options">
@@ -316,7 +275,7 @@ Will return a list of variables in the specified dataset, this output can be fil
 					</h2>
 					<div class="request_buttons">
 						<div class='expand-button'>
-								<button class='request_button' id="dataset_request_btn" onclick="openRequest(event, 'dataset_request', 'query_usage_all', 'dataset_request_btn')">
+								<button class='request_button' id="dataset_request_btn" onclick="openRequest(event, 'dataset_request', 'query_usage_all', 'dataset_request_btn'); receiveRequest('dataset_request', 'api/v1.0/datasets');">
 									<table class="request_table"><tr class="request_table_row">
 											<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Dataset Info</h4></td>
 											<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -324,7 +283,7 @@ Will return a list of variables in the specified dataset, this output can be fil
 								</button>
 						</div>
 						<div class='expand-button'>
-								<button class='request_button' id="variables_request_btn" onclick="openRequest(event, 'variables_request', 'query_usage_all', 'variables_request_btn')">
+								<button class='request_button' id="variables_request_btn" onclick="openRequest(event, 'variables_request', 'query_usage_all', 'variables_request_btn'); receiveRequest('datasetid_request', 'api/v1.0/datasets/id')">
 									<table class="request_table"><tr class="request_table_row">
 										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Variables</h4></td>
 										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -332,7 +291,7 @@ Will return a list of variables in the specified dataset, this output can be fil
 								</button>
 						</div>
 						<div class='expand-button'>
-								<button class='request_button' id="obs_variables_request_btn" onclick="openRequest(event, 'obs_variables_request', 'query_usage_all', 'obs_variables_request_btn')">
+								<button class='request_button' id="obs_variables_request_btn" onclick="openRequest(event, 'obs_variables_request', 'query_usage_all', 'obs_variables_request_btn'); receiveRequest('obsvariable_request', 'api/v1.0/variables/?dataset=giops_day')">
 									<table class="request_table"><tr class="request_table_row">
 										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Observation Variables</h4></td>
 										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -340,7 +299,7 @@ Will return a list of variables in the specified dataset, this output can be fil
 								</button>
 						</div>
 						<div class='expand-button'>
-								<button class='request_button' id="timestamps_request_btn" onclick="openRequest(event, 'timestamps_request', 'query_usage_all', 'timestamps_request_btn')">
+								<button class='request_button' id="timestamps_request_btn" onclick="openRequest(event, 'timestamps_request', 'query_usage_all', 'timestamps_request_btn'); receiveRequest('timestamp_request', 'api/v1.0/timestamps/?dataset=giops_day')">
 									<table class="request_table"><tr class="request_table_row">
 										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Timestamps</h4></td>
 										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px; text-align: right'></i></td>
@@ -423,7 +382,44 @@ Will return a list of variables in the specified dataset, this output can be fil
 				</td>
 			<td class="doc_right_col">
 				<div class='expand-button'>
-					
+						<!--DATASETS - DESCRIPTION-->
+						<div class="expand-contents" id="dataset_request">
+							<div class="request_container">
+								<div class="memname">/api/v1.0/datasets/</div>
+<pre class="fragment">
+Will return a list of possible datasets and their corresponding data
+</pre>
+								<div class="request_response"></div>
+							</div>
+
+						<!--DATASET_ID - DESCRIPTION-->
+						<div class="memname">/api/v1.0/datasets/?id</div>
+<pre class="fragment">
+Will return a list of Dataset names and their corresponding id's
+</pre>
+						</div>
+
+						<!--VARIABLES - DESCRIPTION-->
+						<div class='expand-contents' id="variables_request">
+							<div class="memname">/api/v1.0/variables/?dataset=&lt;dataset_id&gt;&amp;3d_only&amp;vectors_only&amp;vectors</div>
+						
+						<div class="memdoc">
+	<pre class="fragment">
+	example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/variables/?dataset=giops_day">/api/v1.0/variables/?dataset=giops_day</a>
+		
+	**Only use variables required for your specific request**
+		
+	dataset_id   : Dataset to extract data - Can be found using /api/datasets/id
+	3d_only      : When included, ONLY variables with depth will be shown
+	vectors_only : When included, ONLY variables with magnitude will be shown 
+	vectors      : When included, magnitude components will be included
+		
+	**Boolean: True / False**
+	Will return a list of variables in the specified dataset, this output can be filtered by including keywords in the query
+	</pre>
+							</div>
+						</div>
+
 						<!--OBSERVATION VARIABLES - DESCRIPTION-->
 						<div class="expand-contents" id="obs_variables_request">
 							<div class="memname">/api/v1.0/observationvariables/</div>
@@ -1228,7 +1224,7 @@ query = {
 		</pre>
 	</div>
 </div>
-</div>
+
 <!-- END OF PLOT -->
 
 						</div>
@@ -1300,7 +1296,7 @@ example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/class4
 At this time will return a list of class4's and their data
 </pre>
 						</div>
-
+</div>
 					</td>
 				</tr>
 			</tbody>

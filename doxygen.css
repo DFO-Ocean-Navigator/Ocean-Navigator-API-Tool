@@ -167,7 +167,7 @@ pre.fragment {
         border: 1px solid #C4CFE5;
         background-color: #FBFCFD;
         padding: 4px 6px;
-        margin: 4px 8px 4px 2px;
+        /*margin: 4px 8px 4px 2px;*/
         overflow: auto;
         word-wrap: break-word;
         font-size:  9pt;
@@ -541,8 +541,9 @@ table.memberdecls {
 }
 
 .memname {
-        font-weight: bold;
-        margin-left: 6px;
+	font-weight: bold;
+	background-color: #FBFCFD;
+	border: 1px solid #C4CFE5;
 }
 
 .memname td {

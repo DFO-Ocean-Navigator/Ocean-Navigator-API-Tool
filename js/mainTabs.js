@@ -6,6 +6,16 @@ var currentDepths
 var currentPlotTab = "generalPlot";
 var currentRequestTab = "dataset_request";
 
+function receiveRequest(query, request) {
+  console.warn("http://navigator.oceansdata.ca/" + request)
+  $.ajax({
+      url: "http://navigator.oceansdata.ca/" + request, success: function(response) {
+          console.warn(response);
+
+          document.getElementById().innerHTML = response;
+      }
+  });
+};
 
 function toggleSidebar() {
 
@@ -21,9 +31,7 @@ function toggleSidebar() {
     document.getElementById("wrapper").style.paddingLeft = '10px'
   }
   
-
 }
-
 
 /*
     evt:
