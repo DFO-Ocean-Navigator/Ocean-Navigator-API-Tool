@@ -6,13 +6,16 @@ var currentDepths
 var currentPlotTab = "generalPlot";
 var currentRequestTab = "dataset_request";
 
-function receiveRequest(query, request) {
+function receiveRequest(div_id, request) {
   console.warn("http://navigator.oceansdata.ca/" + request)
   $.ajax({
       url: "http://navigator.oceansdata.ca/" + request, success: function(response) {
           console.warn(response);
-
-          document.getElementById().innerHTML = response;
+          document.getElementById(div_id + "_response").innerHTML = response;
+      },
+      error () {
+        console.warn(div_id)
+        document.getElementById(div_id + "_response").innerHTML = "Response Failed to Load"
       }
   });
 };
@@ -55,7 +58,7 @@ function openTab(evt, name) {
   }
 */
   document.getElementById(name).style.display = "block";
-  evt.currentTarget.classname += "active";
+  document.getElementById(name + "_button").classname += "active";
 
 }
 
