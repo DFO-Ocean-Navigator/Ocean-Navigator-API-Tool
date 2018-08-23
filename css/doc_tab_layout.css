@@ -57,3 +57,29 @@ h2.requestheader {
     width: 5%;
     vertical-align: text-top;
 }
+
+.vertical-line {
+    width: 2px;
+    margin-left: 20px;
+    vertical-align: 50%;
+    background-color: white;
+}
+
+.header_button {
+    text-decoration: none;
+    padding-top: 5px;
+    font-size: 18px;
+}
+
+.header_button:hover {
+    text-decoration: none;
+    color: white;
+}
+
+
+.header_button:active {
+    text-decoration: none;
+    padding-top: 5px;
+    font-size: 18px;
+    color: white;
+}

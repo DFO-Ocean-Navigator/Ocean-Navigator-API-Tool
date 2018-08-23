@@ -61,6 +61,7 @@
 
 .tabcontent {
     display: none;
+    height: 100%;
 }
 
 #Documentation {
