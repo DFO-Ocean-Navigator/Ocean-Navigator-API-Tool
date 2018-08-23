@@ -101,4 +101,6 @@ h2.requestheader {
     background-color: rgb(245,245,245);
     word-break: break-all;
     white-space: normal;
+    overflow: scroll;
+    max-height: 400px;
 }
