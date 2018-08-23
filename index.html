@@ -323,7 +323,7 @@ print(output)
 								</button>
 						</div>
 						<div class='expand-button'>
-								<button class='request_button' id="range_request_btn" onclick="openRequest(event, 'range_request', 'query_usage_all', 'range_request_btn'); receiveRequest('range_request', '/api/v1.0/data/giops_day/votemper/823/0/63.51801708389351,-56.13861083984375.json')">
+								<button class='request_button' id="range_request_btn" onclick="openRequest(event, 'range_request', 'query_usage_all', 'range_request_btn'); receiveRequest('range_request', '/api/v1.0/range/gaussian/25/10/giops_day/EPSG:3857/-14364031.53811732,2335626.6006510714,3785176.45791493,11630369.240128502/0/898/votemper.json?_=1535036505595')">
 									<table class="request_table"><tr class="request_table_row">
 										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Range</h4></td>
 										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -331,7 +331,7 @@ print(output)
 								</button>
 						</div>
 						<div class='expand-button'>
-								<button class='request_button' id="data_request_btn" onclick="openRequest(event, 'data_request', 'query_usage_all', 'data_request_btn'); receiveRequest('data_request', '/api/v1.0/data/giops_day/votemper/823/0/63.51801708389351,-56.13861083984375.json')">
+								<button class='request_button' id="data_request_btn" onclick="openRequest(event, 'data_request', 'query_usage_all', 'data_request_btn'); receiveRequest('data_request', 'api/v1.0/data/giops_day/votemper/898/0/56.594361303447954,-49.81048583984376.json')">
 									<table class="request_table"><tr class="request_table_row">
 										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Point Data</h4></td>
 										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -339,7 +339,7 @@ print(output)
 								</button>
 						</div>
 						<div class='expand-button'>
-								<button class='request_button' id="class4_list_request_btn" onclick="openRequest(event, 'class4_list_request', 'query_usage_all', 'class4_list_request_btn'); receiveRequest('class4_list_request', 'api/v1.0/class4/models/class4_20180512_GIOPS_CONCEPTS_2.3_profile/100')">
+								<button class='request_button' id="class4_list_request_btn" onclick="openRequest(event, 'class4_list_request', 'query_usage_all', 'class4_list_request_btn'); receiveRequest('class4_list_request', 'http://navigator.oceansdata.ca/api/v1.0/class4/EPSG:3857/9784/-15618972,1357233,4487023,12608763/class4_20180816_GIOPS_CONCEPTS_2.3_profile.json')">
 									<table class="request_table"><tr class="request_table_row">
 										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Class4 List</h4></td>
 										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -560,7 +560,7 @@ Returns JSON object containing the location, name, units, and value based on the
 								<div class="api_text">/api/v1.0/class4/&lt;string:q&gt;/&lt;string:class4_id&gt;/</div>
 								<b>Description:</b>
 <pre class="fragment">
-example: <a target="_blank" href="http://navigator.oceansdata.ca/api/class4/models/class4_20180512_GIOPS_CONCEPTS_2.3_profile/100">/api/class4/models/class4_20180512_GIOPS_CONCEPTS_2.3_profile/100</a>
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/class4/EPSG:3857/9784/-15618972,1357233,4487023,12608763/class4_20180816_GIOPS_CONCEPTS_2.3_profile.json">/api/v1.0/class4/EPSG:3857/9784/-15618972,1357233,4487023,12608763/class4_20180816_GIOPS_CONCEPTS_2.3_profile.json</a>
 		
 &lt;string:q&gt;         : forecasts (dates) models (?) 
 &lt;string:class4_id&gt; : ID of the desired class4 - Can be found using /api/v1.0/class4/
