@@ -1,3 +1,4 @@
+currentDocumentationTab = "";
 var active_dataset
 var panesPopulated = false;
 var currentDepths
@@ -58,9 +59,32 @@ function openTab(evt, name) {
     tablinks[i].className = tablinks[i].className.replace("active","");
   }
 */
-  document.getElementById(name).style.display = "block";
-  document.getElementById(name + "_button").classname += "active";
 
+  //Controls the top nav bar
+  document.getElementById(name).style.display = "block";
+  if (name == "Documentation") {  //Set to landing page values
+    document.getElementById("sidebar-wrapper").style.height = "150px";
+    document.getElementById("sidebar_icon").style.width = "145px";
+    document.getElementById("sidebar_icon").style.height = "100%";
+    document.getElementById("Documentation_button").style.lineHeight = "13";
+    document.getElementById("Input_Options_button").style.lineHeight = "13";
+    document.getElementById("Contact_button").style.lineHeight = "13";
+    document.getElementById("sidebar-brand").style.lineHeight = "13.6";
+    document.getElementById("page-content-wrapper").style.paddingTop = "150px";
+
+    document.getElementById("landing_content").style.display = "block";
+  } else {  //Reset to default values
+    document.getElementById("sidebar-wrapper").style.height = "50px";
+    document.getElementById("sidebar_icon").style.width = "45px";
+    document.getElementById("sidebar_icon").style.height = "45px";
+    document.getElementById("Documentation_button").style.lineHeight = "40px";
+    document.getElementById("Input_Options_button").style.lineHeight = "40px";
+    document.getElementById("Contact_button").style.lineHeight = "40px";
+    document.getElementById("sidebar-brand").style.lineHeight = "50px";
+    document.getElementById("page-content-wrapper").style.paddingTop = "50px";
+  }
+  document.getElementById(name + "_button").classname += "active";
+  
 }
 
 
@@ -81,16 +105,32 @@ function openContents(event, name, all, button) {
   if (document.getElementById(name).style.display == "block") {
     document.getElementById(button).className = 'howto_button'
     document.getElementById(name).style.display = "none"  //Hides the tab contents
-    document.getElementById(all).style.backgroundColor = "rgb(245, 245, 245)";
+    //document.getElementById(all).style.backgroundColor = "rgb(245, 245, 245)";
     document.getElementById(button).style.backgroundColor = "rgb(245,245,245)"; //Changes the color of the button back to normal
-    
-  //If the tab selected currently hidden
+
+    document.getElementById("landing_content").style.height = "240px";
+    document.getElementById("landing_content").style.padding = "10px";
+
+  //If the tab selected is currently hidden
   } else {
+
+    if (currentDocumentationTab != "") {
+      document.getElementById(currentDocumentationTab).style.display = "none";
+      document.getElementById(currentDocumentationTab + "_button").className = 'howto_button';
+      document.getElementById(currentDocumentationTab + "_button").style.backgroundColor = "rgb(245,245,245)"
+    }
+
     document.getElementById(button).className = 'ui-state-active' //Adds the class to indicate that the button has been clicked and the tab is open
     document.getElementById(name).style.display = "block" //Display the tab contents
-    document.getElementById(all).style.backgroundColor = "rgb(204, 204, 204)"; 
+    //document.getElementById(all).style.backgroundColor = "rgb(204, 204, 204)"; 
     document.getElementById(button).style.backgroundColor = "rgb(204, 204, 204)";  //Changes the color of the button to a darker grey while the tab is open
+
+    document.getElementById("landing_content").style.padding = "0px";
+    document.getElementById("landing_content").style.height = "0px";
+    currentDocumentationTab = name
   }
+
+  
 
 }
 
@@ -104,7 +144,7 @@ function openRequest(event, name, all, button) {
     document.getElementById(button).className = 'request_button'
     document.getElementById(name).style.display = "none"  //Hides the tab contents
     document.getElementById(button).style.backgroundColor = "rgb(245,245,245)"; //Changes the color of the button back to normal
-    
+    currentDocumentationTab
   //If the tab selected currently hidden
   } else {
     document.getElementById(currentRequestTab).style.display = "none";

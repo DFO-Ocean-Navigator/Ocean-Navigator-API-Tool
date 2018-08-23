@@ -104,3 +104,11 @@ h2.requestheader {
     overflow: scroll;
     max-height: 400px;
 }
+
+#landing_content {
+    display: block;
+    height:240px;
+    max-width: 1100px;
+    transition: all 0.5s ease;
+    overflow: hidden;
+}

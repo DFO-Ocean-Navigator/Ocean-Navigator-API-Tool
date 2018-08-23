@@ -63,10 +63,9 @@
 		<div id="sidebar-wrapper">
 			<div class="sidebar-nav">
                 
-                <img class="sidebar_icon" src="apple-icon.png">
+                <img class="sidebar_icon" id="sidebar_icon" src="apple-icon.png">
                 
-                <span class="sidebar-brand">Ocean Navigator API</span>
-				<div class="vertical-line"></div>
+                <span class="sidebar-brand" id="sidebar-brand">Ocean Navigator API</span>
           		<a class="header_button" id="Documentation_button" href="#documentation" onclick="openTab(event, 'Documentation')">Documentation</a>
         
 				<a class="header_button" id="Input_Options_button" href="#DataInfo" onclick="openTab(event, 'Input_Options')">API Dataset Information</a>
@@ -92,6 +91,16 @@
 		<!--<div class="page-content-wrapper">
 			<div class="container_fluid">-->
 <div class="tabcontent" id="Documentation">
+	<div class='expand-contents' id="landing_content">
+		<pre>
+The Ocean Navigator API was designed to allow the navigator webpage access to complex algorithms, plotting tools, data, amongst other things.
+It has also been designed to be used by everyone as  ameans of accessing ocean model data and tools while bypassing the navigators user interface.
+The API was not made available as a replacement, but as an addition to the Ocean Navigator Web Page
+It allows for greater automation, added features, and a more script based technical approach.
+This page includes all the documentation and instruction required to understand the Ocean Navigator API, and to begin using it yourself.<br>
+Any questions, comments, and recommendations can be sent to oceandatamap@gmail.com</pre>
+		</div>
+<div id="landing_page_control">
 	<div class='expand-button'>
 		<button class='howto_button' id="query_construct_button" onclick="openContents(event, 'query_construct', 'query_construct_all', 'query_construct_button')">
 			<span>
@@ -100,6 +109,22 @@
 			</span>
 		</button>
 	</div>
+	<div class='expand-button'>
+			<button class='howto_button' id="query_construct_json_button" onclick="openContents(event, 'query_construct_json', 'query_construct_json_all', 'query_construct_json_button')">
+				<span>
+					<i class='fa fa-angle-down' style='font-size: 20px'></i>
+					<h4 style='display: inline; padding-left: 20px'>Construct a JSON API - Script</h4>
+				</span>
+			</button>
+		</div>
+		<div class='expand-button'>
+				<button class='howto_button' id="query_usage_button" onclick="openContents(event, 'query_usage', 'query_usage_all', 'query_usage_button')">
+					<span>
+						<i class='fa fa-angle-down' style='font-size: 20px'></i>
+						<h4 style='display: inline; padding-left: 20px'>Construct a Formatted API Script</h4>
+					</span>
+			</button>
+		</div>
 	<div class='expand-contents' id="query_construct" border="1">
 		The Ocean Navigator uses 2 different methods to receive API queries. </br>
 		Both methods require the query to be prepended with "http://navigator.oceansdata.ca/" </br>
@@ -153,14 +178,7 @@ format: /api/class4/&lt;string:q&gt;/&lt;string<script src="https://ajax.googlea
 		API Queries can be tested by copying and pasting the query into a browser, or can be automated by constructing them in
 		a script
 	</div>
-	<div class='expand-button'>
-		<button class='howto_button' id="query_construct_json_button" onclick="openContents(event, 'query_construct_json', 'query_construct_json_all', 'query_construct_json_button')">
-			<span>
-				<i class='fa fa-angle-down' style='font-size: 20px'></i>
-				<h4 style='display: inline; padding-left: 20px'>Construct a JSON API - Script</h4>
-			</span>
-		</button>
-	</div>
+	
 	<div class='expand-contents' id="query_construct_json">
 			
 		Using JSON to construct queries is very useful for creating long queries. </br>
@@ -208,14 +226,7 @@ images.save("image" + str(t) + ".png", "PNG")  <div class='comments'>#Saves the 
 </pre> This will save an image for each time stamp in the specified range </br>
 		**Example written in python3**
 	</div>
-	<div class='expand-button'>
-		<button class='howto_button' id="query_usage_button" onclick="openContents(event, 'query_usage', 'query_usage_all', 'query_usage_button')">
-			<span>
-				<i class='fa fa-angle-down' style='font-size: 20px'></i>
-				<h4 style='display: inline; padding-left: 20px'>Construct a Formatted API Script</h4>
-			</span>
-		</button>
-	</div>
+	
 	<div class='expand-contents' id="query_usage">
 					
 			There are multiple ways to construct an API request in a script. 2 examples are given below.</br>
@@ -259,7 +270,8 @@ output = f.read()
 print(output)
 <a href="print_depth_concatenate.py" download><img class='icon_custom' src="savefile_icon.png"></a>
 </pre> **Example written in python3**
-	</div>			
+	</div>	
+</div>		
 </div>
 
 <div class="tabcontent" id="Input_Options">
