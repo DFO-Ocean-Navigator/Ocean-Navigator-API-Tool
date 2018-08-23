@@ -275,7 +275,7 @@ print(output)
 					</h2>
 					<div class="request_buttons">
 						<div class='expand-button'>
-								<button class='request_button' id="dataset_request_btn" onclick="openRequest(event, 'dataset_request', 'query_usage_all', 'dataset_request_btn'); receiveRequest('dataset_request', 'api/v1.0/datasets');">
+								<button class='request_button' id="dataset_request_btn" onclick="openRequest(event, 'dataset_request', 'query_usage_all', 'dataset_request_btn'); receiveRequest('dataset_request', 'api/v1.0/datasets'); receiveRequest('dataset_id_request','api/v1.0/datasets/?id')">
 									<table class="request_table"><tr class="request_table_row">
 											<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Dataset Info</h4></td>
 											<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -283,7 +283,7 @@ print(output)
 								</button>
 						</div>
 						<div class='expand-button'>
-								<button class='request_button' id="variables_request_btn" onclick="openRequest(event, 'variables_request', 'query_usage_all', 'variables_request_btn'); receiveRequest('datasetid_request', 'api/v1.0/datasets/id')">
+								<button class='request_button' id="variables_request_btn" onclick="openRequest(event, 'variables_request', 'query_usage_all', 'variables_request_btn'); receiveRequest('variables_request', 'api/v1.0/variables/?dataset=giops_day')">
 									<table class="request_table"><tr class="request_table_row">
 										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Variables</h4></td>
 										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -404,6 +404,7 @@ Will return a list of possible datasets and their corresponding data
 Will return a list of Dataset names and their corresponding id's
 </pre>
 								<b>Response:</b>
+								<div class="request_response" id="dataset_id_request_response"></div>
 							</div>
 						</div>
 
@@ -427,6 +428,7 @@ vectors      : When included, magnitude components will be included
 Will return a list of variables in the specified dataset, this output can be filtered by including keywords in the query
 </pre>
 								<b>Response:</b>
+								<div class="request_response" id="variables_request_response"></div>
 							</div>
 						</div>
 
@@ -444,6 +446,7 @@ example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/observ
 Returns a list of the possible observation variables
 </pre>
 								<b>Response:</b>
+								<div class="request_response" id="obs_variables_request_response"></div>
 							</div>
 						</div>
 						<!--TIMESTAMPS - DESCRIPTION-->
@@ -459,13 +462,16 @@ example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/timest
 
 Finds all timestamps associated with a dataset
 </pre>	
-								<b>Resonse:</b>
+								<b>Response:</b>
+								<div class="request_response" id="timestamps_request_response"></div>
 							</div>
 						</div>
 						<!-- DEPTH - DESCRIPTION-->
 						<div class="expand-contents" id="depth_request">
-							<div class="api_text">/api/v1.0/depth/?dataset=&lt;string:dataset_id&gt;&amp;variable=&lt;string:variable&gt;</div>
-	
+							<div class="request_container">
+								<b>Request:</b>
+									<div class="api_text">/api/v1.0/depth/?dataset=&lt;string:dataset_id&gt;&amp;variable=&lt;string:variable&gt;</div>
+									<b>Description:</b>
 <pre class="fragment">
 example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/depth/?dataset=giops_day&variable=votemper">/api/v1.0/depth/?dataset=giops_day&variable=votemper</a>
 
@@ -474,6 +480,9 @@ example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/depth/
 
 Returns all depths available for that variable in the dataset
 </pre>
+								<b>Response:</b>
+								<div class="request_response" id="depth_request_response"></div>
+							</div>
 						</div>
 						<!--SCALE - DESCRIPTION-->
 						<div class="expand-contents" id="scale_request">

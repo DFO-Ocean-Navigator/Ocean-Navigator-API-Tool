@@ -96,3 +96,9 @@ h2.requestheader {
     font-family: 'Courier New', Courier, monospace;
     font-size: 16px;
 }
+
+.request_response {
+    background-color: rgb(245,245,245);
+    word-break: break-all;
+    white-space: normal;
+}

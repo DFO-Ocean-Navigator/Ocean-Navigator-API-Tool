@@ -11,7 +11,8 @@ function receiveRequest(div_id, request) {
   $.ajax({
       url: "http://navigator.oceansdata.ca/" + request, success: function(response) {
           console.warn(response);
-          document.getElementById(div_id + "_response").innerHTML = response;
+          console.warn(JSON.stringify(response))
+          document.getElementById(div_id + "_response").innerHTML = JSON.stringify(response);
       },
       error () {
         console.warn(div_id)
