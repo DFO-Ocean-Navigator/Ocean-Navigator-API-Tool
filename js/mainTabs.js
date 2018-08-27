@@ -1,4 +1,5 @@
-currentDocumentationTab = "";
+
+var currentDocumentationTab = "";
 var active_dataset
 var panesPopulated = false;
 var currentDepths
@@ -6,6 +7,7 @@ var currentDepths
 // CURRENT TAB VARIABLES
 var currentPlotTab = "generalPlot";
 var currentRequestTab = "dataset_request";
+
 
 function receiveRequest(div_id, request) {
   console.warn("http://navigator.oceansdata.ca/" + request)
@@ -15,7 +17,7 @@ function receiveRequest(div_id, request) {
           console.warn(JSON.stringify(response))
           document.getElementById(div_id + "_response").innerHTML = JSON.stringify(response);
       },
-      error () {
+      error: function() {
         console.warn(div_id)
         document.getElementById(div_id + "_response").innerHTML = "Response Failed to Load"
       }
@@ -220,7 +222,7 @@ function waitForVars(callback) {
 
 //CREATES TABLE OF AVAILABLE DATASETS
 //ALSO CREATES THE GENERAL STRUCTURE OF THE PANES
-async function getDatasets() {
+function getDatasets() {
 
   $.ajax({
     url: "http://navigator.oceansdata.ca/api/v1.0/datasets/?id", success: function(datasets){
@@ -303,7 +305,7 @@ async function getDatasets() {
 
 }
 
-async function classify3d_variables(datasets) {
+function classify3d_variables(datasets) {
 
   num_datasets = datasets.length;
   num_datasets = Array.apply(null, Array(num_datasets));
@@ -344,7 +346,7 @@ async function classify3d_variables(datasets) {
 }
 
 //ADDS DATA TO EMPTY TABLE OF AVAILABLE VARIABLES
-async function populateVariables(datasets) {
+function populateVariables(datasets) {
 
   num_datasets = datasets.length
   num_datasets = Array.apply(null, Array(num_datasets));
@@ -390,7 +392,7 @@ async function populateVariables(datasets) {
 }
 
 //ADDS DATA TO EMPTY TABLE OF AVAILABLE TIMESTAMPS
-async function populateTimestamps(datasets) {
+function populateTimestamps(datasets) {
 
   num_datasets = datasets.length
   num_datasets = Array.apply(null, Array(num_datasets));

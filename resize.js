@@ -1,3 +1,4 @@
+/*
 var cookie_namespace = 'doxygen'; 
 var sidenav,navtree,content,header;
 
@@ -93,5 +94,5 @@ function initResizable()
     }
   });
 }
-
+*/
 
