@@ -341,7 +341,7 @@ print(output)
 								</button>
 						</div>
 						<div class='expand-button'>
-								<button class='request_button' id="range_request_btn" onclick="openRequest(event, 'range_request', 'query_usage_all', 'range_request_btn'); receiveRequest('range_request', '/api/v1.0/range/gaussian/25/10/giops_day/EPSG:3857/-14364031.53811732,2335626.6006510714,3785176.45791493,11630369.240128502/0/898/votemper.json?_=1535036505595')">
+								<button class='request_button' id="range_request_btn" onclick="openRequest(event, 'range_request', 'query_usage_all', 'range_request_btn'); receiveRequest('range_request', '/api/v1.0/range/giops_day/votemper/gaussian/25/10/EPSG:3857/-14640578.537679803,2335626.6006510714,3508629.4583524456,11630369.240128502/0/2018-08-24.json')">
 									<table class="request_table"><tr class="request_table_row">
 										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Range</h4></td>
 										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -529,7 +529,7 @@ Returns a coloured scale bar using the provided scale
 								<div class="api_text">/api/v1.0/range/&lt;string:dataset_id&gt;/&lt;string:variable&gt;/&lt;string:interp&gt;/&lt;string:radius&gt;/&lt;string:neighbours&gt;/&lt;string:projection&gt;/&lt;string:extent&gt;/&lt;string:depth&gt;/&lt;string:time&gt;.json</div>						
 								<b>Description:</b>
 <pre class="fragment">
-example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1/0/data/giops_day/votemper/823/0/63.51801708389351,-56.13861083984375.json">/api/v1.0/data/giops_day/votemper/823/0/63.51801708389351,-56.13861083984375.json</a>
+example: /api/v1.0/range/giops_day/votemper/gaussian/25/10/EPSG:3857/-14640578.537679803,2335626.6006510714,3508629.4583524456,11630369.240128502/0/2018-08-24.json
 		
 &lt;string:interp&gt;     : Dataset id - Can be found using /api/v1.0/datasets/?id
 &lt;string:radius&gt;     : Type of data to retrieve - found using /api/v1.0/variables/?dataset='...'
@@ -554,7 +554,7 @@ Returns JSON object containing the location, name, units, and value based on the
 								<div class="api_text">/api/v1.0/data/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:time&gt;/&lt;string:Depth&gt;/&lt;string:location&gt;.json'</div>
 								<b>Description:</b>
 <pre class="fragment">
-example: <a target="_blank" href=http://navigator.oceansdata.ca/api/v1.0/data/giops_day/votemper/901/0/59.69970379981402,-89.80072021484374.json</a>
+example: <a target="_blank" href="http://http://navigator.oceansdata.ca/api/v1.0/data/giops_day/votemper/2018-08-24/0/59.69970379981402,-89.80072021484374.json">/api/v1.0/data/giops_day/votemper/2018-08-24/0/59.69970379981402,-89.80072021484374.json</a>
 		
 &lt;string:dataset&gt;  : Dataset id - Can be found using /api/v1.0/datasets/?id
 &lt;string:variable&gt; : Type of data to retrieve - found using /api/v1.0/variables/?dataset='...'
