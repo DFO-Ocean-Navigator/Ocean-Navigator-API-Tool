@@ -349,7 +349,7 @@ print(output)
 								</button>
 						</div>
 						<div class='expand-button'>
-								<button class='request_button' id="data_request_btn" onclick="openRequest(event, 'data_request', 'query_usage_all', 'data_request_btn'); receiveRequest('data_request', '/api/v1.0/data/giops_day/votemper/2018-08-24T00:00:00+00:00/0/56.594361303447954,-49.81048583984376.json')">
+								<button class='request_button' id="data_request_btn" onclick="openRequest(event, 'data_request', 'query_usage_all', 'data_request_btn'); receiveRequest('data_request', '/api/v1.0/data/giops_day/votemper/2018-08-24T00:00:00+00:00/0/59.69970379981402,-89.80072021484374.json')">
 									<table class="request_table"><tr class="request_table_row">
 										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Point Data</h4></td>
 										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -381,7 +381,7 @@ print(output)
 								</button>
 						</div>
 						<div class='expand-button'>
-								<button class='request_button' id="subset_request_btn" onclick="openRequest(event, 'subset_request', 'query_usage_all', 'subset_request_btn'); receiveRequest('subset_request', '/api/v1.0/subset/?query=%7B%22dataset_name%22%3A+%22giops_day%22%2C+%22max_range%22%3A+%2253.68215786416249%2C-44.27337646484374%22%2C+%22min_range%22%3A+%2243.179254053693%2C-63.69720458984376%22%2C+%22output_format%22%3A+%22NETCDF4%22%2C+%22should_zip%22%3A+0%2C+%22time%22%3A+%22901%2C901%22%2C+%22user_grid%22%3A+0%2C+%22variables%22%3A+%22vosaline%22%7D')">
+								<button class='request_button' id="subset_request_btn" onclick="openRequest(event, 'subset_request', 'query_usage_all', 'subset_request_btn');">
 									<table class="request_table"><tr class="request_table_row">
 										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Subset</h4></td>
 										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -554,7 +554,7 @@ Returns JSON object containing the location, name, units, and value based on the
 								<div class="api_text">/api/v1.0/data/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:time&gt;/&lt;string:Depth&gt;/&lt;string:location&gt;.json'</div>
 								<b>Description:</b>
 <pre class="fragment">
-example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/data/giops_day/votemper/823/0/63.51801708389351,-56.13861083984375.json">/api/v1.0/data/giops_day/votemper/823/0/63.51801708389351,-56.13861083984375.json</a>
+example: <a target="_blank" href=http://navigator.oceansdata.ca/api/v1.0/data/giops_day/votemper/901/0/59.69970379981402,-89.80072021484374.json</a>
 		
 &lt;string:dataset&gt;  : Dataset id - Can be found using /api/v1.0/datasets/?id
 &lt;string:variable&gt; : Type of data to retrieve - found using /api/v1.0/variables/?dataset='...'
@@ -666,7 +666,7 @@ Bounding Box:
 Returns a subset of data based on the criteria provided, this can be in multiple different file formats
 </pre>
 								<b>Response:</b>
-								<div class="request_response" id="subset_request_response"></div>
+								<div class="request_response" id="subset_request_response">Response will be a file</div>
 							</div>
 						</div>
 
