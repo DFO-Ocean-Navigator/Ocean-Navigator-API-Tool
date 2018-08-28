@@ -381,7 +381,7 @@ print(output)
 								</button>
 						</div>
 						<div class='expand-button'>
-								<button class='request_button' id="subset_request_btn" onclick="openRequest(event, 'subset_request', 'query_usage_all', 'subset_request_btn'); receiveRequest('subset_request', 'api/v1.0/data/?dataset=giops_day')">
+								<button class='request_button' id="subset_request_btn" onclick="openRequest(event, 'subset_request', 'query_usage_all', 'subset_request_btn'); receiveRequest('subset_request', '/api/v1.0/subset/?query=%7B%22dataset_name%22%3A+%22giops_day%22%2C+%22max_range%22%3A+%2253.68215786416249%2C-44.27337646484374%22%2C+%22min_range%22%3A+%2243.179254053693%2C-63.69720458984376%22%2C+%22output_format%22%3A+%22NETCDF4%22%2C+%22should_zip%22%3A+0%2C+%22time%22%3A+%22901%2C901%22%2C+%22user_grid%22%3A+0%2C+%22variables%22%3A+%22vosaline%22%7D')">
 									<table class="request_table"><tr class="request_table_row">
 										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Subset</h4></td>
 										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -745,7 +745,7 @@ The Plot function allows you to create point, transect, area, drifter, and class
 	time      : Time retrieved data was gathered/modeled
 	contour   : {
 					variable :
-					hatch    : 
+					hatch    :
 					levels   :
 					colormap :
 					legend   :

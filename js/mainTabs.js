@@ -10,8 +10,11 @@ var currentRequestTab = "dataset_request";
 
 
 function receiveRequest(div_id, request) {
-  console.warn("http://navigator.oceansdata.ca/" + request)
-  $.ajax({
+
+  if (request == 'api/v1.0/scale/giops_day/votemper/-5,30.png') {
+    document.getElementById(div_id + "_response").innerHTML = '<img src="http://navigator.oceansdata.ca/api/v1.0/scale/giops_day/votemper/-5,30.png"/>'
+  } else {
+    $.ajax({
       url: "http://navigator.oceansdata.ca/" + request, success: function(response) {
           console.warn(response);
           console.warn(JSON.stringify(response))
@@ -22,6 +25,7 @@ function receiveRequest(div_id, request) {
         document.getElementById(div_id + "_response").innerHTML = "Response Failed to Load"
       }
   });
+  }
 };
 
 function toggleSidebar() {
