@@ -333,7 +333,7 @@ print(output)
 								</button>
 						</div>
 						<div class='expand-button'>
-								<button class='request_button' id="scale_request_btn" onclick="openRequest(event, 'scale_request', 'query_usage_all', 'scale_request_btn'); receiveRequest('scale_request', 'api/v1.0/scale/giops_day/votemper/-5,30.png')">
+								<button class='request_button' id="scale_request_btn" onclick="openRequest(event, 'scale_request', 'query_usage_all', 'scale_request_btn'); receiveRequest('scale_request', 'api/v1.0/scale/giops_day/votemper/-5,30/default/horizontal/True/False.png')">
 									<table class="request_table"><tr class="request_table_row">
 										<td class="request_col_left"><h4 style='display: inline; padding-left: 20px'>Scale</h4></td>
 										<td class="request_col_right"><i class='fa fa-angle-right' style='font-size: 20px'></i></td>
@@ -506,10 +506,10 @@ Returns all depths available for that variable in the dataset
 						<div class="expand-contents" id="scale_request">
 							<div class="request_container">
 								<b>Request:</b>
-								<div class="api_text">/api/v1.0/scale/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:scale_min, scale_max&gt;.png</div>
+								<div class="api_text">/api/v1.0/scale/&lt;string:dataset&gt;/&lt;string:variable&gt;/&lt;string:scale_min, scale_max&gt;/&lt;string:colourmap&gt;/&lt;string:orientation&gt;/&lt;string:transparency&gt;/&lt;string:label&gt;.png</div>
 								<b>Description:</b>
 <pre class="fragment">
-example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/scale/giops_day/votemper/-5,30.png">/api/v1.0/scale/giops_day/votemper/-5,30.png</a>
+example: <a target="_blank" href="http://navigator.oceansdata.ca/api/v1.0/scale/giops_day/votemper/-5,30/default/horizontal/True/False.png">/api/v1.0/scale/giops_day/votemper/-5,30/default/horizontal/True/False.png</a>
 		
 &lt;string:dataset&gt;    			  : Dataset id - found using /api/datasets/id
 &lt;string:variable&gt;   			  : Type of data to retrieve - found using /api/variables/?dataset='...'
